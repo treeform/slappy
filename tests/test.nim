@@ -35,11 +35,10 @@ block:
   source.stop()
 
 block:
-  # rotate sound in 3d
+  echo "rotate sound in 3d"
   let sound = newSound("tests/drums.mono.wav")
   var source = sound.play()
   source.looping = true
-  echo "rotateing sound in 3d, 1 rotation"
   for i in 0..360:
     let a = float(i) / 180 * PI
     source.pos = vec3(sin(a), cos(a), 0)
@@ -48,14 +47,13 @@ block:
   sleep(500)
 
 block:
-  # doppler waves shift as police car pases
+  echo "doppler waves shift as police car pases"
   let sound = newSound("tests/siren.wav")
   var source = sound.play()
   source.looping = true
   source.pos = vec3(-100, -100, 0)
   source.vel = vec3(1, 1, 0) * 50
   source.gain = 10
-  echo "setting velcoity and position"
   for i in 1..200:
     source.pos = source.pos + source.vel / 50
     echo "    ", source.pos, source.vel
@@ -64,11 +62,12 @@ block:
   sleep(500)
 
 block:
-  # set gain
-  let sound = newSound("tests/drums.sterio.wav")
-  var source = sound.play()
-  source.looping = true
   echo "setting gain from 0 to 2"
+  let sound = newSound("tests/drums.sterio.wav")
+  echo "loaded"
+  var source = sound.play()
+  echo "play"
+  source.looping = true
   for i in 0..100:
     let a = float(i)/100
     source.gain = a * a
@@ -97,10 +96,10 @@ block:
   # make 2 rounds
   echo "restarting source 3 times"
   for i in 0..2:
-    source.offset = 0
+    source.playback = 0
     source.play()
     sleep(300)
-    echo "    ", source.offset
+    echo "    ", source.playback
     source.stop()
   sleep(500)
 

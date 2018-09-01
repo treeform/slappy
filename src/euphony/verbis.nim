@@ -1,10 +1,6 @@
 import streams
 
 
-when defined(linux) and not defined(android):
-  {.passL: "-lm".}
-
-
 {.compile: "verbis.c".}
 
 
