@@ -193,6 +193,7 @@ proc `coneOuterAngle=`*(source: Source, v: float32) =
 proc `coneOuterAngle`*(source: Source): float32 =
   alGetSourcef(source.id, AL_CONE_OUTER_ANGLE, addr result)
 
+
 proc `looping=`*(source: Source, v: bool) =
   var looping: ALint = 0
   if v == true: looping = 1
@@ -372,7 +373,7 @@ proc size*(sound: Sound): int {.inline.} =
 
 
 proc freq*(sound: Sound): int {.inline.} =
-  ## Gets the frequency or the bits per second rate.
+  ## Gets the frequency or the samples per second rate.
   var
     tmp: ALint
   alGetBufferi(sound.id, AL_FREQUENCY, addr tmp)

@@ -2,6 +2,8 @@
 
 > Euphony - *noun*: the quality of being pleasing to the ear
 
+Big thanks to [yglukhov's sound](https://github.com/yglukhov/sound) library!
+
 This library provides more high level interface to the [OpenAL](https://github.com/treeform/openal) library.
 
 Which provides the standard features of:
@@ -34,4 +36,52 @@ source.stop()
 sleep(500)
 ```
 
-See test.nim for more details.
+See [test.nim](https://github.com/treeform/euphony/blob/master/tests/test.nim) for more details.
+
+## Basic concepts
+
+**Listeren** is the main ear of abstract person in the 3d world.
+
+It has the following properites:
+  * gain - Volume on which the listern hears.
+  * pos - Position
+  * vel - Velocity
+  * mat - Orientation matrix
+
+You get one global listeren.
+
+
+**Sound** the recording of the sound that can be played.
+It can be loaded with:
+`sound = newSound("path/to/wav.or.ogg")`
+
+It has the following properites, that are read only:
+  * bits - Bit rate or number of bits per sample.
+  * size - Number of byte the sound takes up.
+  * freq - Frequency or the samples per second rate.
+  * channels - Number of channels, only 1 or 2 supported. `WARNING`: 2 channel sounds can't be positioned in 3d
+  * samples - Number of samples, a sample is a single integer that sets the position of the speaker membrane.
+  * duration - duration of the sound in seconds.
+
+You can use the `sound.play()` and get a `Source` object.
+
+**Source** represnts the sound playing in a 3d world, kind of like an abstract speaker.
+
+It has the following functions:
+  * playing - Is the sound playing?
+  * stop - Stop the sound
+  * play - Start plaing the sound (if it was stopped before)
+
+It has the following properites:
+  * pitch - How fast the sound plays, or how low or high it sounds.
+  * gain - Volume of the sound.
+  * maxDistance - Inverse Clamped Distance Model, where sound will not longer be played.
+  * rolloffFactor - Set rolloff rate for the source.
+  * halfDistance - The distance under which the volume for the source would normally drop by half.
+  * minGain - The minimum gain for this source.
+  * maxGain - The minimum gain for this source.
+  * looping - Should the sound loop.
+  * pos - Position
+  * vel - Velocity
+  * mat - Orientation matrix
+  * playback - playback position in seconds (offset)
