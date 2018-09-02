@@ -398,7 +398,7 @@ proc samples*(sound: Sound): int {.inline.} =
   return samplesInChannel div sound.channels
 
 
-proc duration*(sound: Sound): float {.inline.} =
+proc duration*(sound: Sound): float32 {.inline.} =
   ## Gets duration of the sound in seconds
   return sound.samples / sound.freq
 
