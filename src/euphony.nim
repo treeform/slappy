@@ -13,10 +13,12 @@ type
 
 var
   listener* = Listener()
-  activeSources*: seq[Source]
 
-  device*: ALCdevice
-  ctx*: ALCcontext
+
+var
+  activeSources: seq[Source]
+  device: ALCdevice
+  ctx: ALCcontext
 
 
 ## Listener functions
