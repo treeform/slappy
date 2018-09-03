@@ -40,6 +40,8 @@ See [test.nim](https://github.com/treeform/euphony/blob/master/tests/test.nim) f
 
 ## Basic concepts
 
+### Listeren
+
 **Listeren** is the main ear of abstract person in the 3d world.
 
 It has the following properites:
@@ -50,10 +52,15 @@ It has the following properites:
 
 You get one global listeren.
 
+### Sound
 
 **Sound** the recording of the sound that can be played.
+
 It can be loaded with:
 `sound = newSound("path/to/wav.or.ogg")`
+
+It has the following functions:
+  * play() - Creates a `Source` objects that has the sound playing.
 
 It has the following properites, that are read only:
   * bits - Bit rate or number of bits per sample.
@@ -63,14 +70,13 @@ It has the following properites, that are read only:
   * samples - Number of samples, a sample is a single integer that sets the position of the speaker membrane.
   * duration - duration of the sound in seconds.
 
-You can use the `sound.play()` and get a `Source` object.
+### Source
 
 **Source** represnts the sound playing in a 3d world, kind of like an abstract speaker.
 
 It has the following functions:
-  * playing - Is the sound playing?
-  * stop - Stop the sound
-  * play - Start plaing the sound (if it was stopped before)
+  * stop() - Stop the sound.
+  * play() - Start plaing the sound (if it was stopped before).
 
 It has the following properites:
   * pitch - How fast the sound plays, or how low or high it sounds.
@@ -80,6 +86,7 @@ It has the following properites:
   * halfDistance - The distance under which the volume for the source would normally drop by half.
   * minGain - The minimum gain for this source.
   * maxGain - The minimum gain for this source.
+  * playing - Is the sound playing.
   * looping - Should the sound loop.
   * pos - Position
   * vel - Velocity
