@@ -310,7 +310,7 @@ proc newSound*(): Sound =
 
 proc newSound*(filePath: string): Sound =
   var
-    sound = new Sound
+    sound = Sound()
   alGenBuffers(1, addr sound.id)
 
   proc format(bits, channels: int): ALenum =
@@ -404,7 +404,7 @@ proc duration*(sound: Sound): float32 {.inline.} =
 
 
 proc play*(sound: Sound): Source =
-  var source = new Source
+  var source = Source()
   alGenSources(1, addr source.id)
   activeSources.add(source)
   alSourcei(source.id, AL_BUFFER, cast[ALint](sound.id))
