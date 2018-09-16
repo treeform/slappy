@@ -110,7 +110,6 @@ block:
     var source = sound.play()
     source.pitch = float(freq) * 0.002
     sleep int(120.0 * 1.5)
-    echo "    activeSources:", activeSources.len
     euphanyTick()
   playNote(659)
   playNote(622)
