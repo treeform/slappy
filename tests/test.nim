@@ -2,7 +2,7 @@ import os, math
 import vmath
 import euphony
 
-euphanyInit()
+euphonyInit()
 
 block:
   echo "playing wav file"

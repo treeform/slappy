@@ -267,10 +267,10 @@ proc `mat`*(source: Source): Mat4 =
   )
 
 
-## Euphany functions
+## Euphony functions
 
 
-proc euphanyInit*() =
+proc euphonyInit*() =
   ## Call this on start of your program
   device = alcOpenDevice(nil)
   if device == nil:
@@ -282,14 +282,14 @@ proc euphanyInit*() =
     quit "Euphony: failed to make context current"
 
 
-proc euphanyClose*() =
+proc euphonyClose*() =
   ## Call this on exit
   alcDestroyContext(ctx)
   if not alcCloseDevice(device):
     quit "Euphony: failed to close device"
 
 
-proc euphanyTick*() =
+proc euphonyTick*() =
   ## Updates all sources and sounds
   var i = 0
   while i < activeSources.len:
