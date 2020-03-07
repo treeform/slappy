@@ -8,4 +8,5 @@ srcDir        = "src"
 
 # Dependencies
 
-requires "nim >= 0.18.1"
+requires "nim >= 1.0.0"
+requires "openal >= 0.1.0"
