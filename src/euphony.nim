@@ -1,4 +1,4 @@
-import euphony/verbis, euphony/wav, openal, strutils, vmath
+import euphony/vorbis, euphony/wav, openal, strutils, vmath
 
 type
   Listener* = object
@@ -9,8 +9,6 @@ type
 
 var
   listener* = Listener()
-
-var
   activeSources: seq[Source]
   device: ALCdevice
   ctx: ALCcontext
@@ -18,7 +16,7 @@ var
 ## Listener functions
 
 proc `gain=`*(listener: Listener, v: float32) =
-  ## Set Master gain. Value should be positive
+  ## Set Master gain. Value should be positive.
   alListenerf(AL_GAIN, v)
 
 proc `gain`*(listener: Listener): float32 =
@@ -26,27 +24,27 @@ proc `gain`*(listener: Listener): float32 =
   alGetListenerf(AL_GAIN, addr result)
 
 proc `pos=`*(listener: Listener, pos: Vec3) =
-  ## Set position of the main listener
+  ## Set position of the main listener.
   alListener3f(AL_POSITION, pos.x, pos.y, pos.z)
 
 proc `pos`*(listener: Listener): Vec3 =
-  ## Get position of the main listener
+  ## Get position of the main listener.
   var tmp = [ALfloat(0.0), 0.0, 0.0]
   alGetListenerfv(AL_POSITION, addr tmp[0])
   return vec3(tmp[0], tmp[1], tmp[2])
 
 proc `vel=`*(listener: Listener, vel: Vec3) =
-  ## Set velocity of the main listener
+  ## Set velocity of the main listener.
   alListener3f(AL_VELOCITY, vel.x, vel.y, vel.z)
 
 proc `vel`*(listener: Listener): Vec3 =
-  ## Get velocity of the main listener
+  ## Get velocity of the main listener.
   var tmp = [ALfloat(0.0), 0.0, 0.0]
   alGetListenerfv(AL_VELOCITY, addr tmp[0])
   return vec3(tmp[0], tmp[1], tmp[2])
 
 proc `mat=`*(listener: Listener, mat: Mat4) =
-  ## Set orientation of the main listener
+  ## Set orientation of the main listener.
   var tmp1 = [ALfloat(0.0), 0.0, 0.0]
   tmp1[0] = mat.pos.x
   tmp1[1] = mat.pos.y
@@ -62,7 +60,7 @@ proc `mat=`*(listener: Listener, mat: Mat4) =
   alListenerfv(AL_ORIENTATION, addr tmp2[0])
 
 proc `mat`*(listener: Listener): Mat4 =
-  ## Get orientation of the main listener
+  ## Get orientation of the main listener.
   var tmp1 = [ALfloat(0.0), 0.0, 0.0]
   alGetListenerfv(AL_POSITION, addr tmp1[0])
   var tmp2 = [ALfloat(0.0), 0.0, 0.0, 0.0, 0.0, 0.0]
@@ -101,14 +99,14 @@ proc `gain`*(source: Source): float32 =
 proc `maxDistance=`*(source: Source, v: float32) =
   ## Set the Inverse Clamped Distance Model to set the
   ## distance where there will no longer be any attenuation
-  ## of the source
+  ## of the source.
   alSourcef(source.id, AL_MAX_DISTANCE, v)
 
 proc `maxDistance`*(source: Source): float32 =
   alGetSourcef(source.id, AL_MAX_DISTANCE, addr result)
 
 proc `rolloffFactor=`*(source: Source, v: float32) =
-  ## Set rolloff rate for the source. Default is 1.0
+  ## Set rolloff rate for the source. Default is 1.0.
   alSourcef(source.id, AL_ROLLOFF_FACTOR, v)
 
 proc `rolloffFactor`*(source: Source): float32 =
@@ -117,42 +115,42 @@ proc `rolloffFactor`*(source: Source): float32 =
 proc `halfDistance=`*(source: Source, v: float32) =
   ## The distance under which the volume for the source
   ## would normally drop by half (before being influenced
-  ## by rolloff factor or maxDistance)
+  ## by rolloff factor or maxDistance).
   alSourcef(source.id, AL_REFERENCE_DISTANCE, v)
 
 proc `halfDistance`*(source: Source): float32 =
   alGetSourcef(source.id, AL_REFERENCE_DISTANCE, addr result)
 
 proc `minGain=`*(source: Source, v: float32) =
-  ## The minimum gain for this source
+  ## The minimum gain for this source.
   alSourcef(source.id, AL_MIN_GAIN, v)
 
 proc `minGain`*(source: Source): float32 =
   alGetSourcef(source.id, AL_MIN_GAIN, addr result)
 
 proc `maxGain=`*(source: Source, v: float32) =
-  ## The minimum gain for this source
+  ## The minimum gain for this source.
   alSourcef(source.id, AL_MAX_GAIN, v)
 
 proc `maxGain`*(source: Source): float32 =
   alGetSourcef(source.id, AL_MAX_GAIN, addr result)
 
 proc `coneOuterGain=`*(source: Source, v: float32) =
-  ## The gain when outside the oriented cone
+  ## The gain when outside the oriented cone.
   alSourcef(source.id, AL_CONE_OUTER_GAIN, v)
 
 proc `coneOuterGain`*(source: Source): float32 =
   alGetSourcef(source.id, AL_CONE_OUTER_GAIN, addr result)
 
 proc `coneInnerAngle=`*(source: Source, v: float32) =
-  ## Inner angle of the sound cone, in degrees. Default is 360
+  ## Inner angle of the sound cone, in degrees. Default is 360.
   alSourcef(source.id, AL_CONE_INNER_ANGLE, v)
 
 proc `coneInnerAngle`*(source: Source): float32 =
   alGetSourcef(source.id, AL_CONE_INNER_ANGLE, addr result)
 
 proc `coneOuterAngle=`*(source: Source, v: float32) =
-  ## Outer angle of the sound cone, in degrees. Default is 360
+  ## Outer angle of the sound cone, in degrees. Default is 360.
   alSourcef(source.id, AL_CONE_OUTER_ANGLE, v)
 
 proc `coneOuterAngle`*(source: Source): float32 =
@@ -169,15 +167,15 @@ proc `looping`*(source: Source): bool =
   return looping == 1
 
 proc `playback=`*(source: Source, v: float32) =
-  ## Set playback position in seconds (offset)
+  ## Set playback position in seconds (offset).
   alSourcef(source.id, AL_SEC_OFFSET, v)
 
 proc `playback`*(source: Source): float32 =
-  ## Get the playback position in seconds (offset)
+  ## Get the playback position in seconds (offset).
   alGetSourcef(source.id, AL_SEC_OFFSET, addr result)
 
 proc `pos=`*(source: Source, pos: Vec3) =
-  ## Set source position
+  ## Set source position.
   alSource3f(source.id, AL_POSITION, pos.x, pos.y, pos.z)
 
 proc `pos`*(source: Source): Vec3 =
@@ -222,7 +220,7 @@ proc `mat`*(source: Source): Mat4 =
 ## Euphony functions
 
 proc euphonyInit*() =
-  ## Call this on start of your program
+  ## Call this on start of your program.
   device = alcOpenDevice(nil)
   if device == nil:
     quit "Euphony: failed to get default device"
@@ -233,13 +231,13 @@ proc euphonyInit*() =
     quit "Euphony: failed to make context current"
 
 proc euphonyClose*() =
-  ## Call this on exit
+  ## Call this on exit.
   alcDestroyContext(ctx)
   if not alcCloseDevice(device):
     quit "Euphony: failed to close device"
 
 proc euphonyTick*() =
-  ## Updates all sources and sounds
+  ## Updates all sources and sounds.
   var i = 0
   while i < activeSources.len:
     let source = activeSources[i]
@@ -304,14 +302,14 @@ proc newSound*(filePath: string): Sound =
   return sound
 
 proc bits*(sound: Sound): int {.inline.} =
-  ## Gets the bit rate or bits per sample, only 8bits and 16bits per sample supported
+  ## Gets the bit rate or bits per sample, only 8bits and 16bits per sample supported.
   var
     tmp: ALint
   alGetBufferi(sound.id, AL_BITS, addr tmp)
   return int tmp
 
 proc size*(sound: Sound): int {.inline.} =
-  ## Gets the size of the sound buffer in bytes
+  ## Gets the size of the sound buffer in bytes.
   var
     tmp: ALint
   alGetBufferi(sound.id, AL_SIZE, addr tmp)
@@ -326,20 +324,20 @@ proc freq*(sound: Sound): int {.inline.} =
 
 proc channels*(sound: Sound): int {.inline.} =
   ## Gets number of channels, only 1 or 2 are supported.
-  ## WARNING: 2 channel sounds can't be positioned in 3d
+  ## WARNING: 2 channel sounds can't be positioned in 3d.
   var
     tmp: ALint
   alGetBufferi(sound.id, AL_CHANNELS, addr tmp)
   return int tmp
 
 proc samples*(sound: Sound): int {.inline.} =
-  ## Gets number of samples
+  ## Gets number of samples.
   let bytesPerSample = sound.bits div 8
   let samplesInChannel = sound.size div bytesPerSample
   return samplesInChannel div sound.channels
 
 proc duration*(sound: Sound): float32 {.inline.} =
-  ## Gets duration of the sound in seconds
+  ## Gets duration of the sound in seconds.
   return sound.samples / sound.freq
 
 proc play*(sound: Sound): Source =
