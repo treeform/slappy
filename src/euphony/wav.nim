@@ -9,7 +9,7 @@ type WavFile* = object
 
 proc readWav*(filePath: string): WavFile =
   # Load PCM data from wav file.
-  var f = newFileStream(open(filePath))
+  var f = newFileStream(filePath)
   let
     chunkID = f.readStr(4)
     chunkSize = f.readUint32()
