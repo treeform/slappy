@@ -108,7 +108,7 @@ block:
     var source = sound.play()
     source.pitch = float(freq) * 0.002
     sleep int(120.0 * 1.5)
-    euphanyTick()
+    euphonyTick()
   playNote(659)
   playNote(622)
   playNote(659)
@@ -153,4 +153,4 @@ block:
   discard sound.play()
   sleep(int sound.duration * 1000)
 
-euphanyClose()
+euphonyClose()

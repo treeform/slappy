@@ -4,15 +4,15 @@
 
 Big thanks to [yglukhov's sound](https://github.com/yglukhov/sound) library!
 
-This library provides more high level interface to the [OpenAL](https://github.com/treeform/openal) library.
+This library provides higher level interface to the [OpenAL](https://github.com/treeform/openal) library.
 
-Which provides the standard features of:
+Euphony provides the standard features of:
 * 3d positions of sounds.
 * 3d position of listner.
 * Doppler shift.
 * Acoustic attenuation.
 
-It also providies some extra features such as:
+Euphony also providies some extra features such as:
 * A much more nim-like api.
 * `.wav` and `.ogg` loading.
 * Sound priority. (in preogress)
@@ -40,29 +40,29 @@ See [test.nim](https://github.com/treeform/euphony/blob/master/tests/test.nim) f
 
 ## Basic concepts
 
-### Listeren
+### Listener
 
-**Listeren** is the main ear of abstract person in the 3d world.
+**Listener** is the main ear of abstract person in the 3d world.
 
-It has the following properites:
+Listener has the following properites:
   * gain - Volume on which the listern hears.
   * pos - Position
   * vel - Velocity
   * mat - Orientation matrix
 
-You get one global listeren.
+You get one global Listener.
 
 ### Sound
 
 **Sound** the recording of the sound that can be played.
 
-It can be loaded with:
+Sound can be loaded with:
 `sound = newSound("path/to/wav.or.ogg")`
 
-It has the following functions:
+Sound has the following functions:
   * play() - Creates a `Source` objects that has the sound playing.
 
-It has the following properites, that are read only:
+Sound has the following properites, that are read only:
   * bits - Bit rate or number of bits per sample.
   * size - Number of byte the sound takes up.
   * freq - Frequency or the samples per second rate.
@@ -74,11 +74,11 @@ It has the following properites, that are read only:
 
 **Source** represnts the sound playing in a 3d world, kind of like an abstract speaker.
 
-It has the following functions:
+Source has the following functions:
   * stop() - Stop the sound.
   * play() - Start plaing the sound (if it was stopped before).
 
-It has the following properites:
+Source has the following properites:
   * pitch - How fast the sound plays, or how low or high it sounds.
   * gain - Volume of the sound.
   * maxDistance - Inverse Clamped Distance Model, where sound will not longer be played.
