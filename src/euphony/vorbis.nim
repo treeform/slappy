@@ -12,12 +12,12 @@ type
 
   VorbisFile* = object
     data*: pointer
-    size*: int
+    size*: uint
     freq*: int
     bits*: int
     channels*: int
 
-proc c_malloc(size: csize): pointer {.importc: "malloc", header: "<stdlib.h>".}
+proc c_malloc(size: csize_t): pointer {.importc: "malloc", header: "<stdlib.h>".}
 proc c_free(p: pointer) {.importc: "free", header: "<stdlib.h>".}
 
 proc stb_vorbis_open_memory(
@@ -59,7 +59,7 @@ proc readVorbis*(
 
   # get num samples
   let numSamples = stb_vorbis_stream_length_in_samples(vorbisCtx)
-  result.size = cint(numSamples) * channels * bytesPerSample
+  result.size = numSamples * uint(channels * bytesPerSample)
 
   # allocate primary buffer
   var buffer = c_malloc(result.size)
@@ -73,7 +73,7 @@ proc readVorbis*(
   ) * channels * bytesPerSample
 
   # make sure the decode was successful
-  if dataRead != result.size:
+  if dataRead.uint != result.size:
     raise newException(
       ValueError,
       "Decoding Vorbis file failed, uable to read entire file"
