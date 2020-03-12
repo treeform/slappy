@@ -7,11 +7,8 @@ type WavFile* = object
   bits*: int
   channels*: int
 
-
-proc readWav*(
-  filePath: string,
-  ): WavFile =
-  # load PCM data from wav file
+proc readWav*(filePath: string): WavFile =
+  # Load PCM data from wav file.
   var f = newFileStream(open(filePath))
   let
     chunkID = f.readStr(4)

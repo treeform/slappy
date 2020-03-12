@@ -1,8 +1,6 @@
 import streams
 
-
 {.compile: "vorbis.c".}
-
 
 type
   Vorbis = ptr object
@@ -21,21 +19,28 @@ type
     bits*: int
     channels*: int
 
-
 proc c_malloc(size: csize): pointer {.importc: "malloc", header: "<stdlib.h>".}
 proc c_free(p: pointer) {.importc: "free", header: "<stdlib.h>".}
 
-
-proc stb_vorbis_open_memory(data: pointer, len: cint, error: ptr cint, alloc_buffer: pointer): Vorbis {.importc, noconv.}
+proc stb_vorbis_open_memory(
+  data: pointer,
+  len: cint,
+  error: ptr cint,
+  alloc_buffer: pointer
+): Vorbis {.importc, noconv.}
 proc stb_vorbis_get_info(f: Vorbis): VorbisInfo {.importc, noconv.}
 proc stb_vorbis_stream_length_in_samples(f: Vorbis): cuint {.importc, noconv.}
-proc stb_vorbis_get_samples_short_interleaved(f: Vorbis, channels: cint, buffer: pointer, num_shorts: cint): cint {.importc, noconv.}
+proc stb_vorbis_get_samples_short_interleaved(
+  f: Vorbis,
+  channels: cint,
+  buffer: pointer,
+  num_shorts: cint
+): cint {.importc, noconv.}
 proc stb_vorbis_close(f: Vorbis) {.importc, noconv.}
-
 
 proc readvorbis*(
   filePath: string,
-  ): VorbisFile =
+): VorbisFile =
   ## Read and decodes a whole ogg file at once
 
   # read the vorbis file
@@ -81,7 +86,6 @@ proc readvorbis*(
 
   # close the reader context
   stb_vorbis_close(vorbisCtx)
-
 
 proc free*(vorbis: VorbisFile) =
   ## Frees the potentially huge chunk of sound data
