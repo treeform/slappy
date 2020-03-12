@@ -289,7 +289,7 @@ proc newSound*(filePath: string): Sound =
     )
   elif filePath.endswith(".ogg"):
     var
-      verbis = readVerbis(filePath)
+      verbis = readVorbis(filePath)
     alBufferData(
       sound.id,
       format(verbis.bits, verbis.channels),

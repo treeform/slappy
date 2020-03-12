@@ -56,13 +56,13 @@ You get one global Listener.
 
 **Sound** the recording of the sound that can be played.
 
-Euphony can be loaded with:
+Sound can be loaded with:
 `sound = newSound("path/to/wav.or.ogg")`
 
-Euphony has the following functions:
+Sound has the following functions:
   * play() - Creates a `Source` objects that has the sound playing.
 
-Euphony has the following properites, that are read only:
+Sound has the following properites, that are read only:
   * bits - Bit rate or number of bits per sample.
   * size - Number of byte the sound takes up.
   * freq - Frequency or the samples per second rate.
@@ -74,11 +74,11 @@ Euphony has the following properites, that are read only:
 
 **Source** represnts the sound playing in a 3d world, kind of like an abstract speaker.
 
-Euphony has the following functions:
+Source has the following functions:
   * stop() - Stop the sound.
   * play() - Start plaing the sound (if it was stopped before).
 
-Euphony has the following properites:
+Source has the following properites:
   * pitch - How fast the sound plays, or how low or high it sounds.
   * gain - Volume of the sound.
   * maxDistance - Inverse Clamped Distance Model, where sound will not longer be played.
