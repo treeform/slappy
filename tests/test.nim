@@ -1,6 +1,4 @@
-import os, math
-import vmath
-import euphony
+import euphony, math, os, vmath
 
 euphonyInit()
 
@@ -22,7 +20,7 @@ block:
   let sound = newSound("tests/drums.mono.wav")
   echo "playing on the right"
   var source = sound.play()
-  source.pos = vec3(1,0,0)
+  source.pos = vec3(1, 0, 0)
   sleep(1500)
   source.stop()
 
@@ -30,7 +28,7 @@ block:
 
   echo "playing on the left"
   source = sound.play()
-  source.pos = vec3(-1,0,0)
+  source.pos = vec3(-1, 0, 0)
   sleep(1500)
   source.stop()
 

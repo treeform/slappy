@@ -1,8 +1,6 @@
 import streams
 
-
-{.compile: "verbis.c".}
-
+{.compile: "vorbis.c".}
 
 type
   Vorbis = ptr object
@@ -14,46 +12,53 @@ type
     temp_memory_required: cuint
     max_frame_size: cint
 
-  VerbisFile* = object
+  VorbisFile* = object
     data*: pointer
     size*: int
     freq*: int
     bits*: int
     channels*: int
 
-
 proc c_malloc(size: csize): pointer {.importc: "malloc", header: "<stdlib.h>".}
 proc c_free(p: pointer) {.importc: "free", header: "<stdlib.h>".}
 
-
-proc stb_vorbis_open_memory(data: pointer, len: cint, error: ptr cint, alloc_buffer: pointer): Vorbis {.importc, noconv.}
+proc stb_vorbis_open_memory(
+  data: pointer,
+  len: cint,
+  error: ptr cint,
+  alloc_buffer: pointer
+): Vorbis {.importc, noconv.}
 proc stb_vorbis_get_info(f: Vorbis): VorbisInfo {.importc, noconv.}
 proc stb_vorbis_stream_length_in_samples(f: Vorbis): cuint {.importc, noconv.}
-proc stb_vorbis_get_samples_short_interleaved(f: Vorbis, channels: cint, buffer: pointer, num_shorts: cint): cint {.importc, noconv.}
+proc stb_vorbis_get_samples_short_interleaved(
+  f: Vorbis,
+  channels: cint,
+  buffer: pointer,
+  num_shorts: cint
+): cint {.importc, noconv.}
 proc stb_vorbis_close(f: Vorbis) {.importc, noconv.}
 
-
-proc readVerbis*(
+proc readvorbis*(
   filePath: string,
-  ): VerbisFile =
+): VorbisFile =
   ## Read and decodes a whole ogg file at once
 
-  # read the verbis file
+  # read the vorbis file
   var f = newFileStream(open(filePath))
   var data = f.readAll()
 
-  # get verbis context
-  var verbisCtx = stb_vorbis_open_memory(addr data[0], cint(data.len), nil, nil)
-  if verbisCtx == nil:
+  # get vorbis context
+  var vorbisCtx = stb_vorbis_open_memory(addr data[0], cint(data.len), nil, nil)
+  if vorbisCtx == nil:
     echo "Could not decode OGG file ", filePath
 
-  # get verbis info
-  let verbisInfo = stb_vorbis_get_info(verbisCtx)
+  # get vorbis info
+  let vorbisInfo = stb_vorbis_get_info(vorbisCtx)
   const bytesPerSample = 2
-  let channels = verbisInfo.channels
+  let channels = vorbisInfo.channels
 
   # get num samples
-  let numSamples = stb_vorbis_stream_length_in_samples(verbisCtx)
+  let numSamples = stb_vorbis_stream_length_in_samples(vorbisCtx)
   result.size = cint(numSamples) * channels * bytesPerSample
 
   # allocate primary buffer
@@ -61,8 +66,8 @@ proc readVerbis*(
 
   # decode whole file at once
   let dataRead = stb_vorbis_get_samples_short_interleaved(
-    verbisCtx,
-    verbisInfo.channels,
+    vorbisCtx,
+    vorbisInfo.channels,
     buffer,
     cint(numSamples * cuint(channels))
   ) * channels * bytesPerSample
@@ -75,14 +80,13 @@ proc readVerbis*(
 
   # prepare the result
   result.data = buffer
-  result.freq = int(verbisInfo.sampleRate)
+  result.freq = int(vorbisInfo.sampleRate)
   result.bits = bytesPerSample * 8
-  result.channels = verbisInfo.channels
+  result.channels = vorbisInfo.channels
 
   # close the reader context
-  stb_vorbis_close(verbisCtx)
+  stb_vorbis_close(vorbisCtx)
 
-
-proc free*(verbis: VerbisFile) =
+proc free*(vorbis: VorbisFile) =
   ## Frees the potentially huge chunk of sound data
-  c_free(verbis.data)
+  c_free(vorbis.data)
