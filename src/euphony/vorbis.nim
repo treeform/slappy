@@ -1,5 +1,3 @@
-import streams
-
 {.compile: "vorbis.c".}
 
 type
@@ -38,19 +36,21 @@ proc stb_vorbis_get_samples_short_interleaved(
 ): cint {.importc, noconv.}
 proc stb_vorbis_close(f: Vorbis) {.importc, noconv.}
 
-proc readvorbis*(
+proc readVorbis*(
   filePath: string,
 ): VorbisFile =
-  ## Read and decodes a whole ogg file at once
+  ## Reads and decodes a whole ogg file.
 
   # read the vorbis file
-  var f = newFileStream(open(filePath))
-  var data = f.readAll()
+  var data = readFile(filePath)
 
   # get vorbis context
   var vorbisCtx = stb_vorbis_open_memory(addr data[0], cint(data.len), nil, nil)
   if vorbisCtx == nil:
-    echo "Could not decode OGG file ", filePath
+    raise newException(
+      ValueError,
+      "Decoding Vorbis file failed"
+    )
 
   # get vorbis info
   let vorbisInfo = stb_vorbis_get_info(vorbisCtx)
@@ -74,9 +74,15 @@ proc readvorbis*(
 
   # make sure the decode was successful
   if dataRead != result.size:
-    echo "Could not read all OGG data at once ", filePath
+    raise newException(
+      ValueError,
+      "Decoding Vorbis file failed, uable to read entire file"
+    )
   elif dataRead == 0:
-    echo "Could not decode OGG file data ", filePath
+    raise newException(
+      ValueError,
+      "Decoding Vorbis file failed"
+    )
 
   # prepare the result
   result.data = buffer
@@ -88,5 +94,5 @@ proc readvorbis*(
   stb_vorbis_close(vorbisCtx)
 
 proc free*(vorbis: VorbisFile) =
-  ## Frees the potentially huge chunk of sound data
+  ## Free the potentially huge chunk of sound data.
   c_free(vorbis.data)
