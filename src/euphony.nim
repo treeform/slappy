@@ -51,9 +51,9 @@ proc `mat=`*(listener: Listener, mat: Mat4) =
   tmp1[2] = mat.pos.z
   alListenerfv(AL_POSITION, addr tmp1[0])
   var tmp2 = [ALfloat(0.0), 0.0, 0.0, 0.0, 0.0, 0.0]
-  tmp2[0] = mat.fov.x
-  tmp2[1] = mat.fov.y
-  tmp2[2] = mat.fov.z
+  tmp2[0] = mat.forward.x
+  tmp2[1] = mat.forward.y
+  tmp2[2] = mat.forward.z
   tmp2[3] = mat.up.x
   tmp2[4] = mat.up.y
   tmp2[5] = mat.up.z
@@ -198,9 +198,9 @@ proc `mat=`*(source: Source, mat: Mat4) =
   tmp1[2] = mat.pos.z
   alSourcefv(source.id, AL_POSITION, addr tmp1[0])
   var tmp2 = [ALfloat(0.0), 0.0, 0.0, 0.0, 0.0, 0.0]
-  tmp2[0] = mat.fov.x
-  tmp2[1] = mat.fov.y
-  tmp2[2] = mat.fov.z
+  tmp2[0] = mat.forward.x
+  tmp2[1] = mat.forward.y
+  tmp2[2] = mat.forward.z
   tmp2[3] = mat.up.x
   tmp2[4] = mat.up.y
   tmp2[5] = mat.up.z
