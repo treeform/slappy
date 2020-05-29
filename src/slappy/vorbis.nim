@@ -1,5 +1,7 @@
 {.compile: "vorbis.c".}
 
+import wav
+
 type
   Vorbis = ptr object
   VorbisInfo = object
@@ -9,13 +11,6 @@ type
     setup_temp_memory_required: cuint
     temp_memory_required: cuint
     max_frame_size: cint
-
-  VorbisFile* = object
-    data*: pointer
-    size*: uint
-    freq*: int
-    bits*: int
-    channels*: int
 
 proc c_malloc(size: csize_t): pointer {.importc: "malloc",
     header: "<stdlib.h>".}
@@ -37,9 +32,9 @@ proc stb_vorbis_get_samples_short_interleaved(
 ): cint {.importc, noconv.}
 proc stb_vorbis_close(f: Vorbis) {.importc, noconv.}
 
-proc readVorbis*(
+proc loadVorbis*(
   filePath: string,
-): VorbisFile =
+): WavFile =
   ## Reads and decodes a whole ogg file.
 
   # read the vorbis file
@@ -60,24 +55,24 @@ proc readVorbis*(
 
   # get num samples
   let numSamples = stb_vorbis_stream_length_in_samples(vorbisCtx)
-  result.size = numSamples * uint(channels * bytesPerSample)
+  result.size = numSamples.int * channels.int * bytesPerSample.int
 
   # allocate primary buffer
-  var buffer = c_malloc(result.size)
+  result.data = newSeq[uint8](result.size)
 
   # decode whole file at once
   let dataRead = stb_vorbis_get_samples_short_interleaved(
     vorbisCtx,
     vorbisInfo.channels,
-    buffer,
+    addr result.data[0],
     cint(numSamples * cuint(channels))
   ) * channels * bytesPerSample
 
   # make sure the decode was successful
-  if dataRead.uint != result.size:
+  if dataRead.int != result.size:
     raise newException(
       ValueError,
-      "Decoding Vorbis file failed, uable to read entire file"
+      "Decoding Vorbis file failed, unable to read entire file"
     )
   elif dataRead == 0:
     raise newException(
@@ -86,14 +81,9 @@ proc readVorbis*(
     )
 
   # prepare the result
-  result.data = buffer
   result.freq = int(vorbisInfo.sampleRate)
   result.bits = bytesPerSample * 8
   result.channels = vorbisInfo.channels
 
   # close the reader context
   stb_vorbis_close(vorbisCtx)
-
-proc free*(vorbis: VorbisFile) =
-  ## Free the potentially huge chunk of sound data.
-  c_free(vorbis.data)

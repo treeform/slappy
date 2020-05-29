@@ -1,16 +1,30 @@
-import math, os, slappy, vmath
+import math, os, slappy, vmath, slappy/wav, slappy/slappyformat
 
 slappyInit()
 
 block:
+  echo "wav to .slappy file"
+  let wav = loadWav("tests/xylophone-sweep.wav")
+  saveSlappy("tests/xylophone-sweep.slappy", wav)
+
+block:
+  echo "playing slappy file"
+  let sound = newSound("tests/xylophone-sweep.slappy")
+  assert sound.duration != 0
+  discard sound.play()
+  sleep(2500)
+
+block:
   echo "playing wav file"
   let sound = newSound("tests/xylophone-sweep.wav")
+  assert sound.duration != 0
   discard sound.play()
   sleep(2500)
 
 block:
   echo "playing ogg file"
-  let sound = newSound("tests/robo.ogg")
+  let sound = newSound("tests/xylophone-sweep.ogg")
+  assert sound.duration != 0
   echo "duration ", sound.duration
   discard sound.play()
   sleep(1000)

@@ -1,13 +1,13 @@
 import streams
 
 type WavFile* = object
-  data*: pointer
+  data*: seq[uint8]
   size*: int
   freq*: int
   bits*: int
   channels*: int
 
-proc readWav*(filePath: string): WavFile =
+proc loadWav*(filePath: string): WavFile =
   # Load PCM data from wav file.
   var f = newFileStream(filePath)
   let
@@ -39,13 +39,9 @@ proc readWav*(filePath: string): WavFile =
     subchunk2ID = f.readStr(4)
     subchunk2Size = f.readUint32()
     data = f.readStr(int subchunk2Size)
-    echo repr(subchunk2ID)
-    echo subchunk2Size
-    echo bitsPerSample
-    echo numChannels
 
   result.channels = int numChannels
   result.size = data.len
   result.freq = int sampleRate
   result.bits = int bitsPerSample
-  result.data = unsafeAddr data[0]
+  result.data = cast[seq[uint8]](data)

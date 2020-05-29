@@ -1,4 +1,4 @@
-import openal, slappy/vorbis, slappy/wav, strutils, vmath
+import openal, slappy/vorbis, slappy/wav, slappy/slappyformat, strutils, vmath
 
 type
   Listener* = object
@@ -275,29 +275,26 @@ proc newSound*(filePath: string): Sound =
     else:
       echo "Only 1 or 2 channel sounds supported"
 
+  var wav: WavFile
   if filePath.endswith(".wav"):
-    var
-      wav = readWav(filePath)
-    alBufferData(
-      sound.id,
-      format(wav.bits, wav.channels),
-      wav.data,
-      ALsizei wav.size,
-      ALsizei wav.freq
-    )
+    wav = loadWav(filePath)
+  elif filePath.endswith(".slappy"):
+    wav = loadSlappy(filePath)
   elif filePath.endswith(".ogg"):
-    var
-      verbis = readVorbis(filePath)
-    alBufferData(
-      sound.id,
-      format(verbis.bits, verbis.channels),
-      verbis.data,
-      ALsizei verbis.size,
-      ALsizei verbis.freq
-    )
-    verbis.free()
+    wav = loadVorbis(filePath)
   else:
-    echo "File format not suppoerted ", filePath
+    raise newException(
+      ValueError,
+      "File format not supported."
+    )
+
+  alBufferData(
+    sound.id,
+    format(wav.bits, wav.channels),
+    addr wav.data[0],
+    ALsizei wav.size,
+    ALsizei wav.freq
+  )
 
   return sound
 
