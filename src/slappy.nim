@@ -1,4 +1,4 @@
-import euphony/vorbis, euphony/wav, openal, strutils, vmath
+import openal, slappy/vorbis, slappy/wav, strutils, vmath
 
 type
   Listener* = object
@@ -217,26 +217,26 @@ proc `mat`*(source: Source): Mat4 =
     vec3(tmp2[3], tmp2[4], tmp2[5])
   )
 
-## Euphony functions
+## Slappy functions
 
-proc euphonyInit*() =
+proc slappyInit*() =
   ## Call this on start of your program.
   device = alcOpenDevice(nil)
   if device == nil:
-    quit "Euphony: failed to get default device"
+    quit "Slappy: failed to get default device"
   ctx = device.alcCreateContext(nil)
   if ctx == nil:
-    quit "Euphony: failed to create context"
+    quit "Slappy: failed to create context"
   if not alcMakeContextCurrent(ctx):
-    quit "Euphony: failed to make context current"
+    quit "Slappy: failed to make context current"
 
-proc euphonyClose*() =
+proc slappyClose*() =
   ## Call this on exit.
   alcDestroyContext(ctx)
   if not alcCloseDevice(device):
-    quit "Euphony: failed to close device"
+    quit "Slappy: failed to close device"
 
-proc euphonyTick*() =
+proc slappyTick*() =
   ## Updates all sources and sounds.
   var i = 0
   while i < activeSources.len:

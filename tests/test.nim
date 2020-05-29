@@ -1,6 +1,6 @@
-import euphony, math, os, vmath
+import math, os, slappy, vmath
 
-euphonyInit()
+slappyInit()
 
 block:
   echo "playing wav file"
@@ -61,7 +61,7 @@ block:
 
 block:
   echo "setting gain from 0 to 2"
-  let sound = newSound("tests/drums.sterio.wav")
+  let sound = newSound("tests/drums.stereo.wav")
   echo "loaded"
   var source = sound.play()
   echo "play"
@@ -89,7 +89,7 @@ block:
 
 block:
   # reset offset
-  let sound = newSound("tests/drums.sterio.wav")
+  let sound = newSound("tests/drums.stereo.wav")
   var source = sound.play()
   # make 2 rounds
   echo "restarting source 3 times"
@@ -108,7 +108,7 @@ block:
     var source = sound.play()
     source.pitch = float(freq) * 0.002
     sleep int(120.0 * 1.5)
-    euphonyTick()
+    slappyTick()
   playNote(659)
   playNote(622)
   playNote(659)
@@ -153,4 +153,4 @@ block:
   discard sound.play()
   sleep(int sound.duration * 1000)
 
-euphonyClose()
+slappyClose()

@@ -15,7 +15,7 @@ proc readWav*(filePath: string): WavFile =
     chunkSize = f.readUint32()
     format = f.readStr(4)
 
-    subchunk1ID = f.readStr(4)
+    subChunk1ID = f.readStr(4)
     subchunk1Size = f.readUint32()
     audioFormat = f.readUint16()
     numChannels = f.readUint16()
@@ -26,7 +26,7 @@ proc readWav*(filePath: string): WavFile =
 
   assert chunkID == "RIFF"
   assert format == "WAVE"
-  assert subchunk1ID == "fmt "
+  assert subChunk1ID == "fmt "
   assert audioFormat == 1
 
   var

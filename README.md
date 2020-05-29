@@ -1,24 +1,22 @@
-# Euphony - 3d sound api for nim.
-
-> Euphony - *noun*: the quality of being pleasing to the ear
+# Slappy - 3d sound api for nim.
 
 Big thanks to [yglukhov's sound](https://github.com/yglukhov/sound) library!
 
 This library provides higher level interface to the [OpenAL](https://github.com/treeform/openal) library.
 
-Euphony provides the standard features of:
+Slappy provides the standard features of:
 * 3d positions of sounds.
-* 3d position of listner.
+* 3d position of listener.
 * Doppler shift.
 * Acoustic attenuation.
 
-Euphony also providies some extra features such as:
+Slappy also provides some extra features such as:
 * A much more nim-like api.
 * `.wav` and `.ogg` loading.
-* Sound priority. (in preogress)
-* Max number of the same sound played. (in preogress)
-* Fade in and fade out. (in preogress)
-* Ability to queueup sounds. (in preogress)
+* Sound priority. (in progress)
+* Max number of the same sound played. (in progress)
+* Fade in and fade out. (in progress)
+* Ability to queued sounds. (in progress)
 
 ## Example:
 
@@ -27,7 +25,7 @@ Euphony also providies some extra features such as:
 let sound = newSound("tests/drums.mono.wav")
 var source = sound.play()
 source.looping = true
-echo "rotateing sound in 3d, 1 rotation"
+echo "rotating sound in 3d, 1 rotation"
 for i in 0..360:
   let a = float(i) / 180 * PI
   source.pos = vec3(sin(a), cos(a), 0)
@@ -36,7 +34,7 @@ source.stop()
 sleep(500)
 ```
 
-See [test.nim](https://github.com/treeform/euphony/blob/master/tests/test.nim) for more details.
+See [test.nim](https://github.com/treeform/Slappy/blob/master/tests/test.nim) for more details.
 
 ## Basic concepts
 
@@ -44,8 +42,8 @@ See [test.nim](https://github.com/treeform/euphony/blob/master/tests/test.nim) f
 
 **Listener** is the main ear of abstract person in the 3d world.
 
-Listener has the following properites:
-  * gain - Volume on which the listern hears.
+Listener has the following properties:
+  * gain - Volume on which the listener hears.
   * pos - Position
   * vel - Velocity
   * mat - Orientation matrix
@@ -62,7 +60,7 @@ Sound can be loaded with:
 Sound has the following functions:
   * play() - Creates a `Source` objects that has the sound playing.
 
-Sound has the following properites, that are read only:
+Sound has the following properties, that are read only:
   * bits - Bit rate or number of bits per sample.
   * size - Number of byte the sound takes up.
   * freq - Frequency or the samples per second rate.
@@ -72,17 +70,17 @@ Sound has the following properites, that are read only:
 
 ### Source
 
-**Source** represnts the sound playing in a 3d world, kind of like an abstract speaker.
+**Source** represents the sound playing in a 3d world, kind of like an abstract speaker.
 
 Source has the following functions:
   * stop() - Stop the sound.
-  * play() - Start plaing the sound (if it was stopped before).
+  * play() - Start playing the sound (if it was stopped before).
 
-Source has the following properites:
+Source has the following properties:
   * pitch - How fast the sound plays, or how low or high it sounds.
   * gain - Volume of the sound.
   * maxDistance - Inverse Clamped Distance Model, where sound will not longer be played.
-  * rolloffFactor - Set rolloff rate for the source.
+  * rolloffFactor - Set roll off rate for the source.
   * halfDistance - The distance under which the volume for the source would normally drop by half.
   * minGain - The minimum gain for this source.
   * maxGain - The minimum gain for this source.
