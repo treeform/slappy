@@ -1,0 +1,6 @@
+OpenAL32.dll
+Version 1.20.1
+
+Website:      https://openal-soft.org/
+Source code:  https://github.com/kcat/openal-soft
+License:      LGPL2
