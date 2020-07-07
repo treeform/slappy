@@ -1,6 +1,6 @@
 ## Snappy format is very simple format that uses snappy for compression.
 
-import snappy, wav, streams
+import supersnappy, wav, streams
 
 proc saveSlappy*(fileName: string, wav: WavFile) =
   ## Saves wav file in a snappy format.
