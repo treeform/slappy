@@ -6,6 +6,7 @@ type
     id: ALuint
   Source* = ref object
     id: ALuint
+  SlappyError* = object of IOError
 
 var
   listener* = Listener()
@@ -217,24 +218,27 @@ proc `mat`*(source: Source): Mat4 =
     vec3(tmp2[3], tmp2[4], tmp2[5])
   )
 
+template fail(msg: string) =
+  raise newException(SlappyError, msg)
+
 ## Slappy functions
 
 proc slappyInit*() =
   ## Call this on start of your program.
   device = alcOpenDevice(nil)
   if device == nil:
-    quit "Slappy: failed to get default device"
+    fail "Failed to get default device."
   ctx = device.alcCreateContext(nil)
   if ctx == nil:
-    quit "Slappy: failed to create context"
+    fail "Failed to create context."
   if not alcMakeContextCurrent(ctx):
-    quit "Slappy: failed to make context current"
+    fail "Failed to make context current."
 
 proc slappyClose*() =
   ## Call this on exit.
   alcDestroyContext(ctx)
   if not alcCloseDevice(device):
-    quit "Slappy: failed to close device"
+    fail "Failed to close device."
 
 proc slappyTick*() =
   ## Updates all sources and sounds.
