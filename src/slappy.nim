@@ -14,6 +14,21 @@ var
   device: ALCdevice
   ctx: ALCcontext
 
+proc up*(a: Mat4): Vec3 {.inline.} =
+  result.x = a[1, 0]
+  result.y = a[1, 1]
+  result.z = a[1, 2]
+
+proc forward*(a: Mat4): Vec3 {.inline.} =
+  result.x = a[2, 0]
+  result.y = a[2, 1]
+  result.z = a[2, 2]
+
+proc pos*(a: Mat4): Vec3 {.inline.} =
+  result.x = a[3, 0]
+  result.y = a[3, 1]
+  result.z = a[3, 2]
+
 ## Listener functions
 
 proc `gain=`*(listener: Listener, v: float32) =
