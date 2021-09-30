@@ -1,7 +1,7 @@
 # Package
 
 version       = "0.3.1"
-author        = "treeform"
+author        = "Andre von Houck"
 description   = "3d sound API"
 license       = "MIT"
 srcDir        = "src"

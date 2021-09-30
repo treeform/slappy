@@ -1,5 +1,13 @@
 # Slappy - 3d sound api for nim.
 
+`nimble install slappy`
+
+![Github Actions](https://github.com/treeform/slappy/workflows/Github%20Actions/badge.svg)
+
+[API reference](https://nimdocs.com/treeform/slappy)
+
+## About
+
 Big thanks to [yglukhov's sound](https://github.com/yglukhov/sound) library!
 
 This library provides higher level interface to the [OpenAL](https://github.com/treeform/openal) library.
