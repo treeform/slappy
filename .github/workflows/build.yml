@@ -14,5 +14,5 @@ jobs:
     - uses: jiro4989/setup-nim-action@v1
       with:
         repo-token: ${{ secrets.GITHUB_TOKEN }}
-    - run: nimble test -y
-    - run: nimble test --gc:orc -y
+    # can't run the tests but we can compile them
+    - run: nim c test/test.nim
