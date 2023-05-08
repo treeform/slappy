@@ -15,4 +15,4 @@ jobs:
       with:
         repo-token: ${{ secrets.GITHUB_TOKEN }}
     # can't run the tests but we can compile them
-    - run: nim c test/test.nim
+    - run: nim c tests/test.nim
