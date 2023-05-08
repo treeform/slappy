@@ -16,5 +16,5 @@ jobs:
         repo-token: ${{ secrets.GITHUB_TOKEN }}
     # Can't test without GUI, just compile.
     - run: sudo apt-get install libopenal-dev
-    - run: nimble install
+    - run: nimble install -y
     - run: nimble c tests/test.nim
