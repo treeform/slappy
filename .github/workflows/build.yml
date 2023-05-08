@@ -14,6 +14,7 @@ jobs:
     - uses: jiro4989/setup-nim-action@v1
       with:
         repo-token: ${{ secrets.GITHUB_TOKEN }}
-    - run: sudo apt-get install libopenal-dev
     # Can't test without GUI, just compile.
+    - run: sudo apt-get install libopenal-dev
+    - run: nimble install
     - run: nimble c tests/test.nim
