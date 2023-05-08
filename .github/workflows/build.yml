@@ -14,5 +14,6 @@ jobs:
     - uses: jiro4989/setup-nim-action@v1
       with:
         repo-token: ${{ secrets.GITHUB_TOKEN }}
-    # can't run the tests but we can compile them
+    - run: sudo apt-get install libopenal-dev
+    # Can't test without GUI, just compile.
     - run: nim c tests/test.nim
