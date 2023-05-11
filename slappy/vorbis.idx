@@ -1,0 +1,1 @@
+loadVorbis	slappy/vorbis.html#loadVorbis,string	vorbis: loadVorbis(filePath: string): WavFile	

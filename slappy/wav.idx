@@ -1,0 +1,2 @@
+WavFile	slappy/wav.html#WavFile	wav: WavFile	
+loadWav	slappy/wav.html#loadWav,string	wav: loadWav(filePath: string): WavFile	

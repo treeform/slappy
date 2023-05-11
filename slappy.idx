@@ -1,0 +1,61 @@
+Listener	slappy.html#Listener	slappy: Listener	
+Sound	slappy.html#Sound	slappy: Sound	
+Source	slappy.html#Source	slappy: Source	
+SlappyError	slappy.html#SlappyError	slappy: SlappyError	
+listener	slappy.html#listener_2	slappy: listener	
+up	slappy.html#up,Mat4	slappy: up(a: Mat4): Vec3	
+forward	slappy.html#forward,Mat4	slappy: forward(a: Mat4): Vec3	
+pos	slappy.html#pos,Mat4	slappy: pos(a: Mat4): Vec3	
+gain=	slappy.html#gain=,Listener,float32	slappy: gain=(listener: Listener; v: float32)	
+gain	slappy.html#gain,Listener	slappy: gain(listener: Listener): float32	
+pos=	slappy.html#pos=,Listener,Vec3	slappy: pos=(listener: Listener; pos: Vec3)	
+pos	slappy.html#pos,Listener	slappy: pos(listener: Listener): Vec3	
+vel=	slappy.html#vel=,Listener,Vec3	slappy: vel=(listener: Listener; vel: Vec3)	
+vel	slappy.html#vel,Listener	slappy: vel(listener: Listener): Vec3	
+mat=	slappy.html#mat=,Listener,Mat4	slappy: mat=(listener: Listener; mat: Mat4)	
+mat	slappy.html#mat,Listener	slappy: mat(listener: Listener): Mat4	
+playing	slappy.html#playing,Source	slappy: playing(source: Source): bool	
+stop	slappy.html#stop,Source	slappy: stop(source: Source)	
+play	slappy.html#play,Source	slappy: play(source: Source)	
+pitch=	slappy.html#pitch=,Source,float32	slappy: pitch=(source: Source; v: float32)	
+pitch	slappy.html#pitch,Source	slappy: pitch(source: Source): float32	
+gain=	slappy.html#gain=,Source,float32	slappy: gain=(source: Source; v: float32)	
+gain	slappy.html#gain,Source	slappy: gain(source: Source): float32	
+maxDistance=	slappy.html#maxDistance=,Source,float32	slappy: maxDistance=(source: Source; v: float32)	
+maxDistance	slappy.html#maxDistance,Source	slappy: maxDistance(source: Source): float32	
+rolloffFactor=	slappy.html#rolloffFactor=,Source,float32	slappy: rolloffFactor=(source: Source; v: float32)	
+rolloffFactor	slappy.html#rolloffFactor,Source	slappy: rolloffFactor(source: Source): float32	
+halfDistance=	slappy.html#halfDistance=,Source,float32	slappy: halfDistance=(source: Source; v: float32)	
+halfDistance	slappy.html#halfDistance,Source	slappy: halfDistance(source: Source): float32	
+minGain=	slappy.html#minGain=,Source,float32	slappy: minGain=(source: Source; v: float32)	
+minGain	slappy.html#minGain,Source	slappy: minGain(source: Source): float32	
+maxGain=	slappy.html#maxGain=,Source,float32	slappy: maxGain=(source: Source; v: float32)	
+maxGain	slappy.html#maxGain,Source	slappy: maxGain(source: Source): float32	
+coneOuterGain=	slappy.html#coneOuterGain=,Source,float32	slappy: coneOuterGain=(source: Source; v: float32)	
+coneOuterGain	slappy.html#coneOuterGain,Source	slappy: coneOuterGain(source: Source): float32	
+coneInnerAngle=	slappy.html#coneInnerAngle=,Source,float32	slappy: coneInnerAngle=(source: Source; v: float32)	
+coneInnerAngle	slappy.html#coneInnerAngle,Source	slappy: coneInnerAngle(source: Source): float32	
+coneOuterAngle=	slappy.html#coneOuterAngle=,Source,float32	slappy: coneOuterAngle=(source: Source; v: float32)	
+coneOuterAngle	slappy.html#coneOuterAngle,Source	slappy: coneOuterAngle(source: Source): float32	
+looping=	slappy.html#looping=,Source,bool	slappy: looping=(source: Source; v: bool)	
+looping	slappy.html#looping,Source	slappy: looping(source: Source): bool	
+playback=	slappy.html#playback=,Source,float32	slappy: playback=(source: Source; v: float32)	
+playback	slappy.html#playback,Source	slappy: playback(source: Source): float32	
+pos=	slappy.html#pos=,Source,Vec3	slappy: pos=(source: Source; pos: Vec3)	
+pos	slappy.html#pos,Source	slappy: pos(source: Source): Vec3	
+vel=	slappy.html#vel=,Source,Vec3	slappy: vel=(source: Source; vel: Vec3)	
+vel	slappy.html#vel,Source	slappy: vel(source: Source): Vec3	
+mat=	slappy.html#mat=,Source,Mat4	slappy: mat=(source: Source; mat: Mat4)	
+mat	slappy.html#mat,Source	slappy: mat(source: Source): Mat4	
+slappyInit	slappy.html#slappyInit	slappy: slappyInit()	
+slappyClose	slappy.html#slappyClose	slappy: slappyClose()	
+slappyTick	slappy.html#slappyTick	slappy: slappyTick()	
+newSound	slappy.html#newSound	slappy: newSound(): Sound	
+newSound	slappy.html#newSound,string	slappy: newSound(filePath: string): Sound	
+bits	slappy.html#bits,Sound	slappy: bits(sound: Sound): int	
+size	slappy.html#size,Sound	slappy: size(sound: Sound): int	
+freq	slappy.html#freq,Sound	slappy: freq(sound: Sound): int	
+channels	slappy.html#channels,Sound	slappy: channels(sound: Sound): int	
+samples	slappy.html#samples,Sound	slappy: samples(sound: Sound): int	
+duration	slappy.html#duration,Sound	slappy: duration(sound: Sound): float32	
+play	slappy.html#play,Sound	slappy: play(sound: Sound): Source	

@@ -1,0 +1,2 @@
+saveSlappy	slappy/slappyformat.html#saveSlappy,string,WavFile	slappyformat: saveSlappy(fileName: string; wav: WavFile)	
+loadSlappy	slappy/slappyformat.html#loadSlappy,string	slappyformat: loadSlappy(fileName: string): WavFile	
