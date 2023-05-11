@@ -4,7 +4,7 @@
 
 ![Github Actions](https://github.com/treeform/slappy/workflows/Github%20Actions/badge.svg)
 
-[API reference](https://nimdocs.com/treeform/slappy)
+[API reference](https://treeform.github.io/slappy)
 
 ## About
 
