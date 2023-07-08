@@ -58,4 +58,5 @@ freq	slappy.html#freq,Sound	slappy: freq(sound: Sound): int
 channels	slappy.html#channels,Sound	slappy: channels(sound: Sound): int	
 samples	slappy.html#samples,Sound	slappy: samples(sound: Sound): int	
 duration	slappy.html#duration,Sound	slappy: duration(sound: Sound): float32	
+source	slappy.html#source,Sound	slappy: source(sound: Sound): Source	
 play	slappy.html#play,Sound	slappy: play(sound: Sound): Source	
