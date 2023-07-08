@@ -1,4 +1,5 @@
-import openal, slappy/vorbis, slappy/wav, slappy/slappyformat, strutils, vmath
+import openal, slappy/vorbis, slappy/wav, slappy/slappyformat, strutils, vmath,
+    strformat
 
 type
   Listener* = object
@@ -283,16 +284,25 @@ proc newSound*(filePath: string): Sound =
       elif bits == 8:
         result = AL_FORMAT_MONO8
       else:
-        echo "Only 8 or 16 bits per sample are supported"
+        raise newException(
+          IOError,
+          &"Got {bits} bits, only 8 or 16 bits per sample are supported"
+        )
     elif channels == 2:
       if bits == 16:
         result = AL_FORMAT_STEREO16
       elif bits == 8:
         result = AL_FORMAT_STEREO8
       else:
-        echo "Only 8 or 16 bits per sample are supported"
+        raise newException(
+          IOError,
+          &"Got {bits} bits, only 8 or 16 bits per sample are supported"
+        )
     else:
-      echo "Only 1 or 2 channel sounds supported"
+      raise newException(
+        IOError,
+        &"Got {channels} channels, only 1 or 2 channel sounds supported"
+      )
 
   var wav: WavFile
   if filePath.endswith(".wav"):
@@ -356,10 +366,14 @@ proc duration*(sound: Sound): float32 {.inline.} =
   ## Gets duration of the sound in seconds.
   return sound.samples / sound.freq
 
-proc play*(sound: Sound): Source =
+proc source*(sound: Sound): Source =
   var source = Source()
   alGenSources(1, addr source.id)
   activeSources.add(source)
   alSourcei(source.id, AL_BUFFER, cast[ALint](sound.id))
-  alSourcePlay(source.id)
+  return source
+
+proc play*(sound: Sound): Source =
+  var source = sound.source()
+  source.play()
   return source

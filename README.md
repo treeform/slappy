@@ -1,4 +1,4 @@
-# Slappy - 3d sound api for nim.
+# Slappy - 3D Sound API for Nim.
 
 `nimble install slappy`
 

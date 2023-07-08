@@ -1,4 +1,4 @@
-import streams
+import streams, strformat
 
 type WavFile* = object
   data*: seq[uint8]
@@ -16,7 +16,7 @@ proc loadWav*(filePath: string): WavFile =
     format = f.readStr(4)
 
     subChunk1ID = f.readStr(4)
-    subchunk1Size = f.readUint32()
+    subChunk1Size = f.readUint32()
     audioFormat = f.readUint16()
     numChannels = f.readUint16()
     sampleRate = f.readUint32()
@@ -24,21 +24,32 @@ proc loadWav*(filePath: string): WavFile =
     blockAlign = f.readUint16()
     bitsPerSample = f.readUint16()
 
-  assert chunkID == "RIFF"
-  assert format == "WAVE"
-  assert subChunk1ID == "fmt "
-  assert audioFormat == 1
+  if chunkID != "RIFF":
+    raise newException(IOError, &"Got chunkID:{chunkID} expected RIFF")
+  if format != "WAVE":
+    raise newException(IOError, &"Got format:{chunkID} expected WAVE")
+  if subChunk1ID != "fmt ":
+    raise newException(IOError, &"Got subChunk1:{subChunk1ID} expected fmt")
+  if audioFormat notin [1.uint16, 65534]:
+    raise newException(IOError, &"Got audioFormat:{audioFormat} expected 1")
+
+  if audioFormat == 65534:
+    let
+      samples1 = f.readUint16()
+      samples2 = f.readUint16()
+      channelMask = f.readUint32()
+      subFormat = f.readStr(16)
 
   var
-    subchunk2ID: string
-    subchunk2Size: uint32
+    subChunk2ID: string
+    subChunk2Size: uint32
     data: string
 
-  # skip chunks till we get to the data chunk
-  while subchunk2ID != "data":
-    subchunk2ID = f.readStr(4)
-    subchunk2Size = f.readUint32()
-    data = f.readStr(int subchunk2Size)
+  # Skip chunks till we get to the data chunk.
+  while subChunk2ID != "data":
+    subChunk2ID = f.readStr(4)
+    subChunk2Size = f.readUint32()
+    data = f.readStr(int subChunk2Size)
 
   result.channels = int numChannels
   result.size = data.len
