@@ -9,6 +9,6 @@ srcDir        = "src"
 # Dependencies
 
 requires "nim >= 1.0.0"
-requires "openal >= 0.1.1"
+requires "openal >= 0.2.0"
 requires "vmath >= 1.1.4"
 requires "supersnappy >= 2.1.3"
