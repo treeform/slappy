@@ -1,62 +1,73 @@
-Listener	slappy.html#Listener	slappy: Listener	
-Sound	slappy.html#Sound	slappy: Sound	
-Source	slappy.html#Source	slappy: Source	
-SlappyError	slappy.html#SlappyError	slappy: SlappyError	
-listener	slappy.html#listener_2	slappy: listener	
-up	slappy.html#up,Mat4	slappy: up(a: Mat4): Vec3	
-forward	slappy.html#forward,Mat4	slappy: forward(a: Mat4): Vec3	
-pos	slappy.html#pos,Mat4	slappy: pos(a: Mat4): Vec3	
-gain=	slappy.html#gain=,Listener,float32	slappy: gain=(listener: Listener; v: float32)	
-gain	slappy.html#gain,Listener	slappy: gain(listener: Listener): float32	
-pos=	slappy.html#pos=,Listener,Vec3	slappy: pos=(listener: Listener; pos: Vec3)	
-pos	slappy.html#pos,Listener	slappy: pos(listener: Listener): Vec3	
-vel=	slappy.html#vel=,Listener,Vec3	slappy: vel=(listener: Listener; vel: Vec3)	
-vel	slappy.html#vel,Listener	slappy: vel(listener: Listener): Vec3	
-mat=	slappy.html#mat=,Listener,Mat4	slappy: mat=(listener: Listener; mat: Mat4)	
-mat	slappy.html#mat,Listener	slappy: mat(listener: Listener): Mat4	
-playing	slappy.html#playing,Source	slappy: playing(source: Source): bool	
-stop	slappy.html#stop,Source	slappy: stop(source: Source)	
-play	slappy.html#play,Source	slappy: play(source: Source)	
-pitch=	slappy.html#pitch=,Source,float32	slappy: pitch=(source: Source; v: float32)	
-pitch	slappy.html#pitch,Source	slappy: pitch(source: Source): float32	
-gain=	slappy.html#gain=,Source,float32	slappy: gain=(source: Source; v: float32)	
-gain	slappy.html#gain,Source	slappy: gain(source: Source): float32	
-maxDistance=	slappy.html#maxDistance=,Source,float32	slappy: maxDistance=(source: Source; v: float32)	
-maxDistance	slappy.html#maxDistance,Source	slappy: maxDistance(source: Source): float32	
-rolloffFactor=	slappy.html#rolloffFactor=,Source,float32	slappy: rolloffFactor=(source: Source; v: float32)	
-rolloffFactor	slappy.html#rolloffFactor,Source	slappy: rolloffFactor(source: Source): float32	
-halfDistance=	slappy.html#halfDistance=,Source,float32	slappy: halfDistance=(source: Source; v: float32)	
-halfDistance	slappy.html#halfDistance,Source	slappy: halfDistance(source: Source): float32	
-minGain=	slappy.html#minGain=,Source,float32	slappy: minGain=(source: Source; v: float32)	
-minGain	slappy.html#minGain,Source	slappy: minGain(source: Source): float32	
-maxGain=	slappy.html#maxGain=,Source,float32	slappy: maxGain=(source: Source; v: float32)	
-maxGain	slappy.html#maxGain,Source	slappy: maxGain(source: Source): float32	
-coneOuterGain=	slappy.html#coneOuterGain=,Source,float32	slappy: coneOuterGain=(source: Source; v: float32)	
-coneOuterGain	slappy.html#coneOuterGain,Source	slappy: coneOuterGain(source: Source): float32	
-coneInnerAngle=	slappy.html#coneInnerAngle=,Source,float32	slappy: coneInnerAngle=(source: Source; v: float32)	
-coneInnerAngle	slappy.html#coneInnerAngle,Source	slappy: coneInnerAngle(source: Source): float32	
-coneOuterAngle=	slappy.html#coneOuterAngle=,Source,float32	slappy: coneOuterAngle=(source: Source; v: float32)	
-coneOuterAngle	slappy.html#coneOuterAngle,Source	slappy: coneOuterAngle(source: Source): float32	
-looping=	slappy.html#looping=,Source,bool	slappy: looping=(source: Source; v: bool)	
-looping	slappy.html#looping,Source	slappy: looping(source: Source): bool	
-playback=	slappy.html#playback=,Source,float32	slappy: playback=(source: Source; v: float32)	
-playback	slappy.html#playback,Source	slappy: playback(source: Source): float32	
-pos=	slappy.html#pos=,Source,Vec3	slappy: pos=(source: Source; pos: Vec3)	
-pos	slappy.html#pos,Source	slappy: pos(source: Source): Vec3	
-vel=	slappy.html#vel=,Source,Vec3	slappy: vel=(source: Source; vel: Vec3)	
-vel	slappy.html#vel,Source	slappy: vel(source: Source): Vec3	
-mat=	slappy.html#mat=,Source,Mat4	slappy: mat=(source: Source; mat: Mat4)	
-mat	slappy.html#mat,Source	slappy: mat(source: Source): Mat4	
-slappyInit	slappy.html#slappyInit	slappy: slappyInit()	
-slappyClose	slappy.html#slappyClose	slappy: slappyClose()	
-slappyTick	slappy.html#slappyTick	slappy: slappyTick()	
-newSound	slappy.html#newSound	slappy: newSound(): Sound	
-newSound	slappy.html#newSound,string	slappy: newSound(filePath: string): Sound	
-bits	slappy.html#bits,Sound	slappy: bits(sound: Sound): int	
-size	slappy.html#size,Sound	slappy: size(sound: Sound): int	
-freq	slappy.html#freq,Sound	slappy: freq(sound: Sound): int	
-channels	slappy.html#channels,Sound	slappy: channels(sound: Sound): int	
-samples	slappy.html#samples,Sound	slappy: samples(sound: Sound): int	
-duration	slappy.html#duration,Sound	slappy: duration(sound: Sound): float32	
-source	slappy.html#source,Sound	slappy: source(sound: Sound): Source	
-play	slappy.html#play,Sound	slappy: play(sound: Sound): Source	
+nimTitle	slappy	slappy.html	module src/slappy		0
+nim	Listener	slappy.html#Listener	object Listener		5
+nim	Sound	slappy.html#Sound	type Sound		6
+nim	Source	slappy.html#Source	type Source		8
+nim	SlappyError	slappy.html#SlappyError	object SlappyError		10
+nim	listener	slappy.html#listener_2	var listener		13
+nim	up	slappy.html#up,Mat4	proc up(a: Mat4): Vec3		18
+nim	forward	slappy.html#forward,Mat4	proc forward(a: Mat4): Vec3		23
+nim	pos	slappy.html#pos,Mat4	proc pos(a: Mat4): Vec3		28
+nim	gain=	slappy.html#gain=,Listener,float32	proc gain=(listener: Listener; v: float32)		35
+nim	gain	slappy.html#gain,Listener	proc gain(listener: Listener): float32		39
+nim	pos=	slappy.html#pos=,Listener,Vec3	proc pos=(listener: Listener; pos: Vec3)		43
+nim	pos	slappy.html#pos,Listener	proc pos(listener: Listener): Vec3		47
+nim	vel=	slappy.html#vel=,Listener,Vec3	proc vel=(listener: Listener; vel: Vec3)		53
+nim	vel	slappy.html#vel,Listener	proc vel(listener: Listener): Vec3		57
+nim	mat=	slappy.html#mat=,Listener,Mat4	proc mat=(listener: Listener; mat: Mat4)		63
+nim	mat	slappy.html#mat,Listener	proc mat(listener: Listener): Mat4		79
+nim	playing	slappy.html#playing,Source	proc playing(source: Source): bool		93
+nim	stop	slappy.html#stop,Source	proc stop(source: Source)		98
+nim	play	slappy.html#play,Source	proc play(source: Source)		101
+nim	pitch=	slappy.html#pitch=,Source,float32	proc pitch=(source: Source; v: float32)		104
+nim	pitch	slappy.html#pitch,Source	proc pitch(source: Source): float32		107
+nim	gain=	slappy.html#gain=,Source,float32	proc gain=(source: Source; v: float32)		110
+nim	gain	slappy.html#gain,Source	proc gain(source: Source): float32		113
+nim	maxDistance=	slappy.html#maxDistance=,Source,float32	proc maxDistance=(source: Source; v: float32)		116
+nim	maxDistance	slappy.html#maxDistance,Source	proc maxDistance(source: Source): float32		122
+nim	rolloffFactor=	slappy.html#rolloffFactor=,Source,float32	proc rolloffFactor=(source: Source; v: float32)		125
+nim	rolloffFactor	slappy.html#rolloffFactor,Source	proc rolloffFactor(source: Source): float32		129
+nim	halfDistance=	slappy.html#halfDistance=,Source,float32	proc halfDistance=(source: Source; v: float32)		132
+nim	halfDistance	slappy.html#halfDistance,Source	proc halfDistance(source: Source): float32		138
+nim	minGain=	slappy.html#minGain=,Source,float32	proc minGain=(source: Source; v: float32)		141
+nim	minGain	slappy.html#minGain,Source	proc minGain(source: Source): float32		145
+nim	maxGain=	slappy.html#maxGain=,Source,float32	proc maxGain=(source: Source; v: float32)		148
+nim	maxGain	slappy.html#maxGain,Source	proc maxGain(source: Source): float32		152
+nim	coneOuterGain=	slappy.html#coneOuterGain=,Source,float32	proc coneOuterGain=(source: Source; v: float32)		155
+nim	coneOuterGain	slappy.html#coneOuterGain,Source	proc coneOuterGain(source: Source): float32		159
+nim	coneInnerAngle=	slappy.html#coneInnerAngle=,Source,float32	proc coneInnerAngle=(source: Source; v: float32)		162
+nim	coneInnerAngle	slappy.html#coneInnerAngle,Source	proc coneInnerAngle(source: Source): float32		166
+nim	coneOuterAngle=	slappy.html#coneOuterAngle=,Source,float32	proc coneOuterAngle=(source: Source; v: float32)		169
+nim	coneOuterAngle	slappy.html#coneOuterAngle,Source	proc coneOuterAngle(source: Source): float32		173
+nim	looping=	slappy.html#looping=,Source,bool	proc looping=(source: Source; v: bool)		176
+nim	looping	slappy.html#looping,Source	proc looping(source: Source): bool		181
+nim	playback=	slappy.html#playback=,Source,float32	proc playback=(source: Source; v: float32)		186
+nim	playback	slappy.html#playback,Source	proc playback(source: Source): float32		190
+nim	pos=	slappy.html#pos=,Source,Vec3	proc pos=(source: Source; pos: Vec3)		194
+nim	pos	slappy.html#pos,Source	proc pos(source: Source): Vec3		198
+nim	vel=	slappy.html#vel=,Source,Vec3	proc vel=(source: Source; vel: Vec3)		203
+nim	vel	slappy.html#vel,Source	proc vel(source: Source): Vec3		206
+nim	mat=	slappy.html#mat=,Source,Mat4	proc mat=(source: Source; mat: Mat4)		211
+nim	mat	slappy.html#mat,Source	proc mat(source: Source): Mat4		226
+nim	slappyInit	slappy.html#slappyInit	proc slappyInit()		242
+nim	slappyClose	slappy.html#slappyClose	proc slappyClose()		271
+nim	slappyTick	slappy.html#slappyTick	proc slappyTick()		277
+nim	newSound	slappy.html#newSound	proc newSound(): Sound		290
+nim	newSound	slappy.html#newSound,string	proc newSound(filePath: string): Sound		293
+nim	bits	slappy.html#bits,Sound	proc bits(sound: Sound): int		348
+nim	size	slappy.html#size,Sound	proc size(sound: Sound): int		355
+nim	freq	slappy.html#freq,Sound	proc freq(sound: Sound): int		362
+nim	channels	slappy.html#channels,Sound	proc channels(sound: Sound): int		369
+nim	samples	slappy.html#samples,Sound	proc samples(sound: Sound): int		377
+nim	duration	slappy.html#duration,Sound	proc duration(sound: Sound): float32		383
+nim	source	slappy.html#source,Sound	proc source(sound: Sound): Source		387
+nim	play	slappy.html#play,Sound	proc play(sound: Sound): Source		395
+nimgrp	vel=	slappy.html#vel=-procs-all	proc		53
+nimgrp	gain=	slappy.html#gain=-procs-all	proc		35
+nimgrp	newsound	slappy.html#newSound-procs-all	proc		290
+nimgrp	pos	slappy.html#pos-procs-all	proc		28
+nimgrp	play	slappy.html#play-procs-all	proc		101
+nimgrp	mat=	slappy.html#mat=-procs-all	proc		63
+nimgrp	pos=	slappy.html#pos=-procs-all	proc		43
+nimgrp	vel	slappy.html#vel-procs-all	proc		57
+nimgrp	gain	slappy.html#gain-procs-all	proc		39
+nimgrp	mat	slappy.html#mat-procs-all	proc		79

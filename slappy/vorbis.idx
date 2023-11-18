@@ -1,1 +1,2 @@
-loadVorbis	slappy/vorbis.html#loadVorbis,string	vorbis: loadVorbis(filePath: string): WavFile	
+nimTitle	vorbis	slappy/vorbis.html	module src/slappy/vorbis		0
+nim	loadVorbis	slappy/vorbis.html#loadVorbis,string	proc loadVorbis(filePath: string): WavFile		35

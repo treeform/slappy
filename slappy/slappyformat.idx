@@ -1,2 +1,3 @@
-saveSlappy	slappy/slappyformat.html#saveSlappy,string,WavFile	slappyformat: saveSlappy(fileName: string; wav: WavFile)	
-loadSlappy	slappy/slappyformat.html#loadSlappy,string	slappyformat: loadSlappy(fileName: string): WavFile	
+nimTitle	slappyformat	slappy/slappyformat.html	module src/slappy/slappyformat		0
+nim	saveSlappy	slappy/slappyformat.html#saveSlappy,string,WavFile	proc saveSlappy(fileName: string; wav: WavFile)		5
+nim	loadSlappy	slappy/slappyformat.html#loadSlappy,string	proc loadSlappy(fileName: string): WavFile		18
