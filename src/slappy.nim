@@ -241,9 +241,27 @@ template fail(msg: string) =
 
 proc slappyInit*() =
   ## Call this on start of your program.
-  device = alcOpenDevice(nil)
+
+  # device = alcOpenDevice(nil)
+
+  # If default device is nil, maybe try others?
+  if device == nil:
+    let deviceNames = $alcGetString(nil, ALC_ALL_DEVICES_SPECIFIER)
+    echo "Sound output choices:"
+    for deviceName in deviceNames.split(char(0)):
+      echo " * ", deviceName
+    for deviceName in deviceNames.split(char(0)):
+      echo "Trying: ", deviceName
+      device = alcOpenDevice(deviceName.cstring)
+      if device != nil:
+        break
+
   if device == nil:
     fail "Failed to get default device."
+  else:
+    let deviceName = alcGetString(device, ALC_DEVICE_SPECIFIER)
+    echo "Using : ", deviceName, " for sound!"
+
   ctx = device.alcCreateContext(nil)
   if ctx == nil:
     fail "Failed to create context."
@@ -367,6 +385,7 @@ proc duration*(sound: Sound): float32 {.inline.} =
   return sound.samples / sound.freq
 
 proc source*(sound: Sound): Source =
+  ## Gets the source for the sound.
   var source = Source()
   alGenSources(1, addr source.id)
   activeSources.add(source)
@@ -374,6 +393,7 @@ proc source*(sound: Sound): Source =
   return source
 
 proc play*(sound: Sound): Source =
+  ## Plays the sound.
   var source = sound.source()
   source.play()
   return source
