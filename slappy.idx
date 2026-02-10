@@ -47,27 +47,27 @@ nim	pos	slappy.html#pos,Source	proc pos(source: Source): Vec3		198
 nim	vel=	slappy.html#vel=,Source,Vec3	proc vel=(source: Source; vel: Vec3)		203
 nim	vel	slappy.html#vel,Source	proc vel(source: Source): Vec3		206
 nim	mat=	slappy.html#mat=,Source,Mat4	proc mat=(source: Source; mat: Mat4)		211
-nim	mat	slappy.html#mat,Source	proc mat(source: Source): Mat4		226
-nim	slappyInit	slappy.html#slappyInit	proc slappyInit()		242
-nim	slappyClose	slappy.html#slappyClose	proc slappyClose()		271
-nim	slappyTick	slappy.html#slappyTick	proc slappyTick()		277
-nim	newSound	slappy.html#newSound	proc newSound(): Sound		290
-nim	newSound	slappy.html#newSound,string	proc newSound(filePath: string): Sound		293
-nim	bits	slappy.html#bits,Sound	proc bits(sound: Sound): int		348
-nim	size	slappy.html#size,Sound	proc size(sound: Sound): int		355
-nim	freq	slappy.html#freq,Sound	proc freq(sound: Sound): int		362
-nim	channels	slappy.html#channels,Sound	proc channels(sound: Sound): int		369
-nim	samples	slappy.html#samples,Sound	proc samples(sound: Sound): int		377
-nim	duration	slappy.html#duration,Sound	proc duration(sound: Sound): float32		383
-nim	source	slappy.html#source,Sound	proc source(sound: Sound): Source		387
-nim	play	slappy.html#play,Sound	proc play(sound: Sound): Source		395
-nimgrp	vel=	slappy.html#vel=-procs-all	proc		53
-nimgrp	gain=	slappy.html#gain=-procs-all	proc		35
-nimgrp	newsound	slappy.html#newSound-procs-all	proc		290
-nimgrp	pos	slappy.html#pos-procs-all	proc		28
+nim	mat	slappy.html#mat,Source	proc mat(source: Source): Mat4		227
+nim	slappyInit	slappy.html#slappyInit	proc slappyInit()		243
+nim	slappyClose	slappy.html#slappyClose	proc slappyClose()		268
+nim	slappyTick	slappy.html#slappyTick	proc slappyTick()		274
+nim	newSound	slappy.html#newSound	proc newSound(): Sound		287
+nim	newSound	slappy.html#newSound,string	proc newSound(filePath: string): Sound		290
+nim	bits	slappy.html#bits,Sound	proc bits(sound: Sound): int		345
+nim	size	slappy.html#size,Sound	proc size(sound: Sound): int		352
+nim	freq	slappy.html#freq,Sound	proc freq(sound: Sound): int		359
+nim	channels	slappy.html#channels,Sound	proc channels(sound: Sound): int		366
+nim	samples	slappy.html#samples,Sound	proc samples(sound: Sound): int		374
+nim	duration	slappy.html#duration,Sound	proc duration(sound: Sound): float32		380
+nim	source	slappy.html#source,Sound	proc source(sound: Sound): Source		384
+nim	play	slappy.html#play,Sound	proc play(sound: Sound): Source		392
 nimgrp	play	slappy.html#play-procs-all	proc		101
-nimgrp	mat=	slappy.html#mat=-procs-all	proc		63
+nimgrp	vel=	slappy.html#vel=-procs-all	proc		53
 nimgrp	pos=	slappy.html#pos=-procs-all	proc		43
-nimgrp	vel	slappy.html#vel-procs-all	proc		57
+nimgrp	pos	slappy.html#pos-procs-all	proc		28
 nimgrp	gain	slappy.html#gain-procs-all	proc		39
+nimgrp	newsound	slappy.html#newSound-procs-all	proc		287
+nimgrp	mat=	slappy.html#mat=-procs-all	proc		63
+nimgrp	vel	slappy.html#vel-procs-all	proc		57
 nimgrp	mat	slappy.html#mat-procs-all	proc		79
+nimgrp	gain=	slappy.html#gain=-procs-all	proc		35
