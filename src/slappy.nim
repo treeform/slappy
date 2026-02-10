@@ -146,7 +146,7 @@ proc `minGain`*(source: Source): float32 =
   alGetSourcef(source.id, AL_MIN_GAIN, addr result)
 
 proc `maxGain=`*(source: Source, v: float32) =
-  ## The minimum gain for this source.
+  ## The maximum gain for this source.
   alSourcef(source.id, AL_MAX_GAIN, v)
 
 proc `maxGain`*(source: Source): float32 =
@@ -209,6 +209,7 @@ proc `vel`*(source: Source): Vec3 =
   return vec3(tmp[0], tmp[1], tmp[2])
 
 proc `mat=`*(source: Source, mat: Mat4) =
+  ## Set source position and cone direction from a matrix.
   var tmp1 = [ALfloat(0.0), 0.0, 0.0]
   tmp1[0] = mat.pos.x
   tmp1[1] = mat.pos.y
@@ -242,19 +243,15 @@ template fail(msg: string) =
 proc slappyInit*() =
   ## Call this on start of your program.
 
-  # device = alcOpenDevice(nil)
-
-  # If default device is nil, maybe try others?
-  if device == nil:
-    let deviceNames = $alcGetString(nil, ALC_ALL_DEVICES_SPECIFIER)
-    echo "Sound output choices:"
-    for deviceName in deviceNames.split(char(0)):
-      echo " * ", deviceName
-    for deviceName in deviceNames.split(char(0)):
-      echo "Trying: ", deviceName
-      device = alcOpenDevice(deviceName.cstring)
-      if device != nil:
-        break
+  let deviceNames = $alcGetString(nil, ALC_ALL_DEVICES_SPECIFIER)
+  echo "Sound output choices:"
+  for deviceName in deviceNames.split(char(0)):
+    echo " * ", deviceName
+  for deviceName in deviceNames.split(char(0)):
+    echo "Trying: ", deviceName
+    device = alcOpenDevice(deviceName.cstring)
+    if device != nil:
+      break
 
   if device == nil:
     fail "Failed to get default device."
