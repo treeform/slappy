@@ -2,10 +2,10 @@ import streams, strformat
 
 type WavFile* = object
   data*: seq[uint8]
-  size*: int
-  freq*: int
-  bits*: int
-  channels*: int
+  size*: int64
+  freq*: int64
+  bits*: int64
+  channels*: int64
 
 proc loadWav*(filePath: string): WavFile =
   # Load PCM data from wav file.
@@ -49,10 +49,12 @@ proc loadWav*(filePath: string): WavFile =
   while subChunk2ID != "data":
     subChunk2ID = f.readStr(4)
     subChunk2Size = f.readUint32()
-    data = f.readStr(int subChunk2Size)
+    if subChunk2Size > int32.high.uint32:
+      raise newException(IOError, &"subChunk2Size > int32.high")
+    data = f.readStr(subChunk2Size.int32)
 
-  result.channels = int numChannels
+  result.channels = numChannels.int64
   result.size = data.len
-  result.freq = int sampleRate
-  result.bits = int bitsPerSample
+  result.freq = sampleRate.int64
+  result.bits = bitsPerSample.int64
   result.data = cast[seq[uint8]](data)
