@@ -1,4 +1,4 @@
-import strutils, os
+import std/[strutils, os]
 
 --path:"../src"
 

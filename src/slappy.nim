@@ -1,7 +1,7 @@
 import
   std/[strformat, strutils],
   openal, vmath,
-  slappy/wav, slappy/vorbis, slappy/slappyformat
+  slappy/[wav, vorbis, slappyformat]
 
 export vorbis, wav, slappyformat
 
