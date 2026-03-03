@@ -39,7 +39,7 @@ if defined(emscripten):
   switch(
     "passL",
     """
-    -o dist/todo_emscripten.html
+    -o dist/slappy.html
     --preload-file dist/data/
     -s ASYNCIFY
     -s FETCH
