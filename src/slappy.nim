@@ -248,7 +248,7 @@ proc slappyInit*() =
   ## Call this on start of your program.
   when defined(emscripten):
     # Always open the first device for emscripten.
-    # emscripten exposes only one device, so the return of alcGetString is invalid
+    # Emscripten exposes only one device, so the return of alcGetString is invalid.
     device = alcOpenDevice(nil)
   else:
     # Find the first available device on the devices list otherwise
