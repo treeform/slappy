@@ -1,5 +1,9 @@
-import openal, slappy/vorbis, slappy/wav, slappy/slappyformat, strutils, vmath,
-    strformat
+import
+  std/[strformat, strutils],
+  openal, vmath,
+  slappy/wav, slappy/vorbis, slappy/slappyformat
+
+export vorbis, wav, slappyformat
 
 type
   Listener* = object
@@ -242,16 +246,21 @@ template fail(msg: string) =
 
 proc slappyInit*() =
   ## Call this on start of your program.
-
-  let deviceNames = $alcGetString(nil, ALC_ALL_DEVICES_SPECIFIER)
-  echo "Sound output choices:"
-  for deviceName in deviceNames.split(char(0)):
-    echo " * ", deviceName
-  for deviceName in deviceNames.split(char(0)):
-    echo "Trying: ", deviceName
-    device = alcOpenDevice(deviceName.cstring)
-    if device != nil:
-      break
+  when defined(emscripten):
+    # Always open the first device for emscripten.
+    # emscripten exposes only one device, so the return of alcGetString is invalid
+    device = alcOpenDevice(nil)
+  else:
+    # Find the first available device on the devices list otherwise
+    let deviceNames = $alcGetString(nil, ALC_ALL_DEVICES_SPECIFIER)
+    echo "Sound output choices:"
+    for deviceName in deviceNames.split(char(0)):
+      echo " * ", deviceName
+    for deviceName in deviceNames.split(char(0)):
+      echo "Trying: ", deviceName
+      device = alcOpenDevice(deviceName.cstring)
+      if device != nil:
+        break
 
   if device == nil:
     fail "Failed to get default device."
