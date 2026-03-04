@@ -1,4 +1,4 @@
-import std/[strutils, os]
+import std/[os, strutils, strformat]
 
 --path:"../src"
 
@@ -39,7 +39,7 @@ if defined(emscripten):
   switch(
     "passL",
     """
-    -o dist/slappy.html
+    -o dist/{projectName()}.html
     --preload-file dist/data/
     -s ASYNCIFY
     -s FETCH
@@ -51,7 +51,7 @@ if defined(emscripten):
     -s ALLOW_MEMORY_GROWTH
     --profiling
     -lopenal
-    """.replace("\n", " ")
+    """.fmt().replace("\n", " ")
   )
 
 when not defined(debug):
