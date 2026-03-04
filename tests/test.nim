@@ -4,26 +4,26 @@ slappyInit()
 
 block:
   echo "wav to .slappy file"
-  let wav = loadWav("tests/xylophone-sweep.wav")
-  saveSlappy("tests/xylophone-sweep.slappy", wav)
+  let wav = loadWav("tests/data/xylophone-sweep.wav")
+  saveSlappy("tests/data/xylophone-sweep.slappy", wav)
 
 block:
   echo "playing slappy file"
-  let sound = newSound("tests/xylophone-sweep.slappy")
+  let sound = newSound("tests/data/xylophone-sweep.slappy")
   assert sound.duration != 0
   discard sound.play()
   sleep(2500)
 
 block:
   echo "playing wav file"
-  let sound = newSound("tests/xylophone-sweep.wav")
+  let sound = newSound("tests/data/xylophone-sweep.wav")
   assert sound.duration != 0
   discard sound.play()
   sleep(2500)
 
 block:
   echo "playing ogg file"
-  let sound = newSound("tests/xylophone-sweep.ogg")
+  let sound = newSound("tests/data/xylophone-sweep.ogg")
   assert sound.duration != 0
   echo "duration ", sound.duration
   discard sound.play()
@@ -31,7 +31,7 @@ block:
 
 block:
   # playing sound in 3d
-  let sound = newSound("tests/drums.mono.wav")
+  let sound = newSound("tests/data/drums.mono.wav")
   echo "playing on the right"
   var source = sound.play()
   source.pos = vec3(1, 0, 0)
@@ -48,7 +48,7 @@ block:
 
 block:
   echo "rotate sound in 3d"
-  let sound = newSound("tests/drums.mono.wav")
+  let sound = newSound("tests/data/drums.mono.wav")
   var source = sound.play()
   source.looping = true
   for i in 0..360:
@@ -60,7 +60,7 @@ block:
 
 block:
   echo "doppler waves shift as police car pases"
-  let sound = newSound("tests/siren.wav")
+  let sound = newSound("tests/data/siren.wav")
   var source = sound.play()
   source.looping = true
   source.pos = vec3(-100, -100, 0)
@@ -75,7 +75,7 @@ block:
 
 block:
   echo "setting gain from 0 to 2"
-  let sound = newSound("tests/drums.stereo.wav")
+  let sound = newSound("tests/data/drums.stereo.wav")
   echo "loaded"
   var source = sound.play()
   echo "play"
@@ -90,7 +90,7 @@ block:
 
 block:
   # set pitch
-  let sound = newSound("tests/ding.wav")
+  let sound = newSound("tests/data/ding.wav")
   # make 2 rounds
   echo "setting pitch from 1/7 to 7/7 th"
   for i in 1..7:
@@ -103,7 +103,7 @@ block:
 
 block:
   # reset offset
-  let sound = newSound("tests/drums.stereo.wav")
+  let sound = newSound("tests/data/drums.stereo.wav")
   var source = sound.play()
   # make 2 rounds
   echo "restarting source 3 times"
@@ -117,7 +117,7 @@ block:
 
 block:
   echo "try to play fur elise "
-  let sound = newSound("tests/ding.wav")
+  let sound = newSound("tests/data/ding.wav")
   proc playNote(freq: int) =
     var source = sound.play()
     source.pitch = float(freq) * 0.002
@@ -162,7 +162,7 @@ block:
 
 block:
   echo "long ogg file"
-  let sound = newSound("tests/ascension_short_by_ross_bugden.ogg")
+  let sound = newSound("tests/data/ascension_short_by_ross_bugden.ogg")
   echo "duration ", sound.duration
   discard sound.play()
   sleep(int sound.duration * 1000)

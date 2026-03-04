@@ -28,13 +28,7 @@ if defined(emscripten):
   if dirExists("dist"):
     rmDir("dist")
   mkDir("dist")
-
-  # Temporary. This probably shouldn't be here. Workaround until a better solution is found
-  mkDir("dist/data")
-  cpFile("tests/ding.wav", "dist/data/ding.wav")
-  cpFile("tests/xylophone-sweep.slappy", "dist/data/xylophone-sweep.slappy")
-  cpFile("tests/xylophone-sweep.ogg", "dist/data/xylophone-sweep.ogg")
-  cpFile("tests/drums.mono.wav", "dist/data/drums.mono.wav")
+  cpDir("tests/data", "dist/data")
 
   switch(
     "passL",

@@ -2,8 +2,8 @@ import math, times, tables, slappy, slappy/midi
 
 slappyInit()
 
-let m = readMidi("tests/fur_elise.mid")
-let piano = newSound("tests/piano_c1.wav")
+let m = readMidi("tests/data/fur_elise.mid")
+let piano = newSound("tests/data/piano_c1.wav")
 
 # Piano C1 is MIDI note 24. We shift down 2 octaves to keep pitch ratios sane.
 const BaseNote = 24
