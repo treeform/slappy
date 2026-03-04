@@ -253,11 +253,7 @@ proc slappyInit*() =
   else:
     # Find the first available device on the devices list otherwise
     let deviceNames = $alcGetString(nil, ALC_ALL_DEVICES_SPECIFIER)
-    echo "Sound output choices:"
     for deviceName in deviceNames.split(char(0)):
-      echo " * ", deviceName
-    for deviceName in deviceNames.split(char(0)):
-      echo "Trying: ", deviceName
       device = alcOpenDevice(deviceName.cstring)
       if device != nil:
         break
