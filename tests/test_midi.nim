@@ -1,7 +1,7 @@
 import slappy/midi
 
 echo "Loading fur_elise.mid"
-let m = readMidi("tests/fur_elise.mid")
+let m = readMidi("tests/data/fur_elise.mid")
 
 doAssert m.header.format == Format1
 doAssert m.header.trackCount == 5

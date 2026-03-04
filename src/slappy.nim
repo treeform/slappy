@@ -1,5 +1,7 @@
-import openal, slappy/vorbis, slappy/wav, slappy/slappyformat, strutils, vmath,
-    strformat
+import
+  std/[strformat, strutils],
+  openal, vmath,
+  slappy/[wav, vorbis, slappyformat]
 
 type
   Listener* = object
@@ -16,21 +18,22 @@ var
   ctx: ALCcontext
 
 proc up*(a: Mat4): Vec3 {.inline.} =
+  ## Returns the up direction extracted from a matrix.
   result.x = a[1, 0]
   result.y = a[1, 1]
   result.z = a[1, 2]
 
 proc forward*(a: Mat4): Vec3 {.inline.} =
+  ## Returns the forward direction extracted from a matrix.
   result.x = a[2, 0]
   result.y = a[2, 1]
   result.z = a[2, 2]
 
 proc pos*(a: Mat4): Vec3 {.inline.} =
+  ## Returns the position extracted from a matrix.
   result.x = a[3, 0]
   result.y = a[3, 1]
   result.z = a[3, 2]
-
-## Listener functions
 
 proc `gain=`*(listener: Listener, v: float32) =
   ## Set Master gain. Value should be positive.
@@ -88,29 +91,34 @@ proc `mat`*(listener: Listener): Mat4 =
     vec3(tmp2[3], tmp2[4], tmp2[5])
   )
 
-## Source functions
-
 proc playing*(source: Source): bool {.inline.} =
+  ## Returns true when the source is currently playing.
   var state: ALenum
   alGetSourcei(source.id, AL_SOURCE_STATE, addr state)
   result = state == AL_PLAYING
 
 proc stop*(source: Source) =
+  ## Stops source playback.
   alSourceStop(source.id)
 
 proc play*(source: Source) =
+  ## Starts source playback.
   alSourcePlay(source.id)
 
 proc `pitch=`*(source: Source, v: float32) =
+  ## Sets source pitch.
   alSourcef(source.id, AL_PITCH, v)
 
 proc `pitch`*(source: Source): float32 =
+  ## Gets source pitch.
   alGetSourcef(source.id, AL_PITCH, addr result)
 
 proc `gain=`*(source: Source, v: float32) =
+  ## Sets source gain.
   alSourcef(source.id, AL_GAIN, v)
 
 proc `gain`*(source: Source): float32 =
+  ## Gets source gain.
   alGetSourcef(source.id, AL_GAIN, addr result)
 
 proc `maxDistance=`*(source: Source, v: float32) =
@@ -120,6 +128,7 @@ proc `maxDistance=`*(source: Source, v: float32) =
   alSourcef(source.id, AL_MAX_DISTANCE, v)
 
 proc `maxDistance`*(source: Source): float32 =
+  ## Gets max distance for attenuation.
   alGetSourcef(source.id, AL_MAX_DISTANCE, addr result)
 
 proc `rolloffFactor=`*(source: Source, v: float32) =
@@ -127,6 +136,7 @@ proc `rolloffFactor=`*(source: Source, v: float32) =
   alSourcef(source.id, AL_ROLLOFF_FACTOR, v)
 
 proc `rolloffFactor`*(source: Source): float32 =
+  ## Gets source rolloff factor.
   alGetSourcef(source.id, AL_ROLLOFF_FACTOR, addr result)
 
 proc `halfDistance=`*(source: Source, v: float32) =
@@ -136,6 +146,7 @@ proc `halfDistance=`*(source: Source, v: float32) =
   alSourcef(source.id, AL_REFERENCE_DISTANCE, v)
 
 proc `halfDistance`*(source: Source): float32 =
+  ## Gets reference distance for attenuation.
   alGetSourcef(source.id, AL_REFERENCE_DISTANCE, addr result)
 
 proc `minGain=`*(source: Source, v: float32) =
@@ -143,6 +154,7 @@ proc `minGain=`*(source: Source, v: float32) =
   alSourcef(source.id, AL_MIN_GAIN, v)
 
 proc `minGain`*(source: Source): float32 =
+  ## Gets minimum source gain.
   alGetSourcef(source.id, AL_MIN_GAIN, addr result)
 
 proc `maxGain=`*(source: Source, v: float32) =
@@ -150,6 +162,7 @@ proc `maxGain=`*(source: Source, v: float32) =
   alSourcef(source.id, AL_MAX_GAIN, v)
 
 proc `maxGain`*(source: Source): float32 =
+  ## Gets maximum source gain.
   alGetSourcef(source.id, AL_MAX_GAIN, addr result)
 
 proc `coneOuterGain=`*(source: Source, v: float32) =
@@ -157,6 +170,7 @@ proc `coneOuterGain=`*(source: Source, v: float32) =
   alSourcef(source.id, AL_CONE_OUTER_GAIN, v)
 
 proc `coneOuterGain`*(source: Source): float32 =
+  ## Gets source gain outside the cone.
   alGetSourcef(source.id, AL_CONE_OUTER_GAIN, addr result)
 
 proc `coneInnerAngle=`*(source: Source, v: float32) =
@@ -164,6 +178,7 @@ proc `coneInnerAngle=`*(source: Source, v: float32) =
   alSourcef(source.id, AL_CONE_INNER_ANGLE, v)
 
 proc `coneInnerAngle`*(source: Source): float32 =
+  ## Gets inner cone angle in degrees.
   alGetSourcef(source.id, AL_CONE_INNER_ANGLE, addr result)
 
 proc `coneOuterAngle=`*(source: Source, v: float32) =
@@ -171,14 +186,18 @@ proc `coneOuterAngle=`*(source: Source, v: float32) =
   alSourcef(source.id, AL_CONE_OUTER_ANGLE, v)
 
 proc `coneOuterAngle`*(source: Source): float32 =
+  ## Gets outer cone angle in degrees.
   alGetSourcef(source.id, AL_CONE_OUTER_ANGLE, addr result)
 
 proc `looping=`*(source: Source, v: bool) =
+  ## Enables or disables looping for the source.
   var looping: ALint = 0
-  if v == true: looping = 1
+  if v:
+    looping = 1
   alSourcei(source.id, AL_LOOPING, looping)
 
 proc `looping`*(source: Source): bool =
+  ## Returns true when source looping is enabled.
   var looping: ALint
   alGetSourcei(source.id, AL_LOOPING, addr looping)
   return looping == 1
@@ -196,14 +215,17 @@ proc `pos=`*(source: Source, pos: Vec3) =
   alSource3f(source.id, AL_POSITION, pos.x, pos.y, pos.z)
 
 proc `pos`*(source: Source): Vec3 =
+  ## Gets source position.
   var tmp = [ALfloat(0.0), 0.0, 0.0]
   alGetSourcefv(source.id, AL_POSITION, addr tmp[0])
   return vec3(tmp[0], tmp[1], tmp[2])
 
 proc `vel=`*(source: Source, vel: Vec3) =
+  ## Sets source velocity.
   alSource3f(source.id, AL_VELOCITY, vel.x, vel.y, vel.z)
 
 proc `vel`*(source: Source): Vec3 =
+  ## Gets source velocity.
   var tmp = [ALfloat(0.0), 0.0, 0.0]
   alGetSourcefv(source.id, AL_VELOCITY, addr tmp[0])
   return vec3(tmp[0], tmp[1], tmp[2])
@@ -225,6 +247,7 @@ proc `mat=`*(source: Source, mat: Mat4) =
   alSourcefv(source.id, AL_ORIENTATION, addr tmp2[0])
 
 proc `mat`*(source: Source): Mat4 =
+  ## Gets source transform from position and orientation.
   var tmp1 = [ALfloat(0.0), 0.0, 0.0]
   alGetSourcefv(source.id, AL_POSITION, addr tmp1[0])
   var tmp2 = [ALfloat(0.0), 0.0, 0.0, 0.0, 0.0, 0.0]
@@ -236,22 +259,22 @@ proc `mat`*(source: Source): Mat4 =
   )
 
 template fail(msg: string) =
+  ## Raises a slappy-specific exception with context.
   raise newException(SlappyError, msg)
 
-## Slappy functions
-
-proc slappyInit*() =
+proc slappyInit*() {.raises: [SlappyError].} =
   ## Call this on start of your program.
-
-  let deviceNames = $alcGetString(nil, ALC_ALL_DEVICES_SPECIFIER)
-  echo "Sound output choices:"
-  for deviceName in deviceNames.split(char(0)):
-    echo " * ", deviceName
-  for deviceName in deviceNames.split(char(0)):
-    echo "Trying: ", deviceName
-    device = alcOpenDevice(deviceName.cstring)
-    if device != nil:
-      break
+  when defined(emscripten):
+    # Always open the first device for emscripten.
+    # Emscripten exposes only one device, so alcGetString is invalid.
+    device = alcOpenDevice(nil)
+  else:
+    # Find the first available device on the devices list.
+    let deviceNames = $alcGetString(nil, ALC_ALL_DEVICES_SPECIFIER)
+    for deviceName in deviceNames.split(char(0)):
+      device = alcOpenDevice(deviceName.cstring)
+      if device != nil:
+        break
 
   if device == nil:
     fail "Failed to get default device."
@@ -265,7 +288,7 @@ proc slappyInit*() =
   if not alcMakeContextCurrent(ctx):
     fail "Failed to make context current."
 
-proc slappyClose*() =
+proc slappyClose*() {.raises: [SlappyError].} =
   ## Call this on exit.
   alcDestroyContext(ctx)
   if not alcCloseDevice(device):
@@ -282,17 +305,17 @@ proc slappyTick*() =
       alDeleteSources(1, addr source.id)
     inc i
 
-## Sound functions
-
 proc newSound*(): Sound =
+  ## Allocates an empty sound handle.
   result.new()
 
 proc newSound*(filePath: string): Sound =
+  ## Loads a sound buffer from wav, slappy, or ogg files.
   var
     sound = Sound()
   alGenBuffers(1, addr sound.id)
 
-  proc format(bits, channels: int): ALenum =
+  proc format(bits, channels: SomeInteger): ALenum =
     if channels == 1:
       if bits == 16:
         result = AL_FORMAT_MONO16
@@ -300,7 +323,7 @@ proc newSound*(filePath: string): Sound =
         result = AL_FORMAT_MONO8
       else:
         raise newException(
-          IOError,
+          SlappyError,
           &"Got {bits} bits, only 8 or 16 bits per sample are supported"
         )
     elif channels == 2:
@@ -310,12 +333,12 @@ proc newSound*(filePath: string): Sound =
         result = AL_FORMAT_STEREO8
       else:
         raise newException(
-          IOError,
+          SlappyError,
           &"Got {bits} bits, only 8 or 16 bits per sample are supported"
         )
     else:
       raise newException(
-        IOError,
+        SlappyError,
         &"Got {channels} channels, only 1 or 2 channel sounds supported"
       )
 
@@ -328,7 +351,7 @@ proc newSound*(filePath: string): Sound =
     wav = loadVorbis(filePath)
   else:
     raise newException(
-      ValueError,
+      SlappyError,
       "File format not supported."
     )
 

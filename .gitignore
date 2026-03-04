@@ -6,3 +6,6 @@
 # normal ignores:
 *.exe
 nimcache
+dist
+.DS_Store
+tmp
