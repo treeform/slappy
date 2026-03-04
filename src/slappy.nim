@@ -3,8 +3,6 @@ import
   openal, vmath,
   slappy/[wav, vorbis, slappyformat]
 
-export vorbis, wav, slappyformat
-
 type
   Listener* = object
   Sound* = ref object
