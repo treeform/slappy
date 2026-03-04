@@ -301,7 +301,7 @@ proc newSound*(filePath: string): Sound =
     sound = Sound()
   alGenBuffers(1, addr sound.id)
 
-  proc format(bits, channels: int): ALenum =
+  proc format(bits, channels: SomeInteger): ALenum =
     if channels == 1:
       if bits == 16:
         result = AL_FORMAT_MONO16
