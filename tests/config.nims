@@ -24,17 +24,12 @@ if defined(emscripten):
   --define:noSignalHandler
   --debugger:native
 
-  # Delete dist directory if it exists
-  if dirExists("dist"):
-    rmDir("dist")
-  mkDir("dist")
-  cpDir("tests/data", "dist/data")
-
   switch(
     "passL",
     """
     -o dist/{projectName()}.html
-    --preload-file dist/data/
+    --preload-file tests/data/
+    --shell-file tests/emscripten/emscripten.html
     -s ASYNCIFY
     -s FETCH
     -s USE_WEBGL2=1
@@ -43,7 +38,6 @@ if defined(emscripten):
     -s FULL_ES3=1
     -s GL_ENABLE_GET_PROC_ADDRESS=1
     -s ALLOW_MEMORY_GROWTH
-    --profiling
     -lopenal
     """.fmt().replace("\n", " ")
   )
@@ -53,6 +47,5 @@ when not defined(debug):
   --define:release
 
 --define:ssl
---define:profile
 --define:nimTypeNames
 
