@@ -1,5 +1,5 @@
 import
-  std/[os, strformat],
+  std/[strformat],
   bumpy, vmath, chroma,
   silky, slappy
 
@@ -26,7 +26,7 @@ proc check(filePath: string)=
 slappyInit()
 
 let builder = newAtlasBuilder(1024, 4)
-builder.addDir("data", "data")
+builder.addDir("data/", "data/")
 builder.addFont("data/IBMPlexSans-Regular.ttf", "H1", 32.0)
 builder.addFont("data/IBMPlexSans-Regular.ttf", "Default", 18.0)
 builder.write("dist/atlas.png")
@@ -79,7 +79,6 @@ window.onFrame = proc() =
 when isMainModule:
   while not window.closeRequested:
     pollEvents()
-  slappyClose()
 
-
+slappyClose()
 
