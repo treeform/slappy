@@ -28,8 +28,8 @@ if defined(emscripten):
     "passL",
     """
     -o dist/{projectName()}.html
-    --preload-file tests/data/
-    --shell-file tests/emscripten/emscripten.html
+    --preload-file data/
+    --shell-file emscripten/emscripten.html
     -s ASYNCIFY
     -s FETCH
     -s USE_WEBGL2=1
