@@ -16,12 +16,24 @@ const
     "data/ascension_short_by_ross_bugden.ogg"
   ]
 
-proc check(filePath: string)=
+proc playSound(
+  filePath: string;
+  gain: float32= 1.0;
+  leftRight: float32= 0.0;
+  nearFar: float32= 0.0;
+  rotation: float32= 0.0;
+  pitch: float32= 1.0
+)=
   ## Simple sound playing helper, to avoid repeated code on this file.
-  let sound = newSound(filePath)
+  let
+    radians = rotation * PI / 180'f32
+    sound = newSound(filePath)
   echo &"playing {filePath} file"
   assert sound.duration != 0
-  discard sound.play()
+  var source = sound.play()
+  source.gain = gain
+  source.pos = vec3(leftRight + sin(radians), nearFar + cos(radians), 0)
+  source.pitch = pitch
 
 slappyInit()
 
@@ -47,6 +59,11 @@ window.onRune = proc(rune: Rune) =
 
 var
   showWindow = true
+  gain = 1.0'f32
+  pitch = 1.0'f32
+  positionLeftRight = 0.0'f32
+  positionNearFar = 0.0'f32
+  rotation = 0.0'f32
 
 window.onFrame = proc() =
   sk.beginUI(window, window.size)
@@ -58,10 +75,34 @@ window.onFrame = proc() =
       image("testTexture", rgbx(30, 30, 30, 255))
 
   subWindow("A SubWindow", showWindow, vec2(100, 100), vec2(400, 700)):
+    text("Note:")
+    text("Some features have no effect on some sounds.")
+    text(" ")
+
+    # Create the UI for controling the Gain value.
+    text("Gain (volume):")
+    scrubber("gainValue", gain, 0.0, 1.0)
+
+    # Create the UI for controling the 3D sound feature: Left/Right.
+    text("Position: Left/Right")
+    scrubber("positionLeftRight", positionLeftRight, -1.0, 1.0)
+
+    # Create the UI for controling the 3D sound feature: Near/Far.
+    text("Position: Near/Far")
+    scrubber("positionNearFar", positionNearFar, 0.0, 100.0)
+
+    # Create the UI for controling the 3D sound feature: Rotation.
+    text("Rotation: [0..360] degrees")
+    scrubber("rotation", rotation, 0.0, 360.0)
+
+    # Create the UI for testing the Pitch feature.
+    text("Pitch (note/tone):")
+    scrubber("pitchValue", pitch, 0.05, 4.0)
+
     # Add all soundfiles as buttons to play them on click.
     for filePath in SoundFiles:
       button("Play "&filePath):
-        check filePath
+        playSound filePath, gain, positionLeftRight, positionNearFar, rotation, pitch
 
   if not showWindow:
     if window.buttonPressed[MouseLeft]:
