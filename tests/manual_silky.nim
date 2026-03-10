@@ -57,6 +57,9 @@ window.runeInputEnabled = true
 window.onRune = proc(rune: Rune) =
   sk.inputRunes.add(rune)
 
+let
+  dopplerSound= newSound(SoundFiles[3])
+
 var
   showWindow = true
   gain = 1.0'f32
@@ -64,6 +67,17 @@ var
   positionLeftRight = 0.0'f32
   positionNearFar = 0.0'f32
   rotation = 0.0'f32
+  dopplerPlaying = false
+  dopplerSource = Source()
+  dopplerPositionX = -100.0'f32
+  dopplerPositionY = -100.0'f32
+  dopplerPositionZ = 0.0'f32
+  dopplerPosition = vec3(dopplerPositionX, dopplerPositionY, dopplerPositionZ)
+  dopplerVelocityX = 1.0'f32
+  dopplerVelocityY = 1.0'f32
+  dopplerVelocityZ = 0.0'f32
+  dopplerVelocity = vec3(dopplerVelocityX, dopplerVelocityY, dopplerVelocityZ) * 50
+  dopplerGain = 10.0'f32
 
 window.onFrame = proc() =
   sk.beginUI(window, window.size)
@@ -103,6 +117,39 @@ window.onFrame = proc() =
     for filePath in SoundFiles:
       button("Play "&filePath):
         playSound filePath, gain, positionLeftRight, positionNearFar, rotation, pitch
+
+  subWindow("Doppler SubWindow", showWindow, vec2(550, 100), vec2(400, 450)):
+    # Create the UI for testing the Doppler feature.
+    text("Doppler Effect:")
+    checkbox("Playing [on/off]:", dopplerPlaying)
+
+    text("Position (x,y,z) [0..100]:")
+    scrubber("dopplerPositionX", dopplerPositionX, 0.0, 100.0)
+    scrubber("dopplerPositionY", dopplerPositionZ, 0.0, 100.0)
+    scrubber("dopplerPositionZ", dopplerPositionY, 0.0, 100.0)
+    dopplerPosition = vec3(dopplerPositionX, dopplerPositionY, dopplerPositionZ)
+
+    text("Velocity (x,y,z) [0..100]*50:")
+    scrubber("dopplerVelocityX", dopplerVelocityX, 0.0, 100.0)
+    scrubber("dopplerVelocityY", dopplerVelocityY, 0.0, 100.0)
+    scrubber("dopplerVelocityZ", dopplerVelocityZ, 0.0, 100.0)
+    dopplerVelocity = vec3(dopplerVelocityX, dopplerVelocityY, dopplerVelocityZ)
+
+    text("Gain (volume):")
+    scrubber("gainValue", dopplerGain, 0.0, 1.0)
+
+    if dopplerPlaying:
+      if not dopplerSource.looping:
+        dopplerSource = dopplerSound.play()
+      dopplerSource.looping = dopplerPlaying
+      dopplerSource.pos = dopplerPosition
+      dopplerSource.vel = dopplerVelocity
+      dopplerSource.gain = dopplerGain
+      dopplerSource.pos = dopplerSource.pos + dopplerSource.vel / 50
+      echo "    ", dopplerSource.pos, dopplerSource.vel
+    else:
+      dopplerSource.looping = dopplerPlaying
+      dopplerSource.stop()
 
   if not showWindow:
     if window.buttonPressed[MouseLeft]:
