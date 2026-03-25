@@ -16,6 +16,12 @@ type
     captureChannels: int
     captureBits: int
     captureBufferSize: int
+  StreamingSource* = ref object
+    ## A source that plays sequential PCM chunks via OpenAL buffer queuing.
+    sourceId: ALuint
+    format: ALenum
+    freq: int
+    queuedBuffers: seq[ALuint]
   SlappyError* = object of IOError
 
 var
@@ -531,3 +537,90 @@ proc play*(sound: Sound): Source =
   var source = sound.source()
   source.play()
   return source
+
+# --- Streaming audio ---
+
+proc alFormat(channels, bits: int): ALenum =
+  ## Resolves the OpenAL format enum for a given channel and bit configuration.
+  if channels == 1:
+    if bits == 16: return AL_FORMAT_MONO16
+    elif bits == 8: return AL_FORMAT_MONO8
+  elif channels == 2:
+    if bits == 16: return AL_FORMAT_STEREO16
+    elif bits == 8: return AL_FORMAT_STEREO8
+  raise newException(
+    SlappyError,
+    &"Unsupported format: {channels} channels, {bits} bits."
+  )
+
+proc newStreamingSource*(
+  frequency: int = 24000,
+  channels: int = 1,
+  bits: int = 16
+): StreamingSource =
+  ## Creates a streaming audio source for sequential PCM playback.
+  ## Call queueData to append PCM chunks, then pump to reclaim processed buffers.
+  let ss = StreamingSource()
+  ss.format = alFormat(channels, bits)
+  ss.freq = frequency
+  alGenSources(1, addr ss.sourceId)
+  return ss
+
+proc queueData*(ss: StreamingSource, data: seq[uint8]) =
+  ## Queues a chunk of raw PCM data for sequential playback.
+  if data.len == 0:
+    return
+  var bufId: ALuint
+  alGenBuffers(1, addr bufId)
+  alBufferData(bufId, ss.format, unsafeAddr data[0], ALsizei(data.len), ALsizei(ss.freq))
+  alSourceQueueBuffers(ss.sourceId, 1, addr bufId)
+  ss.queuedBuffers.add(bufId)
+
+  # Auto-start playback if the source isn't already playing.
+  var state: ALenum
+  alGetSourcei(ss.sourceId, AL_SOURCE_STATE, addr state)
+  if state != AL_PLAYING:
+    alSourcePlay(ss.sourceId)
+
+proc pump*(ss: StreamingSource) =
+  ## Reclaims processed buffers to free resources.
+  ## Call this periodically (e.g. each main loop iteration).
+  var processed: ALint
+  alGetSourcei(ss.sourceId, AL_BUFFERS_PROCESSED, addr processed)
+  while processed > 0:
+    var bufId: ALuint
+    alSourceUnqueueBuffers(ss.sourceId, 1, addr bufId)
+    alDeleteBuffers(1, addr bufId)
+    let idx = ss.queuedBuffers.find(bufId)
+    if idx >= 0:
+      ss.queuedBuffers.del(idx)
+    dec processed
+
+proc playing*(ss: StreamingSource): bool =
+  ## Returns true when the streaming source is currently playing.
+  var state: ALenum
+  alGetSourcei(ss.sourceId, AL_SOURCE_STATE, addr state)
+  return state == AL_PLAYING
+
+proc stop*(ss: StreamingSource) =
+  ## Stops playback immediately.
+  alSourceStop(ss.sourceId)
+
+proc flush*(ss: StreamingSource) =
+  ## Stops playback and discards all queued audio.
+  alSourceStop(ss.sourceId)
+
+  # Unqueue and delete all buffers.
+  var queued: ALint
+  alGetSourcei(ss.sourceId, AL_BUFFERS_QUEUED, addr queued)
+  while queued > 0:
+    var bufId: ALuint
+    alSourceUnqueueBuffers(ss.sourceId, 1, addr bufId)
+    alDeleteBuffers(1, addr bufId)
+    dec queued
+  ss.queuedBuffers.setLen(0)
+
+proc close*(ss: StreamingSource) =
+  ## Stops playback and releases the OpenAL source.
+  ss.flush()
+  alDeleteSources(1, addr ss.sourceId)
