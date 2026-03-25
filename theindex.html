@@ -41,6 +41,8 @@
 <dt><a name="close" href="#close"><span>close:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
           data-doc-search-tag="slappy: proc close(mic: Microphone)" href="slappy.html#close%2CMicrophone">slappy: proc close(mic: Microphone)</a></li>
+          <li><a class="reference external"
+          data-doc-search-tag="slappy: proc close(ss: StreamingSource)" href="slappy.html#close%2CStreamingSource">slappy: proc close(ss: StreamingSource)</a></li>
           </ul></dd>
 <dt><a name="coneInnerAngle" href="#coneInnerAngle"><span>coneInnerAngle:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
@@ -69,6 +71,10 @@
 <dt><a name="duration" href="#duration"><span>duration:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
           data-doc-search-tag="slappy: proc duration(sound: Sound): float32" href="slappy.html#duration%2CSound">slappy: proc duration(sound: Sound): float32</a></li>
+          </ul></dd>
+<dt><a name="flush" href="#flush"><span>flush:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="slappy: proc flush(ss: StreamingSource)" href="slappy.html#flush%2CStreamingSource">slappy: proc flush(ss: StreamingSource)</a></li>
           </ul></dd>
 <dt><a name="forward" href="#forward"><span>forward:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
@@ -186,6 +192,10 @@
           <li><a class="reference external"
           data-doc-search-tag="slappy: proc newSound(filePath: string): Sound" href="slappy.html#newSound%2Cstring">slappy: proc newSound(filePath: string): Sound</a></li>
           </ul></dd>
+<dt><a name="newStreamingSource" href="#newStreamingSource"><span>newStreamingSource:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="slappy: proc newStreamingSource(frequency: int = 24000; channels: int = 1; bits: int = 16): StreamingSource" href="slappy.html#newStreamingSource%2Cint%2Cint%2Cint">slappy: proc newStreamingSource(frequency: int = 24000; channels: int = 1; bits: int = 16): StreamingSource</a></li>
+          </ul></dd>
 <dt><a name="pitch" href="#pitch"><span>pitch:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
           data-doc-search-tag="slappy: proc pitch(source: Source): float32" href="slappy.html#pitch%2CSource">slappy: proc pitch(source: Source): float32</a></li>
@@ -211,6 +221,8 @@
 <dt><a name="playing" href="#playing"><span>playing:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
           data-doc-search-tag="slappy: proc playing(source: Source): bool" href="slappy.html#playing%2CSource">slappy: proc playing(source: Source): bool</a></li>
+          <li><a class="reference external"
+          data-doc-search-tag="slappy: proc playing(ss: StreamingSource): bool" href="slappy.html#playing%2CStreamingSource">slappy: proc playing(ss: StreamingSource): bool</a></li>
           </ul></dd>
 <dt><a name="pos" href="#pos"><span>pos:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
@@ -225,6 +237,14 @@
           data-doc-search-tag="slappy: proc pos=(listener: Listener; pos: Vec3)" href="slappy.html#pos%3D%2CListener%2CVec3">slappy: proc pos=(listener: Listener; pos: Vec3)</a></li>
           <li><a class="reference external"
           data-doc-search-tag="slappy: proc pos=(source: Source; pos: Vec3)" href="slappy.html#pos%3D%2CSource%2CVec3">slappy: proc pos=(source: Source; pos: Vec3)</a></li>
+          </ul></dd>
+<dt><a name="pump" href="#pump"><span>pump:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="slappy: proc pump(ss: StreamingSource)" href="slappy.html#pump%2CStreamingSource">slappy: proc pump(ss: StreamingSource)</a></li>
+          </ul></dd>
+<dt><a name="queueData" href="#queueData"><span>queueData:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="slappy: proc queueData(ss: StreamingSource; data: seq[uint8])" href="slappy.html#queueData%2CStreamingSource%2Cseq%5Buint8%5D">slappy: proc queueData(ss: StreamingSource; data: seq[uint8])</a></li>
           </ul></dd>
 <dt><a name="read" href="#read"><span>read:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
@@ -295,6 +315,12 @@
           data-doc-search-tag="slappy: proc stop(mic: Microphone)" href="slappy.html#stop%2CMicrophone">slappy: proc stop(mic: Microphone)</a></li>
           <li><a class="reference external"
           data-doc-search-tag="slappy: proc stop(source: Source)" href="slappy.html#stop%2CSource">slappy: proc stop(source: Source)</a></li>
+          <li><a class="reference external"
+          data-doc-search-tag="slappy: proc stop(ss: StreamingSource)" href="slappy.html#stop%2CStreamingSource">slappy: proc stop(ss: StreamingSource)</a></li>
+          </ul></dd>
+<dt><a name="StreamingSource" href="#StreamingSource"><span>StreamingSource:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="slappy: type StreamingSource" href="slappy.html#StreamingSource">slappy: type StreamingSource</a></li>
           </ul></dd>
 <dt><a name="toSound" href="#toSound"><span>toSound:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
@@ -324,7 +350,7 @@
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br>
-        <small style="color: var(--hint);">Made with Nim. Generated: 2026-03-25 04:57:07 UTC</small>
+        <small style="color: var(--hint);">Made with Nim. Generated: 2026-03-25 04:57:34 UTC</small>
       </div>
     </div>
   </div>

@@ -63,6 +63,7 @@
 <li><a class="reference" href="#SlappyError" title="SlappyError = object of IOError">SlappyError</a></li>
 <li><a class="reference" href="#Sound" title="Sound = ref object">Sound</a></li>
 <li><a class="reference" href="#Source" title="Source = ref object">Source</a></li>
+<li><a class="reference" href="#StreamingSource" title="StreamingSource = ref object">StreamingSource</a></li>
 
     </ul>
   </details>
@@ -92,6 +93,7 @@
 </ul>
 <ul class="simple nested-toc-section">close
   <li><a class="reference" href="#close%2CMicrophone" title="close(mic: Microphone)">close(mic: Microphone)</a></li>
+<li><a class="reference" href="#close%2CStreamingSource" title="close(ss: StreamingSource)">close(ss: StreamingSource)</a></li>
 
 </ul>
 <ul class="simple nested-toc-section">coneInnerAngle
@@ -120,6 +122,10 @@
 </ul>
 <ul class="simple nested-toc-section">duration
   <li><a class="reference" href="#duration%2CSound" title="duration(sound: Sound): float32">duration(sound: Sound): float32</a></li>
+
+</ul>
+<ul class="simple nested-toc-section">flush
+  <li><a class="reference" href="#flush%2CStreamingSource" title="flush(ss: StreamingSource)">flush(ss: StreamingSource)</a></li>
 
 </ul>
 <ul class="simple nested-toc-section">forward
@@ -209,6 +215,10 @@
 <li><a class="reference" href="#newSound%2Cstring" title="newSound(filePath: string): Sound">newSound(filePath: string): Sound</a></li>
 
 </ul>
+<ul class="simple nested-toc-section">newStreamingSource
+  <li><a class="reference" href="#newStreamingSource%2Cint%2Cint%2Cint" title="newStreamingSource(frequency: int = 24000; channels: int = 1; bits: int = 16): StreamingSource">newStreamingSource(frequency: int = 24000; channels: int = 1; bits: int = 16): StreamingSource</a></li>
+
+</ul>
 <ul class="simple nested-toc-section">pitch
   <li><a class="reference" href="#pitch%2CSource" title="pitch(source: Source): float32">pitch(source: Source): float32</a></li>
 
@@ -232,6 +242,7 @@
 </ul>
 <ul class="simple nested-toc-section">playing
   <li><a class="reference" href="#playing%2CSource" title="playing(source: Source): bool">playing(source: Source): bool</a></li>
+<li><a class="reference" href="#playing%2CStreamingSource" title="playing(ss: StreamingSource): bool">playing(ss: StreamingSource): bool</a></li>
 
 </ul>
 <ul class="simple nested-toc-section">pos
@@ -243,6 +254,14 @@
 <ul class="simple nested-toc-section">pos=
   <li><a class="reference" href="#pos%3D%2CListener%2CVec3" title="pos=(listener: Listener; pos: Vec3)">pos=(listener: Listener; pos: Vec3)</a></li>
 <li><a class="reference" href="#pos%3D%2CSource%2CVec3" title="pos=(source: Source; pos: Vec3)">pos=(source: Source; pos: Vec3)</a></li>
+
+</ul>
+<ul class="simple nested-toc-section">pump
+  <li><a class="reference" href="#pump%2CStreamingSource" title="pump(ss: StreamingSource)">pump(ss: StreamingSource)</a></li>
+
+</ul>
+<ul class="simple nested-toc-section">queueData
+  <li><a class="reference" href="#queueData%2CStreamingSource%2Cseq%5Buint8%5D" title="queueData(ss: StreamingSource; data: seq[uint8])">queueData(ss: StreamingSource; data: seq[uint8])</a></li>
 
 </ul>
 <ul class="simple nested-toc-section">read
@@ -296,6 +315,7 @@
 <ul class="simple nested-toc-section">stop
   <li><a class="reference" href="#stop%2CMicrophone" title="stop(mic: Microphone)">stop(mic: Microphone)</a></li>
 <li><a class="reference" href="#stop%2CSource" title="stop(source: Source)">stop(source: Source)</a></li>
+<li><a class="reference" href="#stop%2CStreamingSource" title="stop(ss: StreamingSource)">stop(ss: StreamingSource)</a></li>
 
 </ul>
 <ul class="simple nested-toc-section">toSound
@@ -365,8 +385,8 @@
   <dd>
     
     
-    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L19" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
-<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L19" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L25" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L25" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
@@ -390,6 +410,16 @@
 
   </dd>
 </div>
+<div id="StreamingSource">
+  <dt><pre><a href="slappy.html#StreamingSource"><span class="Identifier">StreamingSource</span></a> <span class="Other">=</span> <span class="Keyword">ref</span> <span class="Keyword">object</span></pre></dt>
+  <dd>
+    
+    A source that plays sequential PCM chunks via OpenAL buffer queuing.
+    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L19" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L19" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+
+  </dd>
+</div>
 
   </dl>
 </div>
@@ -401,8 +431,8 @@
   <dd>
     
     
-    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L22" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
-<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L22" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L28" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L28" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
@@ -418,8 +448,8 @@
   <dd>
     
     Gets the bits per sample for capture.
-    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L405" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
-<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L405" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L411" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L411" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
@@ -428,8 +458,8 @@
   <dd>
     
     Gets the bit rate or bits per sample, only 8bits and 16bits per sample supported.
-    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L482" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
-<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L482" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L488" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L488" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
@@ -441,8 +471,8 @@
   <dd>
     
     Gets the number of capture channels.
-    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L401" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
-<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L401" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L407" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L407" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
@@ -451,8 +481,8 @@
   <dd>
     
     Gets number of channels, only 1 or 2 are supported. WARNING: 2 channel sounds can't be positioned in 3d.
-    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L503" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
-<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L503" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L509" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L509" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
@@ -464,8 +494,18 @@
   <dd>
     
     Closes the capture device and releases resources.
-    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L374" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
-<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L374" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L380" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L380" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+
+  </dd>
+</div>
+<div id="close,StreamingSource">
+  <dt><pre><span class="Keyword">proc</span> <a href="#close%2CStreamingSource"><span class="Identifier">close</span></a><span class="Other">(</span><span class="Identifier">ss</span><span class="Other">:</span> <a href="slappy.html#StreamingSource"><span class="Identifier">StreamingSource</span></a><span class="Other">)</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+  <dd>
+    
+    Stops playback and releases the OpenAL source.
+    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L623" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L623" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
@@ -477,8 +517,8 @@
   <dd>
     
     Gets inner cone angle in degrees.
-    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L187" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
-<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L187" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L193" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L193" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
@@ -491,8 +531,8 @@
   <dd>
     
     Inner angle of the sound cone, in degrees. Default is 360.
-    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L183" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
-<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L183" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L189" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L189" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
@@ -504,8 +544,8 @@
   <dd>
     
     Gets outer cone angle in degrees.
-    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L195" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
-<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L195" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L201" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L201" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
@@ -518,8 +558,8 @@
   <dd>
     
     Outer angle of the sound cone, in degrees. Default is 360.
-    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L191" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
-<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L191" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L197" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L197" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
@@ -531,8 +571,8 @@
   <dd>
     
     Gets source gain outside the cone.
-    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L179" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
-<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L179" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L185" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L185" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
@@ -545,8 +585,8 @@
   <dd>
     
     The gain when outside the oriented cone.
-    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L175" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
-<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L175" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L181" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L181" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
@@ -558,8 +598,21 @@
   <dd>
     
     Gets duration of the sound in seconds.
-    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L517" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
-<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L517" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L523" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L523" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+
+  </dd>
+</div>
+
+</div>
+<div id="flush-procs-all">
+  <div id="flush,StreamingSource">
+  <dt><pre><span class="Keyword">proc</span> <a href="#flush%2CStreamingSource"><span class="Identifier">flush</span></a><span class="Other">(</span><span class="Identifier">ss</span><span class="Other">:</span> <a href="slappy.html#StreamingSource"><span class="Identifier">StreamingSource</span></a><span class="Other">)</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+  <dd>
+    
+    Stops playback and discards all queued audio.
+    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L609" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L609" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
@@ -571,8 +624,8 @@
   <dd>
     
     Returns the forward direction extracted from a matrix.
-    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L33" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
-<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L33" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L39" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L39" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
@@ -584,8 +637,8 @@
   <dd>
     
     Gets the frequency or the samples per second rate.
-    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L496" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
-<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L496" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L502" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L502" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
@@ -597,8 +650,8 @@
   <dd>
     
     Gets the capture frequency in Hz.
-    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L397" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
-<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L397" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L403" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L403" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
@@ -610,8 +663,8 @@
   <dd>
     
     Get master gain.
-    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L49" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
-<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L49" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L55" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L55" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
@@ -620,8 +673,8 @@
   <dd>
     
     Gets source gain.
-    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L127" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
-<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L127" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L133" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L133" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
@@ -633,8 +686,8 @@
   <dd>
     
     Set Master gain. Value should be positive.
-    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L45" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
-<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L45" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L51" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L51" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
@@ -643,8 +696,8 @@
   <dd>
     
     Sets source gain.
-    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L123" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
-<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L123" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L129" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L129" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
@@ -656,8 +709,8 @@
   <dd>
     
     Gets reference distance for attenuation.
-    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L155" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
-<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L155" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L161" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L161" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
@@ -670,8 +723,8 @@
   <dd>
     
     The distance under which the volume for the source would normally drop by half (before being influenced by rolloff factor or maxDistance).
-    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L149" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
-<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L149" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L155" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L155" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
@@ -683,8 +736,8 @@
   <dd>
     
     Returns a list of available audio capture device names.
-    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L315" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
-<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L315" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L321" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L321" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
@@ -696,8 +749,8 @@
   <dd>
     
     Returns true when source looping is enabled.
-    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L206" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
-<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L206" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L212" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L212" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
@@ -709,8 +762,8 @@
   <dd>
     
     Enables or disables looping for the source.
-    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L199" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
-<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L199" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L205" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L205" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
@@ -722,8 +775,8 @@
   <dd>
     
     Get orientation of the main listener.
-    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L89" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
-<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L89" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L95" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L95" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
@@ -732,8 +785,8 @@
   <dd>
     
     Gets source transform from position and orientation.
-    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L256" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
-<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L256" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L262" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L262" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
@@ -745,8 +798,8 @@
   <dd>
     
     Set orientation of the main listener.
-    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L73" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
-<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L73" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L79" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L79" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
@@ -755,8 +808,8 @@
   <dd>
     
     Set source position and cone direction from a matrix.
-    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L240" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
-<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L240" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L246" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L246" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
@@ -768,8 +821,8 @@
   <dd>
     
     Gets max distance for attenuation.
-    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L137" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
-<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L137" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L143" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L143" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
@@ -782,8 +835,8 @@
   <dd>
     
     Set the Inverse Clamped Distance Model to set the distance where there will no longer be any attenuation of the source.
-    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L131" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
-<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L131" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L137" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L137" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
@@ -795,8 +848,8 @@
   <dd>
     
     Gets maximum source gain.
-    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L171" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
-<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L171" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L177" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L177" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
@@ -808,8 +861,8 @@
   <dd>
     
     The maximum gain for this source.
-    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L167" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
-<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L167" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L173" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L173" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
@@ -821,8 +874,8 @@
   <dd>
     
     Gets minimum source gain.
-    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L163" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
-<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L163" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L169" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L169" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
@@ -834,8 +887,8 @@
   <dd>
     
     The minimum gain for this source.
-    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L159" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
-<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L159" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L165" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L165" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
@@ -850,8 +903,8 @@
   <dd>
     
     Opens an audio capture device for microphone input. Pass an empty deviceName for the default capture device.
-    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L325" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
-<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L325" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L331" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L331" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
@@ -863,8 +916,8 @@
   <dd>
     
     Allocates an empty sound handle.
-    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L422" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
-<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L422" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L428" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L428" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
@@ -875,8 +928,23 @@
   <dd>
     
     Loads a sound buffer from wav, slappy, or ogg files.
-    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L426" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
-<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L426" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L432" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L432" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+
+  </dd>
+</div>
+
+</div>
+<div id="newStreamingSource-procs-all">
+  <div id="newStreamingSource,int,int,int">
+  <dt><pre><span class="Keyword">proc</span> <a href="#newStreamingSource%2Cint%2Cint%2Cint"><span class="Identifier">newStreamingSource</span></a><span class="Other">(</span><span class="Identifier">frequency</span><span class="Other">:</span> <span class="Identifier">int</span> <span class="Other">=</span> <span class="DecNumber">24000</span><span class="Other">;</span> <span class="Identifier">channels</span><span class="Other">:</span> <span class="Identifier">int</span> <span class="Other">=</span> <span class="DecNumber">1</span><span class="Other">;</span>
+                        <span class="Identifier">bits</span><span class="Other">:</span> <span class="Identifier">int</span> <span class="Other">=</span> <span class="DecNumber">16</span><span class="Other">)</span><span class="Other">:</span> <a href="slappy.html#StreamingSource"><span class="Identifier">StreamingSource</span></a> {.
+    <span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">SlappyError</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+  <dd>
+    
+    Creates a streaming audio source for sequential PCM playback. Call queueData to append PCM chunks, then pump to reclaim processed buffers.
+    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L556" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L556" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
@@ -888,8 +956,8 @@
   <dd>
     
     Gets source pitch.
-    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L119" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
-<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L119" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L125" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L125" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
@@ -901,8 +969,8 @@
   <dd>
     
     Sets source pitch.
-    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L115" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
-<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L115" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L121" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L121" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
@@ -914,8 +982,8 @@
   <dd>
     
     Plays the sound.
-    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L529" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
-<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L529" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L535" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L535" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
@@ -924,8 +992,8 @@
   <dd>
     
     Starts source playback.
-    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L111" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
-<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L111" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L117" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L117" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
@@ -937,8 +1005,8 @@
   <dd>
     
     Get the playback position in seconds (offset).
-    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L216" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
-<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L216" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L222" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L222" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
@@ -950,8 +1018,8 @@
   <dd>
     
     Set playback position in seconds (offset).
-    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L212" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
-<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L212" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L218" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L218" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
@@ -963,8 +1031,18 @@
   <dd>
     
     Returns true when the source is currently playing.
-    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L101" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
-<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L101" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L107" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L107" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+
+  </dd>
+</div>
+<div id="playing,StreamingSource">
+  <dt><pre><span class="Keyword">proc</span> <a href="#playing%2CStreamingSource"><span class="Identifier">playing</span></a><span class="Other">(</span><span class="Identifier">ss</span><span class="Other">:</span> <a href="slappy.html#StreamingSource"><span class="Identifier">StreamingSource</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">bool</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+  <dd>
+    
+    Returns true when the streaming source is currently playing.
+    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L599" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L599" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
@@ -976,8 +1054,8 @@
   <dd>
     
     Returns the position extracted from a matrix.
-    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L39" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
-<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L39" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L45" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L45" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
@@ -986,8 +1064,8 @@
   <dd>
     
     Get position of the main listener.
-    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L57" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
-<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L57" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L63" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L63" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
@@ -996,8 +1074,8 @@
   <dd>
     
     Gets source position.
-    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L224" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
-<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L224" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L230" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L230" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
@@ -1009,8 +1087,8 @@
   <dd>
     
     Set position of the main listener.
-    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L53" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
-<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L53" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L59" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L59" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
@@ -1019,8 +1097,35 @@
   <dd>
     
     Set source position.
-    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L220" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
-<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L220" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L226" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L226" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+
+  </dd>
+</div>
+
+</div>
+<div id="pump-procs-all">
+  <div id="pump,StreamingSource">
+  <dt><pre><span class="Keyword">proc</span> <a href="#pump%2CStreamingSource"><span class="Identifier">pump</span></a><span class="Other">(</span><span class="Identifier">ss</span><span class="Other">:</span> <a href="slappy.html#StreamingSource"><span class="Identifier">StreamingSource</span></a><span class="Other">)</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+  <dd>
+    
+    Reclaims processed buffers to free resources. Call this periodically (e.g. each main loop iteration).
+    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L585" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L585" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+
+  </dd>
+</div>
+
+</div>
+<div id="queueData-procs-all">
+  <div id="queueData,StreamingSource,seq[uint8]">
+  <dt><pre><span class="Keyword">proc</span> <a href="#queueData%2CStreamingSource%2Cseq%5Buint8%5D"><span class="Identifier">queueData</span></a><span class="Other">(</span><span class="Identifier">ss</span><span class="Other">:</span> <a href="slappy.html#StreamingSource"><span class="Identifier">StreamingSource</span></a><span class="Other">;</span> <span class="Identifier">data</span><span class="Other">:</span> <span class="Identifier">seq</span><span class="Other">[</span><span class="Identifier">uint8</span><span class="Other">]</span><span class="Other">)</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span>
+    <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+  <dd>
+    
+    Queues a chunk of raw PCM data for sequential playback.
+    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L569" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L569" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
@@ -1033,8 +1138,8 @@
   <dd>
     
     Reads captured PCM samples as raw bytes.
-    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L385" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
-<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L385" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L391" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L391" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
@@ -1046,8 +1151,8 @@
   <dd>
     
     Reads all available captured samples as raw bytes.
-    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L391" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
-<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L391" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L397" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L397" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
@@ -1059,8 +1164,8 @@
   <dd>
     
     Gets source rolloff factor.
-    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L145" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
-<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L145" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L151" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L151" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
@@ -1073,8 +1178,8 @@
   <dd>
     
     Set rolloff rate for the source. Default is 1.0.
-    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L141" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
-<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L141" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L147" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L147" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
@@ -1086,8 +1191,8 @@
   <dd>
     
     Gets number of samples.
-    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L511" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
-<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L511" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L517" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L517" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
@@ -1099,8 +1204,8 @@
   <dd>
     
     Returns the number of captured samples available for reading.
-    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L379" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
-<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L379" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L385" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L385" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
@@ -1112,8 +1217,8 @@
   <dd>
     
     Gets the size of the sound buffer in bytes.
-    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L489" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
-<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L489" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L495" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L495" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
@@ -1125,8 +1230,8 @@
   <dd>
     
     Call this on exit.
-    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L298" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
-<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L298" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L304" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L304" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
@@ -1138,8 +1243,8 @@
   <dd>
     
     Call this on start of your program.
-    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L272" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
-<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L272" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L278" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L278" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
@@ -1151,8 +1256,8 @@
   <dd>
     
     Updates all sources and sounds.
-    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L304" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
-<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L304" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L310" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L310" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
@@ -1164,8 +1269,8 @@
   <dd>
     
     Gets the source for the sound.
-    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L521" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
-<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L521" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L527" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L527" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
@@ -1177,8 +1282,8 @@
   <dd>
     
     Starts audio capture on the microphone.
-    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L366" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
-<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L366" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L372" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L372" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
@@ -1190,8 +1295,8 @@
   <dd>
     
     Stops audio capture on the microphone.
-    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L370" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
-<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L370" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L376" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L376" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
@@ -1200,8 +1305,18 @@
   <dd>
     
     Stops source playback.
-    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L107" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
-<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L107" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L113" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L113" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+
+  </dd>
+</div>
+<div id="stop,StreamingSource">
+  <dt><pre><span class="Keyword">proc</span> <a href="#stop%2CStreamingSource"><span class="Identifier">stop</span></a><span class="Other">(</span><span class="Identifier">ss</span><span class="Other">:</span> <a href="slappy.html#StreamingSource"><span class="Identifier">StreamingSource</span></a><span class="Other">)</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+  <dd>
+    
+    Stops playback immediately.
+    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L605" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L605" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
@@ -1214,8 +1329,8 @@
   <dd>
     
     Creates a playable Sound from captured PCM data.
-    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L409" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
-<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L409" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L415" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L415" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
@@ -1227,8 +1342,8 @@
   <dd>
     
     Returns the up direction extracted from a matrix.
-    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L27" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
-<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L27" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L33" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L33" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
@@ -1240,8 +1355,8 @@
   <dd>
     
     Get velocity of the main listener.
-    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L67" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
-<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L67" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L73" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L73" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
@@ -1250,8 +1365,8 @@
   <dd>
     
     Gets source velocity.
-    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L234" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
-<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L234" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L240" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L240" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
@@ -1263,8 +1378,8 @@
   <dd>
     
     Set velocity of the main listener.
-    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L63" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
-<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L63" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L69" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L69" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
@@ -1273,8 +1388,8 @@
   <dd>
     
     Sets source velocity.
-    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L230" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
-<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L230" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L236" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L236" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
@@ -1290,7 +1405,7 @@
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br>
-        <small style="color: var(--hint);">Made with Nim. Generated: 2026-03-25 04:57:07 UTC</small>
+        <small style="color: var(--hint);">Made with Nim. Generated: 2026-03-25 04:57:34 UTC</small>
       </div>
     </div>
   </div>
