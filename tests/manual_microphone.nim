@@ -2,18 +2,16 @@ import
   std/[os, strformat, strutils, parseopt],
   slappy
 
-var khz = 44.1
+var frequency = 44100
 
 var p = initOptParser(commandLineParams())
 for kind, key, val in p.getopt():
   case kind
   of cmdLongOption:
-    if key == "khz":
-      khz = parseFloat(val)
+    if key == "hz":
+      frequency = parseInt(val)
   of cmdShortOption, cmdArgument, cmdEnd:
     discard
-
-let frequency = int(khz * 1000)
 
 slappyInit()
 
