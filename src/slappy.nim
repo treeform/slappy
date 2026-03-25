@@ -9,6 +9,13 @@ type
     id: ALuint
   Source* = ref object
     id: ALuint
+  Microphone* = ref object
+    device: ALCdevice
+    captureFreq: int
+    captureFormat: ALenum
+    captureChannels: int
+    captureBits: int
+    captureBufferSize: int
   SlappyError* = object of IOError
 
 var
@@ -304,6 +311,113 @@ proc slappyTick*() =
       dec i
       alDeleteSources(1, addr source.id)
     inc i
+
+proc listCaptureDevices*(): seq[string] =
+  ## Returns a list of available audio capture device names.
+  when defined(emscripten):
+    return @[]
+  else:
+    let deviceNames = $alcGetString(nil, ALC_CAPTURE_DEVICE_SPECIFIER)
+    for name in deviceNames.split(char(0)):
+      if name.len > 0:
+        result.add(name)
+
+proc newMicrophone*(
+  deviceName: string = "",
+  frequency: int = 44100,
+  channels: int = 1,
+  bits: int = 16,
+  bufferSize: int = 44100 * 10
+): Microphone {.raises: [SlappyError].} =
+  ## Opens an audio capture device for microphone input.
+  ## Pass an empty deviceName for the default capture device.
+  when defined(emscripten):
+    fail "Microphone capture is not supported on emscripten."
+  else:
+    let mic = Microphone()
+    mic.captureFreq = frequency
+    mic.captureChannels = channels
+    mic.captureBits = bits
+    mic.captureBufferSize = bufferSize
+
+    if channels == 1:
+      if bits == 16: mic.captureFormat = AL_FORMAT_MONO16
+      elif bits == 8: mic.captureFormat = AL_FORMAT_MONO8
+      else: fail &"Got {bits} bits, only 8 or 16 bits per sample are supported."
+    elif channels == 2:
+      if bits == 16: mic.captureFormat = AL_FORMAT_STEREO16
+      elif bits == 8: mic.captureFormat = AL_FORMAT_STEREO8
+      else: fail &"Got {bits} bits, only 8 or 16 bits per sample are supported."
+    else:
+      fail &"Got {channels} channels, only 1 or 2 channel capture is supported."
+
+    let name = if deviceName.len == 0: nil else: deviceName.cstring
+    mic.device = alcCaptureOpenDevice(
+      name,
+      ALCuint(frequency),
+      mic.captureFormat,
+      ALCsizei(bufferSize)
+    )
+    if mic.device == nil:
+      fail "Failed to open capture device."
+
+    return mic
+
+proc start*(mic: Microphone) =
+  ## Starts audio capture on the microphone.
+  alcCaptureStart(mic.device)
+
+proc stop*(mic: Microphone) =
+  ## Stops audio capture on the microphone.
+  alcCaptureStop(mic.device)
+
+proc close*(mic: Microphone) {.raises: [SlappyError].} =
+  ## Closes the capture device and releases resources.
+  if not alcCaptureCloseDevice(mic.device):
+    fail "Failed to close capture device."
+
+proc samplesAvailable*(mic: Microphone): int =
+  ## Returns the number of captured samples available for reading.
+  var samples: ALCint
+  alcGetIntegerv(mic.device, ALC_CAPTURE_SAMPLES, 1, addr samples)
+  return int(samples)
+
+proc read*(mic: Microphone, sampleCount: int): seq[uint8] =
+  ## Reads captured PCM samples as raw bytes.
+  let bytesPerSample = (mic.captureBits div 8) * mic.captureChannels
+  result = newSeq[uint8](sampleCount * bytesPerSample)
+  alcCaptureSamples(mic.device, addr result[0], ALCsizei(sampleCount))
+
+proc readAll*(mic: Microphone): seq[uint8] =
+  ## Reads all available captured samples as raw bytes.
+  let count = mic.samplesAvailable
+  if count > 0:
+    return mic.read(count)
+
+proc frequency*(mic: Microphone): int {.inline.} =
+  ## Gets the capture frequency in Hz.
+  return mic.captureFreq
+
+proc channels*(mic: Microphone): int {.inline.} =
+  ## Gets the number of capture channels.
+  return mic.captureChannels
+
+proc bits*(mic: Microphone): int {.inline.} =
+  ## Gets the bits per sample for capture.
+  return mic.captureBits
+
+proc toSound*(mic: Microphone, data: seq[uint8]): Sound =
+  ## Creates a playable Sound from captured PCM data.
+  let sound = Sound()
+  alGenBuffers(1, addr sound.id)
+  alBufferData(
+    sound.id,
+    mic.captureFormat,
+    unsafeAddr data[0],
+    ALsizei(data.len),
+    ALsizei(mic.captureFreq)
+  )
+  return sound
 
 proc newSound*(): Sound =
   ## Allocates an empty sound handle.
