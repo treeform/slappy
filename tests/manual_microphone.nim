@@ -1,6 +1,19 @@
 import
-  std/[os, strformat],
+  std/[os, strformat, strutils, parseopt],
   slappy
+
+var khz = 44.1
+
+var p = initOptParser(commandLineParams())
+for kind, key, val in p.getopt():
+  case kind
+  of cmdLongOption:
+    if key == "khz":
+      khz = parseFloat(val)
+  of cmdShortOption, cmdArgument, cmdEnd:
+    discard
+
+let frequency = int(khz * 1000)
 
 slappyInit()
 
@@ -14,8 +27,8 @@ block:
       echo "  device: ", d
 
 block:
-  echo "opening default capture device (44100 Hz, mono, 16-bit)"
-  let mic = newMicrophone()
+  echo &"opening default capture device ({frequency} Hz, mono, 16-bit)"
+  let mic = newMicrophone(frequency = frequency)
   echo "  frequency: ", mic.frequency, " Hz"
   echo "  channels: ", mic.channels
   echo "  bits: ", mic.bits
