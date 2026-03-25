@@ -28,11 +28,19 @@
       Modules: <a href="slappy.html">slappy</a>, <a href="slappy/slappyformat.html">slappy/slappyformat</a>, <a href="slappy/vorbis.html">slappy/vorbis</a>, <a href="slappy/wav.html">slappy/wav</a>.<br/><p /><h2>API symbols</h2>
 <dl><dt><a name="bits" href="#bits"><span>bits:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
+          data-doc-search-tag="slappy: proc bits(mic: Microphone): int" href="slappy.html#bits%2CMicrophone">slappy: proc bits(mic: Microphone): int</a></li>
+          <li><a class="reference external"
           data-doc-search-tag="slappy: proc bits(sound: Sound): int" href="slappy.html#bits%2CSound">slappy: proc bits(sound: Sound): int</a></li>
           </ul></dd>
 <dt><a name="channels" href="#channels"><span>channels:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
+          data-doc-search-tag="slappy: proc channels(mic: Microphone): int" href="slappy.html#channels%2CMicrophone">slappy: proc channels(mic: Microphone): int</a></li>
+          <li><a class="reference external"
           data-doc-search-tag="slappy: proc channels(sound: Sound): int" href="slappy.html#channels%2CSound">slappy: proc channels(sound: Sound): int</a></li>
+          </ul></dd>
+<dt><a name="close" href="#close"><span>close:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="slappy: proc close(mic: Microphone)" href="slappy.html#close%2CMicrophone">slappy: proc close(mic: Microphone)</a></li>
           </ul></dd>
 <dt><a name="coneInnerAngle" href="#coneInnerAngle"><span>coneInnerAngle:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
@@ -70,6 +78,10 @@
 <li><a class="reference external"
           data-doc-search-tag="slappy: proc freq(sound: Sound): int" href="slappy.html#freq%2CSound">slappy: proc freq(sound: Sound): int</a></li>
           </ul></dd>
+<dt><a name="frequency" href="#frequency"><span>frequency:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="slappy: proc frequency(mic: Microphone): int" href="slappy.html#frequency%2CMicrophone">slappy: proc frequency(mic: Microphone): int</a></li>
+          </ul></dd>
 <dt><a name="gain" href="#gain"><span>gain:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
           data-doc-search-tag="slappy: proc gain(listener: Listener): float32" href="slappy.html#gain%2CListener">slappy: proc gain(listener: Listener): float32</a></li>
@@ -89,6 +101,10 @@
 <dt><a name="halfDistance%3D" href="#halfDistance%3D"><span>halfDistance=:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
           data-doc-search-tag="slappy: proc halfDistance=(source: Source; v: float32)" href="slappy.html#halfDistance%3D%2CSource%2Cfloat32">slappy: proc halfDistance=(source: Source; v: float32)</a></li>
+          </ul></dd>
+<dt><a name="listCaptureDevices" href="#listCaptureDevices"><span>listCaptureDevices:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="slappy: proc listCaptureDevices(): seq[string]" href="slappy.html#listCaptureDevices">slappy: proc listCaptureDevices(): seq[string]</a></li>
           </ul></dd>
 <dt><a name="Listener" href="#Listener"><span>Listener:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
@@ -146,6 +162,10 @@
 <li><a class="reference external"
           data-doc-search-tag="slappy: proc maxGain=(source: Source; v: float32)" href="slappy.html#maxGain%3D%2CSource%2Cfloat32">slappy: proc maxGain=(source: Source; v: float32)</a></li>
           </ul></dd>
+<dt><a name="Microphone" href="#Microphone"><span>Microphone:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="slappy: type Microphone" href="slappy.html#Microphone">slappy: type Microphone</a></li>
+          </ul></dd>
 <dt><a name="minGain" href="#minGain"><span>minGain:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
           data-doc-search-tag="slappy: proc minGain(source: Source): float32" href="slappy.html#minGain%2CSource">slappy: proc minGain(source: Source): float32</a></li>
@@ -153,6 +173,12 @@
 <dt><a name="minGain%3D" href="#minGain%3D"><span>minGain=:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
           data-doc-search-tag="slappy: proc minGain=(source: Source; v: float32)" href="slappy.html#minGain%3D%2CSource%2Cfloat32">slappy: proc minGain=(source: Source; v: float32)</a></li>
+          </ul></dd>
+<dt><a name="newMicrophone" href="#newMicrophone"><span>newMicrophone:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="slappy: proc newMicrophone(deviceName: string = &quot;&quot;; frequency: int = 44100;
+              channels: int = 1; bits: int = 16; bufferSize: int = 44100 * 10): Microphone" href="slappy.html#newMicrophone%2Cstring%2Cint%2Cint%2Cint%2Cint">slappy: proc newMicrophone(deviceName: string = &quot;&quot;; frequency: int = 44100;
+              channels: int = 1; bits: int = 16; bufferSize: int = 44100 * 10): Microphone</a></li>
           </ul></dd>
 <dt><a name="newSound" href="#newSound"><span>newSound:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
@@ -200,6 +226,14 @@
           <li><a class="reference external"
           data-doc-search-tag="slappy: proc pos=(source: Source; pos: Vec3)" href="slappy.html#pos%3D%2CSource%2CVec3">slappy: proc pos=(source: Source; pos: Vec3)</a></li>
           </ul></dd>
+<dt><a name="read" href="#read"><span>read:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="slappy: proc read(mic: Microphone; sampleCount: int): seq[uint8]" href="slappy.html#read%2CMicrophone%2Cint">slappy: proc read(mic: Microphone; sampleCount: int): seq[uint8]</a></li>
+          </ul></dd>
+<dt><a name="readAll" href="#readAll"><span>readAll:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="slappy: proc readAll(mic: Microphone): seq[uint8]" href="slappy.html#readAll%2CMicrophone">slappy: proc readAll(mic: Microphone): seq[uint8]</a></li>
+          </ul></dd>
 <dt><a name="rolloffFactor" href="#rolloffFactor"><span>rolloffFactor:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
           data-doc-search-tag="slappy: proc rolloffFactor(source: Source): float32" href="slappy.html#rolloffFactor%2CSource">slappy: proc rolloffFactor(source: Source): float32</a></li>
@@ -211,6 +245,10 @@
 <dt><a name="samples" href="#samples"><span>samples:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
           data-doc-search-tag="slappy: proc samples(sound: Sound): int" href="slappy.html#samples%2CSound">slappy: proc samples(sound: Sound): int</a></li>
+          </ul></dd>
+<dt><a name="samplesAvailable" href="#samplesAvailable"><span>samplesAvailable:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="slappy: proc samplesAvailable(mic: Microphone): int" href="slappy.html#samplesAvailable%2CMicrophone">slappy: proc samplesAvailable(mic: Microphone): int</a></li>
           </ul></dd>
 <dt><a name="saveSlappy" href="#saveSlappy"><span>saveSlappy:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
@@ -248,9 +286,19 @@
 <li><a class="reference external"
           data-doc-search-tag="slappy: proc source(sound: Sound): Source" href="slappy.html#source%2CSound">slappy: proc source(sound: Sound): Source</a></li>
           </ul></dd>
+<dt><a name="start" href="#start"><span>start:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="slappy: proc start(mic: Microphone)" href="slappy.html#start%2CMicrophone">slappy: proc start(mic: Microphone)</a></li>
+          </ul></dd>
 <dt><a name="stop" href="#stop"><span>stop:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
+          data-doc-search-tag="slappy: proc stop(mic: Microphone)" href="slappy.html#stop%2CMicrophone">slappy: proc stop(mic: Microphone)</a></li>
+          <li><a class="reference external"
           data-doc-search-tag="slappy: proc stop(source: Source)" href="slappy.html#stop%2CSource">slappy: proc stop(source: Source)</a></li>
+          </ul></dd>
+<dt><a name="toSound" href="#toSound"><span>toSound:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="slappy: proc toSound(mic: Microphone; data: seq[uint8]): Sound" href="slappy.html#toSound%2CMicrophone%2Cseq%5Buint8%5D">slappy: proc toSound(mic: Microphone; data: seq[uint8]): Sound</a></li>
           </ul></dd>
 <dt><a name="up" href="#up"><span>up:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
@@ -276,7 +324,7 @@
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br>
-        <small style="color: var(--hint);">Made with Nim. Generated: 2026-03-15 20:10:51 UTC</small>
+        <small style="color: var(--hint);">Made with Nim. Generated: 2026-03-25 04:12:42 UTC</small>
       </div>
     </div>
   </div>
