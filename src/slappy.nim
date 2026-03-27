@@ -556,10 +556,7 @@ proc alFormat(channels, bits: int): ALenum =
   elif channels == 2:
     if bits == 16: return AL_FORMAT_STEREO16
     elif bits == 8: return AL_FORMAT_STEREO8
-  raise newException(
-    SlappyError,
-    &"Unsupported format: {channels} channels, {bits} bits."
-  )
+  fail &"Unsupported format: {channels} channels, {bits} bits."
 
 proc newStreamingSource*(
   frequency: int = 24000,
