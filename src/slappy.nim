@@ -452,7 +452,7 @@ proc newSound*(filePath: string): Sound =
     sound = Sound()
   discard alGetError() # Clear error code
   alGenBuffers(1, addr sound.id)
-  if alGetError() != AL_NO_ERROR: fail "Couldn't create a sound's buffer ID."
+  sound.cleanupOnError("Couldn't create a sound's buffer ID.")
 
   proc format(bits, channels: SomeInteger): ALenum =
     if channels == 1:
