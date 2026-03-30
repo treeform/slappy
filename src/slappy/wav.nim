@@ -59,16 +59,16 @@ proc loadWav*(filePath: string): WavFile =
   result.bits = bitsPerSample.int64
   result.data = cast[seq[uint8]](data)
 
-func stereoToMono[T: uint8 | int16](data: openArray[uint8]): seq[uint8] =
+proc stereoToMono[T: uint8 | int16](data: openArray[uint8]): seq[uint8] =
   let samples = cast[ptr UncheckedArray[T]](unsafeAddr data[0])
   let sampleCount = data.len div sizeof(T)
-  var monoData = newSeq[T](sampleCount div 2)
-  for i in 0 ..< monoData.len:
-    monoData[i] = T((int32(samples[i * 2]) + int32(samples[i * 2 + 1])) div 2)
-  result = newSeq[uint8](monoData.len * sizeof(T))
-  copyMem(addr result[0], addr monoData[0], result.len)
+  let monoSamples = sampleCount div 2
+  result = newSeq[uint8](monoSamples * sizeof(T))
+  let outSamples = cast[ptr UncheckedArray[T]](unsafeAddr result[0])
+  for i in 0 ..< monoSamples:
+    outSamples[i] = T((int32(samples[i * 2]) + int32(samples[i * 2 + 1])) div 2)
 
-func toMono*(wav: var WavFile): var WavFile {.discardable.}=
+proc toMono*(wav: var WavFile): var WavFile {.discardable.}=
   if wav.channels == 1: return
   case wav.bits
   of 8: wav.data = stereoToMono[uint8](wav.data)
