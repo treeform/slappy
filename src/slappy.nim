@@ -429,8 +429,9 @@ proc newSound*(): Sound =
   ## Allocates an empty sound handle.
   result.new()
 
-proc newSound*(filePath: string): Sound =
+proc newSound*(filePath: string; forceMono: bool = true): Sound =
   ## Loads a sound buffer from wav, slappy, or ogg files.
+  ## Files must be loaded as mono to use spatial sound features (default: true).
   var
     sound = Sound()
   alGenBuffers(1, addr sound.id)
@@ -474,6 +475,8 @@ proc newSound*(filePath: string): Sound =
       SlappyError,
       "File format not supported."
     )
+  if forceMono:
+    wav.toMono()
 
   alBufferData(
     sound.id,
