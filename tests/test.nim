@@ -1,4 +1,7 @@
-import math, os, slappy, vmath, slappy/wav, slappy/slappyformat
+import
+  std/[importutils],
+  math, os, vmath,
+  slappy, slappy/wav, slappy/slappyformat
 
 slappyInit()
 
@@ -28,6 +31,19 @@ block:
   echo "duration ", sound.duration
   discard sound.play()
   sleep(1000)
+
+block:
+  privateAccess(Sound)
+  echo "creating, duplicating and destroying wav file"
+  var sound = newSound()
+  let before = sound.id
+  sound = newSound("tests/data/xylophone-sweep.wav")
+  let afterOverwrite = sound.id
+  `=destroy`(sound[])
+  let afterDestroy = sound.id
+  doAssert before != afterOverwrite, "Sound.id must not be the same after overwriting an existing sound"
+  doAssert afterDestroy == 0, "Sound.id must be 0 after destroying an existing sound"
+  doAssert before == afterDestroy, "Sound.id must be reverted to its default value after destroying an existing sound"
 
 block:
   # playing sound in 3d
