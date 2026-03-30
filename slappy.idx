@@ -66,22 +66,22 @@ nim	channels	slappy.html#channels,Microphone	proc channels(mic: Microphone): int
 nim	bits	slappy.html#bits,Microphone	proc bits(mic: Microphone): int		411
 nim	toSound	slappy.html#toSound,Microphone,seq[uint8]	proc toSound(mic: Microphone; data: seq[uint8]): Sound		415
 nim	newSound	slappy.html#newSound	proc newSound(): Sound		428
-nim	newSound	slappy.html#newSound,string	proc newSound(filePath: string): Sound		432
-nim	bits	slappy.html#bits,Sound	proc bits(sound: Sound): int		488
-nim	size	slappy.html#size,Sound	proc size(sound: Sound): int		495
-nim	freq	slappy.html#freq,Sound	proc freq(sound: Sound): int		502
-nim	channels	slappy.html#channels,Sound	proc channels(sound: Sound): int		509
-nim	samples	slappy.html#samples,Sound	proc samples(sound: Sound): int		517
-nim	duration	slappy.html#duration,Sound	proc duration(sound: Sound): float32		523
-nim	source	slappy.html#source,Sound	proc source(sound: Sound): Source		527
-nim	play	slappy.html#play,Sound	proc play(sound: Sound): Source		535
-nim	newStreamingSource	slappy.html#newStreamingSource,int,int,int	proc newStreamingSource(frequency: int = 24000; channels: int = 1; bits: int = 16): StreamingSource		556
-nim	queueData	slappy.html#queueData,StreamingSource,seq[uint8]	proc queueData(ss: StreamingSource; data: seq[uint8])		569
-nim	pump	slappy.html#pump,StreamingSource	proc pump(ss: StreamingSource)		585
-nim	playing	slappy.html#playing,StreamingSource	proc playing(ss: StreamingSource): bool		599
-nim	stop	slappy.html#stop,StreamingSource	proc stop(ss: StreamingSource)		605
-nim	flush	slappy.html#flush,StreamingSource	proc flush(ss: StreamingSource)		609
-nim	close	slappy.html#close,StreamingSource	proc close(ss: StreamingSource)		623
+nim	newSound	slappy.html#newSound,string,bool	proc newSound(filePath: string; forceMono: bool = true): Sound		432
+nim	bits	slappy.html#bits,Sound	proc bits(sound: Sound): int		491
+nim	size	slappy.html#size,Sound	proc size(sound: Sound): int		498
+nim	freq	slappy.html#freq,Sound	proc freq(sound: Sound): int		505
+nim	channels	slappy.html#channels,Sound	proc channels(sound: Sound): int		512
+nim	samples	slappy.html#samples,Sound	proc samples(sound: Sound): int		520
+nim	duration	slappy.html#duration,Sound	proc duration(sound: Sound): float32		526
+nim	source	slappy.html#source,Sound	proc source(sound: Sound): Source		530
+nim	play	slappy.html#play,Sound	proc play(sound: Sound): Source		538
+nim	newStreamingSource	slappy.html#newStreamingSource,int,int,int	proc newStreamingSource(frequency: int = 24000; channels: int = 1; bits: int = 16): StreamingSource		559
+nim	queueData	slappy.html#queueData,StreamingSource,seq[uint8]	proc queueData(ss: StreamingSource; data: seq[uint8])		572
+nim	pump	slappy.html#pump,StreamingSource	proc pump(ss: StreamingSource)		588
+nim	playing	slappy.html#playing,StreamingSource	proc playing(ss: StreamingSource): bool		602
+nim	stop	slappy.html#stop,StreamingSource	proc stop(ss: StreamingSource)		608
+nim	flush	slappy.html#flush,StreamingSource	proc flush(ss: StreamingSource)		612
+nim	close	slappy.html#close,StreamingSource	proc close(ss: StreamingSource)		626
 nimgrp	bits	slappy.html#bits-procs-all	proc		411
 nimgrp	play	slappy.html#play-procs-all	proc		117
 nimgrp	close	slappy.html#close-procs-all	proc		380

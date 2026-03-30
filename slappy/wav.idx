@@ -1,3 +1,4 @@
 nimTitle	wav	slappy/wav.html	module src/slappy/wav		0
 nim	WavFile	slappy/wav.html#WavFile	object WavFile		3
 nim	loadWav	slappy/wav.html#loadWav,string	proc loadWav(filePath: string): WavFile		10
+nim	toMono	slappy/wav.html#toMono,WavFile	proc toMono(wav: var WavFile): var WavFile		71
