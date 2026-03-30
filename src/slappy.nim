@@ -5,7 +5,7 @@ import
 
 type
   Listener* = object
-  Sound* = object
+  Sound* = ref object
     id: ALuint
   Source* = ref object
     id: ALuint
@@ -24,11 +24,14 @@ type
     queuedBuffers: seq[ALuint]
   SlappyError* = object of IOError
 
-proc cleanup(sound: var Sound) =
+proc cleanup(sound: var typeof(Sound()[])) =
   alDeleteBuffers(1, addr sound.id)
   sound.id = 0
 
-proc `=destroy`(sound: var Sound) =
+template cleanup(sound: var Sound) =
+  sound[].cleanup()
+
+proc `=destroy`(sound: var typeof(Sound()[])) =
   sound.cleanup()
 
 var
@@ -444,12 +447,12 @@ proc toSound*(mic: Microphone, data: seq[uint8]): Sound =
 
 proc newSound*(): Sound =
   ## Returns an empty sound handle.
-  Sound()
+  new Sound
 
 proc newSound*(filePath: string): Sound =
   ## Loads a sound buffer from wav, slappy, or ogg files.
   var
-    sound = Sound()
+    sound = newSound()
   discard alGetError() # Clear error code
   alGenBuffers(1, addr sound.id)
   sound.cleanupOnError("Couldn't create a sound's buffer ID.")
