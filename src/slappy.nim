@@ -24,6 +24,16 @@ type
     queuedBuffers: seq[ALuint]
   SlappyError* = object of IOError
 
+proc cleanup(sound: var typeof(Sound()[])) =
+  alDeleteBuffers(1, addr sound.id)
+  sound.id = 0
+
+template cleanup(sound: var Sound) =
+  sound[].cleanup()
+
+proc `=destroy`(sound: var typeof(Sound()[])) =
+  sound.cleanup()
+
 var
   listener* = Listener()
   activeSources: seq[Source]
@@ -318,6 +328,12 @@ proc slappyTick*() =
       alDeleteSources(1, addr source.id)
     inc i
 
+proc cleanupOnError(sound: var Sound; msg: string) =
+  let hasError = alGetError() != AL_NO_ERROR
+  if not hasError: return
+  sound.cleanup()
+  fail(msg)
+
 proc listCaptureDevices*(): seq[string] =
   ## Returns a list of available audio capture device names.
   when defined(emscripten):
@@ -414,8 +430,11 @@ proc bits*(mic: Microphone): int {.inline.} =
 
 proc toSound*(mic: Microphone, data: seq[uint8]): Sound =
   ## Creates a playable Sound from captured PCM data.
-  let sound = Sound()
+  var
+    sound = Sound()
+  discard alGetError() # Clear error code
   alGenBuffers(1, addr sound.id)
+  sound.cleanupOnError("Couldn't create a buffer ID for a Microphone's sound data.")
   alBufferData(
     sound.id,
     mic.captureFormat,
@@ -423,18 +442,21 @@ proc toSound*(mic: Microphone, data: seq[uint8]): Sound =
     ALsizei(data.len),
     ALsizei(mic.captureFreq)
   )
+  sound.cleanupOnError("Couldn't convert a Microphone into a sound's buffer data.")
   return sound
 
 proc newSound*(): Sound =
-  ## Allocates an empty sound handle.
-  result.new()
+  ## Returns an empty sound handle.
+  new Sound
 
 proc newSound*(filePath: string; forceMono: bool = true): Sound =
   ## Loads a sound buffer from wav, slappy, or ogg files.
   ## Files must be loaded as mono to use spatial sound features (default: true).
   var
-    sound = Sound()
+    sound = newSound()
+  discard alGetError() # Clear error code
   alGenBuffers(1, addr sound.id)
+  sound.cleanupOnError("Couldn't create a sound's buffer ID.")
 
   proc format(bits, channels: SomeInteger): ALenum =
     if channels == 1:
@@ -443,25 +465,16 @@ proc newSound*(filePath: string; forceMono: bool = true): Sound =
       elif bits == 8:
         result = AL_FORMAT_MONO8
       else:
-        raise newException(
-          SlappyError,
-          &"Got {bits} bits, only 8 or 16 bits per sample are supported"
-        )
+        fail &"Got {bits} bits, only 8 or 16 bits per sample are supported"
     elif channels == 2:
       if bits == 16:
         result = AL_FORMAT_STEREO16
       elif bits == 8:
         result = AL_FORMAT_STEREO8
       else:
-        raise newException(
-          SlappyError,
-          &"Got {bits} bits, only 8 or 16 bits per sample are supported"
-        )
+        fail &"Got {bits} bits, only 8 or 16 bits per sample are supported"
     else:
-      raise newException(
-        SlappyError,
-        &"Got {channels} channels, only 1 or 2 channel sounds supported"
-      )
+      fail &"Got {channels} channels, only 1 or 2 channel sounds supported"
 
   var wav: WavFile
   if filePath.endswith(".wav"):
@@ -471,10 +484,7 @@ proc newSound*(filePath: string; forceMono: bool = true): Sound =
   elif filePath.endswith(".ogg"):
     wav = loadVorbis(filePath)
   else:
-    raise newException(
-      SlappyError,
-      "File format not supported."
-    )
+    fail "File format not supported."
   if forceMono:
     wav.toMono()
 
@@ -485,6 +495,7 @@ proc newSound*(filePath: string; forceMono: bool = true): Sound =
     ALsizei wav.size,
     ALsizei wav.freq
   )
+  sound.cleanupOnError("Couldn't load a sound's buffer data.")
 
   return sound
 
@@ -551,10 +562,7 @@ proc alFormat(channels, bits: int): ALenum =
   elif channels == 2:
     if bits == 16: return AL_FORMAT_STEREO16
     elif bits == 8: return AL_FORMAT_STEREO8
-  raise newException(
-    SlappyError,
-    &"Unsupported format: {channels} channels, {bits} bits."
-  )
+  fail &"Unsupported format: {channels} channels, {bits} bits."
 
 proc newStreamingSource*(
   frequency: int = 24000,
