@@ -58,3 +58,22 @@ proc loadWav*(filePath: string): WavFile =
   result.freq = sampleRate.int64
   result.bits = bitsPerSample.int64
   result.data = cast[seq[uint8]](data)
+
+proc stereoToMono[T: uint8 | int16](data: openArray[uint8]): seq[uint8] =
+  let samples = cast[ptr UncheckedArray[T]](unsafeAddr data[0])
+  let sampleCount = data.len div sizeof(T)
+  let monoSamples = sampleCount div 2
+  result = newSeq[uint8](monoSamples * sizeof(T))
+  let outSamples = cast[ptr UncheckedArray[T]](unsafeAddr result[0])
+  for i in 0 ..< monoSamples:
+    outSamples[i] = T((int32(samples[i * 2]) + int32(samples[i * 2 + 1])) div 2)
+
+proc toMono*(wav: var WavFile): var WavFile {.discardable.}=
+  if wav.channels == 1: return
+  case wav.bits
+  of 8: wav.data = stereoToMono[uint8](wav.data)
+  of 16: wav.data = stereoToMono[int16](wav.data)
+  else: discard
+  wav.channels = 1
+  wav.size = wav.data.len
+  return wav

@@ -449,8 +449,9 @@ proc newSound*(): Sound =
   ## Returns an empty sound handle.
   new Sound
 
-proc newSound*(filePath: string): Sound =
+proc newSound*(filePath: string; forceMono: bool = true): Sound =
   ## Loads a sound buffer from wav, slappy, or ogg files.
+  ## Files must be loaded as mono to use spatial sound features (default: true).
   var
     sound = newSound()
   discard alGetError() # Clear error code
@@ -484,6 +485,8 @@ proc newSound*(filePath: string): Sound =
     wav = loadVorbis(filePath)
   else:
     fail "File format not supported."
+  if forceMono:
+    wav.toMono()
 
   alBufferData(
     sound.id,
