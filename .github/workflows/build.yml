@@ -1,20 +1,25 @@
 name: Github Actions
-on: [push, pull_request]
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+  workflow_dispatch:
 jobs:
   build:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest]
+        os: [ubuntu-latest, macos-latest, windows-latest]
 
     runs-on: ${{ matrix.os }}
 
     steps:
-    - uses: actions/checkout@v3
-    - uses: jiro4989/setup-nim-action@v1
-      with:
-        repo-token: ${{ secrets.GITHUB_TOKEN }}
-    # Can't test without GUI, just compile.
-    - run: sudo apt-get install libopenal-dev
-    - run: nimble install -y
-    - run: nimble c tests/test.nim
+      - uses: actions/checkout@v5
+      - uses: treeform/setup-nim-action@v6
+      - name: Install dependencies
+        shell: bash
+        run: |
+          cd ..
+          nimby install -g "${{ github.event.repository.name }}/${{ github.event.repository.name }}.nimble"
+      - run: nim r tests/tests.nim
