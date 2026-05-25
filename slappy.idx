@@ -1,4 +1,4 @@
-nimTitle	slappy	slappy.html	module src/slappy		0
+nimTitle	slappy	slappy.html	module slappy		0
 nim	Listener	slappy.html#Listener	object Listener		7
 nim	Sound	slappy.html#Sound	type Sound		8
 nim	Source	slappy.html#Source	type Source		10

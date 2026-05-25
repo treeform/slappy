@@ -5,7 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>src/slappy</title>
+<title>slappy</title>
 
 <!-- Google fonts -->
 <link href='https://fonts.googleapis.com/css?family=Lato:400,600,900' rel='stylesheet' type='text/css'/>
@@ -16,15 +16,18 @@
 <link rel="icon" type="image/png" sizes="32x32" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAA3XAAAN1wFCKJt4AAAAB3RJTUUH4QQQEwksSS9ZWwAAAk1JREFUWMPtll2ITVEUx39nn/O7Y5qR8f05wtCUUr6ZIS++8pEnkZInPImneaCQ5METNdOkeFBKUhMPRIkHKfEuUZSUlGlKPN2TrgfncpvmnntnmlEyq1Z7t89/rf9a6+y99oZxGZf/XeIq61EdtgKXgdXA0xrYAvBjOIF1AI9zvjcC74BSpndrJPkBWDScTF8Aa4E3wDlgHbASaANmVqlcCnwHvgDvgVfAJ+AikAAvgfVZwLnSVZHZaOuKoQi3ZOMi4NkYkpe1p4J7A8BpYAD49hfIy/oqG0+hLomiKP2L5L+1ubn5115S+3OAn4EnwBlgMzCjyt6ZAnQCJ4A7wOs88iRJHvw50HoujuPBoCKwHWiosy8MdfZnAdcHk8dxXFJ3VQbQlCTJvRBCGdRbD4M6uc5glpY3eAihpN5S5w12diSEcCCEcKUO4ljdr15T76ur1FDDLIQQ3qv71EdDOe3Kxj3leRXyk+pxdWnFWod6Wt2bY3de3aSuUHcPBVimHs7mK9WrmeOF6lR1o9qnzskh2ar2qm1qizpfXaPeVGdlmGN5pb09qMxz1Xb1kLqgzn1RyH7JUXW52lr5e/Kqi9qpto7V1atuUzfnARrV7jEib1T76gG2qxdGmXyiekkt1GswPTtek0aBfJp6YySGBfWg2tPQ0FAYgf1stUfdmdcjarbYJEniKIq6gY/Aw+zWHAC+p2labGpqiorFYgGYCEzN7oQdQClN07O1/EfDyGgC0ALMBdYAi4FyK+4H3gLPsxfR1zRNi+NP7nH5J+QntnXe5B5mpfQAAAAASUVORK5CYII=">
 
 <!-- CSS -->
-<link rel="stylesheet" type="text/css" href="nimdoc.out.css?v=2.2.8">
+<link rel="stylesheet" type="text/css" href="nimdoc.out.css?v=2.2.10">
 
 <!-- JS -->
-<script type="text/javascript" src="dochack.js?v=2.2.8"></script>
+<script type="text/javascript" src="dochack.js?v=2.2.10"></script>
 </head>
 <body>
   <div class="document" id="documentId">
+    <input type="checkbox" id="nav-toggle" hidden>
+    <label for="nav-toggle" id="nav-burger">&#9776;</label>
+    <label for="nav-toggle" id="nav-overlay"></label>
     <div class="container">
-      <h1 class="title">src/slappy</h1>
+      <h1 class="title">slappy</h1>
       <div class="row">
   <div class="three columns">
     <div class="theme-select-wrapper">
@@ -361,7 +364,7 @@
   <h1><a class="toc-backref" href="#7">Types</a></h1>
   <dl class="item">
     <div id="Listener">
-  <dt><pre><a href="slappy.html#Listener"><span class="Identifier">Listener</span></a> <span class="Other">=</span> <span class="Keyword">object</span></pre></dt>
+  <dt><pre><a href="#Listener"><span class="Identifier">Listener</span></a> <span class="Other">=</span> <span class="Keyword">object</span></pre></dt>
   <dd>
     
     
@@ -371,7 +374,7 @@
   </dd>
 </div>
 <div id="Microphone">
-  <dt><pre><a href="slappy.html#Microphone"><span class="Identifier">Microphone</span></a> <span class="Other">=</span> <span class="Keyword">ref</span> <span class="Keyword">object</span></pre></dt>
+  <dt><pre><a href="#Microphone"><span class="Identifier">Microphone</span></a> <span class="Other">=</span> <span class="Keyword">ref</span> <span class="Keyword">object</span></pre></dt>
   <dd>
     
     
@@ -381,7 +384,7 @@
   </dd>
 </div>
 <div id="SlappyError">
-  <dt><pre><a href="slappy.html#SlappyError"><span class="Identifier">SlappyError</span></a> <span class="Other">=</span> <span class="Keyword">object</span> <span class="Keyword">of</span> <span class="Identifier">IOError</span></pre></dt>
+  <dt><pre><a href="#SlappyError"><span class="Identifier">SlappyError</span></a> <span class="Other">=</span> <span class="Keyword">object</span> <span class="Keyword">of</span> <span class="Identifier">IOError</span></pre></dt>
   <dd>
     
     
@@ -391,7 +394,7 @@
   </dd>
 </div>
 <div id="Sound">
-  <dt><pre><a href="slappy.html#Sound"><span class="Identifier">Sound</span></a> <span class="Other">=</span> <span class="Keyword">ref</span> <span class="Keyword">object</span></pre></dt>
+  <dt><pre><a href="#Sound"><span class="Identifier">Sound</span></a> <span class="Other">=</span> <span class="Keyword">ref</span> <span class="Keyword">object</span></pre></dt>
   <dd>
     
     
@@ -401,7 +404,7 @@
   </dd>
 </div>
 <div id="Source">
-  <dt><pre><a href="slappy.html#Source"><span class="Identifier">Source</span></a> <span class="Other">=</span> <span class="Keyword">ref</span> <span class="Keyword">object</span></pre></dt>
+  <dt><pre><a href="#Source"><span class="Identifier">Source</span></a> <span class="Other">=</span> <span class="Keyword">ref</span> <span class="Keyword">object</span></pre></dt>
   <dd>
     
     
@@ -411,7 +414,7 @@
   </dd>
 </div>
 <div id="StreamingSource">
-  <dt><pre><a href="slappy.html#StreamingSource"><span class="Identifier">StreamingSource</span></a> <span class="Other">=</span> <span class="Keyword">ref</span> <span class="Keyword">object</span></pre></dt>
+  <dt><pre><a href="#StreamingSource"><span class="Identifier">StreamingSource</span></a> <span class="Other">=</span> <span class="Keyword">ref</span> <span class="Keyword">object</span></pre></dt>
   <dd>
     
     A source that plays sequential PCM chunks via OpenAL buffer queuing.
@@ -427,7 +430,7 @@
   <h1><a class="toc-backref" href="#8">Vars</a></h1>
   <dl class="item">
     <div id="listener_2">
-  <dt><pre><a href="slappy.html#listener"><span class="Identifier">listener</span></a> <span class="Other">=</span> <a href="slappy.html#Listener"><span class="Identifier">Listener</span></a><span class="Other">(</span><span class="Other">)</span></pre></dt>
+  <dt><pre><a href="#listener"><span class="Identifier">listener</span></a> <span class="Other">=</span> <a href="#Listener"><span class="Identifier">Listener</span></a><span class="Other">(</span><span class="Other">)</span></pre></dt>
   <dd>
     
     
@@ -444,7 +447,7 @@
   <dl class="item">
     <div id="bits-procs-all">
   <div id="bits,Microphone">
-  <dt><pre><span class="Keyword">proc</span> <a href="#bits%2CMicrophone"><span class="Identifier">bits</span></a><span class="Other">(</span><span class="Identifier">mic</span><span class="Other">:</span> <a href="slappy.html#Microphone"><span class="Identifier">Microphone</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">int</span> {.<span class="Identifier">inline</span><span class="Other">,</span> <span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+  <dt><pre><span class="Keyword">proc</span> <a href="#bits%2CMicrophone"><span class="Identifier">bits</span></a><span class="Other">(</span><span class="Identifier">mic</span><span class="Other">:</span> <a href="#Microphone"><span class="Identifier">Microphone</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">int</span> {.<span class="Identifier">inline</span><span class="Other">,</span> <span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
   <dd>
     
     Gets the bits per sample for capture.
@@ -454,7 +457,7 @@
   </dd>
 </div>
 <div id="bits,Sound">
-  <dt><pre><span class="Keyword">proc</span> <a href="#bits%2CSound"><span class="Identifier">bits</span></a><span class="Other">(</span><span class="Identifier">sound</span><span class="Other">:</span> <a href="slappy.html#Sound"><span class="Identifier">Sound</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">int</span> {.<span class="Identifier">inline</span><span class="Other">,</span> <span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+  <dt><pre><span class="Keyword">proc</span> <a href="#bits%2CSound"><span class="Identifier">bits</span></a><span class="Other">(</span><span class="Identifier">sound</span><span class="Other">:</span> <a href="#Sound"><span class="Identifier">Sound</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">int</span> {.<span class="Identifier">inline</span><span class="Other">,</span> <span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
   <dd>
     
     Gets the bit rate or bits per sample, only 8bits and 16bits per sample supported.
@@ -467,7 +470,7 @@
 </div>
 <div id="channels-procs-all">
   <div id="channels,Microphone">
-  <dt><pre><span class="Keyword">proc</span> <a href="#channels%2CMicrophone"><span class="Identifier">channels</span></a><span class="Other">(</span><span class="Identifier">mic</span><span class="Other">:</span> <a href="slappy.html#Microphone"><span class="Identifier">Microphone</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">int</span> {.<span class="Identifier">inline</span><span class="Other">,</span> <span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+  <dt><pre><span class="Keyword">proc</span> <a href="#channels%2CMicrophone"><span class="Identifier">channels</span></a><span class="Other">(</span><span class="Identifier">mic</span><span class="Other">:</span> <a href="#Microphone"><span class="Identifier">Microphone</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">int</span> {.<span class="Identifier">inline</span><span class="Other">,</span> <span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
   <dd>
     
     Gets the number of capture channels.
@@ -477,7 +480,7 @@
   </dd>
 </div>
 <div id="channels,Sound">
-  <dt><pre><span class="Keyword">proc</span> <a href="#channels%2CSound"><span class="Identifier">channels</span></a><span class="Other">(</span><span class="Identifier">sound</span><span class="Other">:</span> <a href="slappy.html#Sound"><span class="Identifier">Sound</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">int</span> {.<span class="Identifier">inline</span><span class="Other">,</span> <span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+  <dt><pre><span class="Keyword">proc</span> <a href="#channels%2CSound"><span class="Identifier">channels</span></a><span class="Other">(</span><span class="Identifier">sound</span><span class="Other">:</span> <a href="#Sound"><span class="Identifier">Sound</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">int</span> {.<span class="Identifier">inline</span><span class="Other">,</span> <span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
   <dd>
     
     Gets number of channels, only 1 or 2 are supported. WARNING: 2 channel sounds can't be positioned in 3d.
@@ -490,7 +493,7 @@
 </div>
 <div id="close-procs-all">
   <div id="close,Microphone">
-  <dt><pre><span class="Keyword">proc</span> <a href="#close%2CMicrophone"><span class="Identifier">close</span></a><span class="Other">(</span><span class="Identifier">mic</span><span class="Other">:</span> <a href="slappy.html#Microphone"><span class="Identifier">Microphone</span></a><span class="Other">)</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><a href="slappy.html#SlappyError"><span class="Identifier">SlappyError</span></a><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+  <dt><pre><span class="Keyword">proc</span> <a href="#close%2CMicrophone"><span class="Identifier">close</span></a><span class="Other">(</span><span class="Identifier">mic</span><span class="Other">:</span> <a href="#Microphone"><span class="Identifier">Microphone</span></a><span class="Other">)</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><a href="#SlappyError"><span class="Identifier">SlappyError</span></a><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
   <dd>
     
     Closes the capture device and releases resources.
@@ -500,7 +503,7 @@
   </dd>
 </div>
 <div id="close,StreamingSource">
-  <dt><pre><span class="Keyword">proc</span> <a href="#close%2CStreamingSource"><span class="Identifier">close</span></a><span class="Other">(</span><span class="Identifier">ss</span><span class="Other">:</span> <a href="slappy.html#StreamingSource"><span class="Identifier">StreamingSource</span></a><span class="Other">)</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+  <dt><pre><span class="Keyword">proc</span> <a href="#close%2CStreamingSource"><span class="Identifier">close</span></a><span class="Other">(</span><span class="Identifier">ss</span><span class="Other">:</span> <a href="#StreamingSource"><span class="Identifier">StreamingSource</span></a><span class="Other">)</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
   <dd>
     
     Stops playback and releases the OpenAL source.
@@ -513,7 +516,7 @@
 </div>
 <div id="coneInnerAngle-procs-all">
   <div id="coneInnerAngle,Source">
-  <dt><pre><span class="Keyword">proc</span> <a href="#coneInnerAngle%2CSource"><span class="Identifier">coneInnerAngle</span></a><span class="Other">(</span><span class="Identifier">source</span><span class="Other">:</span> <a href="slappy.html#Source"><span class="Identifier">Source</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">float32</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+  <dt><pre><span class="Keyword">proc</span> <a href="#coneInnerAngle%2CSource"><span class="Identifier">coneInnerAngle</span></a><span class="Other">(</span><span class="Identifier">source</span><span class="Other">:</span> <a href="#Source"><span class="Identifier">Source</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">float32</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
   <dd>
     
     Gets inner cone angle in degrees.
@@ -526,7 +529,7 @@
 </div>
 <div id="coneInnerAngle=-procs-all">
   <div id="coneInnerAngle=,Source,float32">
-  <dt><pre><span class="Keyword">proc</span> <a href="#coneInnerAngle%3D%2CSource%2Cfloat32"><span class="Identifier">coneInnerAngle=</span></a><span class="Other">(</span><span class="Identifier">source</span><span class="Other">:</span> <a href="slappy.html#Source"><span class="Identifier">Source</span></a><span class="Other">;</span> <span class="Identifier">v</span><span class="Other">:</span> <span class="Identifier">float32</span><span class="Other">)</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span>
+  <dt><pre><span class="Keyword">proc</span> <a href="#coneInnerAngle%3D%2CSource%2Cfloat32"><span class="Identifier">coneInnerAngle=</span></a><span class="Other">(</span><span class="Identifier">source</span><span class="Other">:</span> <a href="#Source"><span class="Identifier">Source</span></a><span class="Other">;</span> <span class="Identifier">v</span><span class="Other">:</span> <span class="Identifier">float32</span><span class="Other">)</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span>
     <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
   <dd>
     
@@ -540,7 +543,7 @@
 </div>
 <div id="coneOuterAngle-procs-all">
   <div id="coneOuterAngle,Source">
-  <dt><pre><span class="Keyword">proc</span> <a href="#coneOuterAngle%2CSource"><span class="Identifier">coneOuterAngle</span></a><span class="Other">(</span><span class="Identifier">source</span><span class="Other">:</span> <a href="slappy.html#Source"><span class="Identifier">Source</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">float32</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+  <dt><pre><span class="Keyword">proc</span> <a href="#coneOuterAngle%2CSource"><span class="Identifier">coneOuterAngle</span></a><span class="Other">(</span><span class="Identifier">source</span><span class="Other">:</span> <a href="#Source"><span class="Identifier">Source</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">float32</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
   <dd>
     
     Gets outer cone angle in degrees.
@@ -553,7 +556,7 @@
 </div>
 <div id="coneOuterAngle=-procs-all">
   <div id="coneOuterAngle=,Source,float32">
-  <dt><pre><span class="Keyword">proc</span> <a href="#coneOuterAngle%3D%2CSource%2Cfloat32"><span class="Identifier">coneOuterAngle=</span></a><span class="Other">(</span><span class="Identifier">source</span><span class="Other">:</span> <a href="slappy.html#Source"><span class="Identifier">Source</span></a><span class="Other">;</span> <span class="Identifier">v</span><span class="Other">:</span> <span class="Identifier">float32</span><span class="Other">)</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span>
+  <dt><pre><span class="Keyword">proc</span> <a href="#coneOuterAngle%3D%2CSource%2Cfloat32"><span class="Identifier">coneOuterAngle=</span></a><span class="Other">(</span><span class="Identifier">source</span><span class="Other">:</span> <a href="#Source"><span class="Identifier">Source</span></a><span class="Other">;</span> <span class="Identifier">v</span><span class="Other">:</span> <span class="Identifier">float32</span><span class="Other">)</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span>
     <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
   <dd>
     
@@ -567,7 +570,7 @@
 </div>
 <div id="coneOuterGain-procs-all">
   <div id="coneOuterGain,Source">
-  <dt><pre><span class="Keyword">proc</span> <a href="#coneOuterGain%2CSource"><span class="Identifier">coneOuterGain</span></a><span class="Other">(</span><span class="Identifier">source</span><span class="Other">:</span> <a href="slappy.html#Source"><span class="Identifier">Source</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">float32</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+  <dt><pre><span class="Keyword">proc</span> <a href="#coneOuterGain%2CSource"><span class="Identifier">coneOuterGain</span></a><span class="Other">(</span><span class="Identifier">source</span><span class="Other">:</span> <a href="#Source"><span class="Identifier">Source</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">float32</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
   <dd>
     
     Gets source gain outside the cone.
@@ -580,7 +583,7 @@
 </div>
 <div id="coneOuterGain=-procs-all">
   <div id="coneOuterGain=,Source,float32">
-  <dt><pre><span class="Keyword">proc</span> <a href="#coneOuterGain%3D%2CSource%2Cfloat32"><span class="Identifier">coneOuterGain=</span></a><span class="Other">(</span><span class="Identifier">source</span><span class="Other">:</span> <a href="slappy.html#Source"><span class="Identifier">Source</span></a><span class="Other">;</span> <span class="Identifier">v</span><span class="Other">:</span> <span class="Identifier">float32</span><span class="Other">)</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span>
+  <dt><pre><span class="Keyword">proc</span> <a href="#coneOuterGain%3D%2CSource%2Cfloat32"><span class="Identifier">coneOuterGain=</span></a><span class="Other">(</span><span class="Identifier">source</span><span class="Other">:</span> <a href="#Source"><span class="Identifier">Source</span></a><span class="Other">;</span> <span class="Identifier">v</span><span class="Other">:</span> <span class="Identifier">float32</span><span class="Other">)</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span>
     <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
   <dd>
     
@@ -594,7 +597,7 @@
 </div>
 <div id="duration-procs-all">
   <div id="duration,Sound">
-  <dt><pre><span class="Keyword">proc</span> <a href="#duration%2CSound"><span class="Identifier">duration</span></a><span class="Other">(</span><span class="Identifier">sound</span><span class="Other">:</span> <a href="slappy.html#Sound"><span class="Identifier">Sound</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">float32</span> {.<span class="Identifier">inline</span><span class="Other">,</span> <span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+  <dt><pre><span class="Keyword">proc</span> <a href="#duration%2CSound"><span class="Identifier">duration</span></a><span class="Other">(</span><span class="Identifier">sound</span><span class="Other">:</span> <a href="#Sound"><span class="Identifier">Sound</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">float32</span> {.<span class="Identifier">inline</span><span class="Other">,</span> <span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
   <dd>
     
     Gets duration of the sound in seconds.
@@ -607,7 +610,7 @@
 </div>
 <div id="flush-procs-all">
   <div id="flush,StreamingSource">
-  <dt><pre><span class="Keyword">proc</span> <a href="#flush%2CStreamingSource"><span class="Identifier">flush</span></a><span class="Other">(</span><span class="Identifier">ss</span><span class="Other">:</span> <a href="slappy.html#StreamingSource"><span class="Identifier">StreamingSource</span></a><span class="Other">)</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+  <dt><pre><span class="Keyword">proc</span> <a href="#flush%2CStreamingSource"><span class="Identifier">flush</span></a><span class="Other">(</span><span class="Identifier">ss</span><span class="Other">:</span> <a href="#StreamingSource"><span class="Identifier">StreamingSource</span></a><span class="Other">)</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
   <dd>
     
     Stops playback and discards all queued audio.
@@ -633,7 +636,7 @@
 </div>
 <div id="freq-procs-all">
   <div id="freq,Sound">
-  <dt><pre><span class="Keyword">proc</span> <a href="#freq%2CSound"><span class="Identifier">freq</span></a><span class="Other">(</span><span class="Identifier">sound</span><span class="Other">:</span> <a href="slappy.html#Sound"><span class="Identifier">Sound</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">int</span> {.<span class="Identifier">inline</span><span class="Other">,</span> <span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+  <dt><pre><span class="Keyword">proc</span> <a href="#freq%2CSound"><span class="Identifier">freq</span></a><span class="Other">(</span><span class="Identifier">sound</span><span class="Other">:</span> <a href="#Sound"><span class="Identifier">Sound</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">int</span> {.<span class="Identifier">inline</span><span class="Other">,</span> <span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
   <dd>
     
     Gets the frequency or the samples per second rate.
@@ -646,7 +649,7 @@
 </div>
 <div id="frequency-procs-all">
   <div id="frequency,Microphone">
-  <dt><pre><span class="Keyword">proc</span> <a href="#frequency%2CMicrophone"><span class="Identifier">frequency</span></a><span class="Other">(</span><span class="Identifier">mic</span><span class="Other">:</span> <a href="slappy.html#Microphone"><span class="Identifier">Microphone</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">int</span> {.<span class="Identifier">inline</span><span class="Other">,</span> <span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+  <dt><pre><span class="Keyword">proc</span> <a href="#frequency%2CMicrophone"><span class="Identifier">frequency</span></a><span class="Other">(</span><span class="Identifier">mic</span><span class="Other">:</span> <a href="#Microphone"><span class="Identifier">Microphone</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">int</span> {.<span class="Identifier">inline</span><span class="Other">,</span> <span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
   <dd>
     
     Gets the capture frequency in Hz.
@@ -659,7 +662,7 @@
 </div>
 <div id="gain-procs-all">
   <div id="gain,Listener">
-  <dt><pre><span class="Keyword">proc</span> <a href="#gain%2CListener"><span class="Identifier">gain</span></a><span class="Other">(</span><span class="Identifier">listener</span><span class="Other">:</span> <a href="slappy.html#Listener"><span class="Identifier">Listener</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">float32</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+  <dt><pre><span class="Keyword">proc</span> <a href="#gain%2CListener"><span class="Identifier">gain</span></a><span class="Other">(</span><span class="Identifier">listener</span><span class="Other">:</span> <a href="#Listener"><span class="Identifier">Listener</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">float32</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
   <dd>
     
     Get master gain.
@@ -669,7 +672,7 @@
   </dd>
 </div>
 <div id="gain,Source">
-  <dt><pre><span class="Keyword">proc</span> <a href="#gain%2CSource"><span class="Identifier">gain</span></a><span class="Other">(</span><span class="Identifier">source</span><span class="Other">:</span> <a href="slappy.html#Source"><span class="Identifier">Source</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">float32</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+  <dt><pre><span class="Keyword">proc</span> <a href="#gain%2CSource"><span class="Identifier">gain</span></a><span class="Other">(</span><span class="Identifier">source</span><span class="Other">:</span> <a href="#Source"><span class="Identifier">Source</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">float32</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
   <dd>
     
     Gets source gain.
@@ -682,7 +685,7 @@
 </div>
 <div id="gain=-procs-all">
   <div id="gain=,Listener,float32">
-  <dt><pre><span class="Keyword">proc</span> <a href="#gain%3D%2CListener%2Cfloat32"><span class="Identifier">gain=</span></a><span class="Other">(</span><span class="Identifier">listener</span><span class="Other">:</span> <a href="slappy.html#Listener"><span class="Identifier">Listener</span></a><span class="Other">;</span> <span class="Identifier">v</span><span class="Other">:</span> <span class="Identifier">float32</span><span class="Other">)</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+  <dt><pre><span class="Keyword">proc</span> <a href="#gain%3D%2CListener%2Cfloat32"><span class="Identifier">gain=</span></a><span class="Other">(</span><span class="Identifier">listener</span><span class="Other">:</span> <a href="#Listener"><span class="Identifier">Listener</span></a><span class="Other">;</span> <span class="Identifier">v</span><span class="Other">:</span> <span class="Identifier">float32</span><span class="Other">)</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
   <dd>
     
     Set Master gain. Value should be positive.
@@ -692,7 +695,7 @@
   </dd>
 </div>
 <div id="gain=,Source,float32">
-  <dt><pre><span class="Keyword">proc</span> <a href="#gain%3D%2CSource%2Cfloat32"><span class="Identifier">gain=</span></a><span class="Other">(</span><span class="Identifier">source</span><span class="Other">:</span> <a href="slappy.html#Source"><span class="Identifier">Source</span></a><span class="Other">;</span> <span class="Identifier">v</span><span class="Other">:</span> <span class="Identifier">float32</span><span class="Other">)</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+  <dt><pre><span class="Keyword">proc</span> <a href="#gain%3D%2CSource%2Cfloat32"><span class="Identifier">gain=</span></a><span class="Other">(</span><span class="Identifier">source</span><span class="Other">:</span> <a href="#Source"><span class="Identifier">Source</span></a><span class="Other">;</span> <span class="Identifier">v</span><span class="Other">:</span> <span class="Identifier">float32</span><span class="Other">)</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
   <dd>
     
     Sets source gain.
@@ -705,7 +708,7 @@
 </div>
 <div id="halfDistance-procs-all">
   <div id="halfDistance,Source">
-  <dt><pre><span class="Keyword">proc</span> <a href="#halfDistance%2CSource"><span class="Identifier">halfDistance</span></a><span class="Other">(</span><span class="Identifier">source</span><span class="Other">:</span> <a href="slappy.html#Source"><span class="Identifier">Source</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">float32</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+  <dt><pre><span class="Keyword">proc</span> <a href="#halfDistance%2CSource"><span class="Identifier">halfDistance</span></a><span class="Other">(</span><span class="Identifier">source</span><span class="Other">:</span> <a href="#Source"><span class="Identifier">Source</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">float32</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
   <dd>
     
     Gets reference distance for attenuation.
@@ -718,7 +721,7 @@
 </div>
 <div id="halfDistance=-procs-all">
   <div id="halfDistance=,Source,float32">
-  <dt><pre><span class="Keyword">proc</span> <a href="#halfDistance%3D%2CSource%2Cfloat32"><span class="Identifier">halfDistance=</span></a><span class="Other">(</span><span class="Identifier">source</span><span class="Other">:</span> <a href="slappy.html#Source"><span class="Identifier">Source</span></a><span class="Other">;</span> <span class="Identifier">v</span><span class="Other">:</span> <span class="Identifier">float32</span><span class="Other">)</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span>
+  <dt><pre><span class="Keyword">proc</span> <a href="#halfDistance%3D%2CSource%2Cfloat32"><span class="Identifier">halfDistance=</span></a><span class="Other">(</span><span class="Identifier">source</span><span class="Other">:</span> <a href="#Source"><span class="Identifier">Source</span></a><span class="Other">;</span> <span class="Identifier">v</span><span class="Other">:</span> <span class="Identifier">float32</span><span class="Other">)</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span>
     <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
   <dd>
     
@@ -745,7 +748,7 @@
 </div>
 <div id="looping-procs-all">
   <div id="looping,Source">
-  <dt><pre><span class="Keyword">proc</span> <a href="#looping%2CSource"><span class="Identifier">looping</span></a><span class="Other">(</span><span class="Identifier">source</span><span class="Other">:</span> <a href="slappy.html#Source"><span class="Identifier">Source</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">bool</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+  <dt><pre><span class="Keyword">proc</span> <a href="#looping%2CSource"><span class="Identifier">looping</span></a><span class="Other">(</span><span class="Identifier">source</span><span class="Other">:</span> <a href="#Source"><span class="Identifier">Source</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">bool</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
   <dd>
     
     Returns true when source looping is enabled.
@@ -758,7 +761,7 @@
 </div>
 <div id="looping=-procs-all">
   <div id="looping=,Source,bool">
-  <dt><pre><span class="Keyword">proc</span> <a href="#looping%3D%2CSource%2Cbool"><span class="Identifier">looping=</span></a><span class="Other">(</span><span class="Identifier">source</span><span class="Other">:</span> <a href="slappy.html#Source"><span class="Identifier">Source</span></a><span class="Other">;</span> <span class="Identifier">v</span><span class="Other">:</span> <span class="Identifier">bool</span><span class="Other">)</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+  <dt><pre><span class="Keyword">proc</span> <a href="#looping%3D%2CSource%2Cbool"><span class="Identifier">looping=</span></a><span class="Other">(</span><span class="Identifier">source</span><span class="Other">:</span> <a href="#Source"><span class="Identifier">Source</span></a><span class="Other">;</span> <span class="Identifier">v</span><span class="Other">:</span> <span class="Identifier">bool</span><span class="Other">)</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
   <dd>
     
     Enables or disables looping for the source.
@@ -771,7 +774,7 @@
 </div>
 <div id="mat-procs-all">
   <div id="mat,Listener">
-  <dt><pre><span class="Keyword">proc</span> <a href="#mat%2CListener"><span class="Identifier">mat</span></a><span class="Other">(</span><span class="Identifier">listener</span><span class="Other">:</span> <a href="slappy.html#Listener"><span class="Identifier">Listener</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Mat4</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+  <dt><pre><span class="Keyword">proc</span> <a href="#mat%2CListener"><span class="Identifier">mat</span></a><span class="Other">(</span><span class="Identifier">listener</span><span class="Other">:</span> <a href="#Listener"><span class="Identifier">Listener</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Mat4</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
   <dd>
     
     Get orientation of the main listener.
@@ -781,7 +784,7 @@
   </dd>
 </div>
 <div id="mat,Source">
-  <dt><pre><span class="Keyword">proc</span> <a href="#mat%2CSource"><span class="Identifier">mat</span></a><span class="Other">(</span><span class="Identifier">source</span><span class="Other">:</span> <a href="slappy.html#Source"><span class="Identifier">Source</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Mat4</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+  <dt><pre><span class="Keyword">proc</span> <a href="#mat%2CSource"><span class="Identifier">mat</span></a><span class="Other">(</span><span class="Identifier">source</span><span class="Other">:</span> <a href="#Source"><span class="Identifier">Source</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Mat4</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
   <dd>
     
     Gets source transform from position and orientation.
@@ -794,7 +797,7 @@
 </div>
 <div id="mat=-procs-all">
   <div id="mat=,Listener,Mat4">
-  <dt><pre><span class="Keyword">proc</span> <a href="#mat%3D%2CListener%2CMat4"><span class="Identifier">mat=</span></a><span class="Other">(</span><span class="Identifier">listener</span><span class="Other">:</span> <a href="slappy.html#Listener"><span class="Identifier">Listener</span></a><span class="Other">;</span> <span class="Identifier">mat</span><span class="Other">:</span> <span class="Identifier">Mat4</span><span class="Other">)</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+  <dt><pre><span class="Keyword">proc</span> <a href="#mat%3D%2CListener%2CMat4"><span class="Identifier">mat=</span></a><span class="Other">(</span><span class="Identifier">listener</span><span class="Other">:</span> <a href="#Listener"><span class="Identifier">Listener</span></a><span class="Other">;</span> <span class="Identifier">mat</span><span class="Other">:</span> <span class="Identifier">Mat4</span><span class="Other">)</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
   <dd>
     
     Set orientation of the main listener.
@@ -804,7 +807,7 @@
   </dd>
 </div>
 <div id="mat=,Source,Mat4">
-  <dt><pre><span class="Keyword">proc</span> <a href="#mat%3D%2CSource%2CMat4"><span class="Identifier">mat=</span></a><span class="Other">(</span><span class="Identifier">source</span><span class="Other">:</span> <a href="slappy.html#Source"><span class="Identifier">Source</span></a><span class="Other">;</span> <span class="Identifier">mat</span><span class="Other">:</span> <span class="Identifier">Mat4</span><span class="Other">)</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+  <dt><pre><span class="Keyword">proc</span> <a href="#mat%3D%2CSource%2CMat4"><span class="Identifier">mat=</span></a><span class="Other">(</span><span class="Identifier">source</span><span class="Other">:</span> <a href="#Source"><span class="Identifier">Source</span></a><span class="Other">;</span> <span class="Identifier">mat</span><span class="Other">:</span> <span class="Identifier">Mat4</span><span class="Other">)</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
   <dd>
     
     Set source position and cone direction from a matrix.
@@ -817,7 +820,7 @@
 </div>
 <div id="maxDistance-procs-all">
   <div id="maxDistance,Source">
-  <dt><pre><span class="Keyword">proc</span> <a href="#maxDistance%2CSource"><span class="Identifier">maxDistance</span></a><span class="Other">(</span><span class="Identifier">source</span><span class="Other">:</span> <a href="slappy.html#Source"><span class="Identifier">Source</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">float32</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+  <dt><pre><span class="Keyword">proc</span> <a href="#maxDistance%2CSource"><span class="Identifier">maxDistance</span></a><span class="Other">(</span><span class="Identifier">source</span><span class="Other">:</span> <a href="#Source"><span class="Identifier">Source</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">float32</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
   <dd>
     
     Gets max distance for attenuation.
@@ -830,7 +833,7 @@
 </div>
 <div id="maxDistance=-procs-all">
   <div id="maxDistance=,Source,float32">
-  <dt><pre><span class="Keyword">proc</span> <a href="#maxDistance%3D%2CSource%2Cfloat32"><span class="Identifier">maxDistance=</span></a><span class="Other">(</span><span class="Identifier">source</span><span class="Other">:</span> <a href="slappy.html#Source"><span class="Identifier">Source</span></a><span class="Other">;</span> <span class="Identifier">v</span><span class="Other">:</span> <span class="Identifier">float32</span><span class="Other">)</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span>
+  <dt><pre><span class="Keyword">proc</span> <a href="#maxDistance%3D%2CSource%2Cfloat32"><span class="Identifier">maxDistance=</span></a><span class="Other">(</span><span class="Identifier">source</span><span class="Other">:</span> <a href="#Source"><span class="Identifier">Source</span></a><span class="Other">;</span> <span class="Identifier">v</span><span class="Other">:</span> <span class="Identifier">float32</span><span class="Other">)</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span>
     <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
   <dd>
     
@@ -844,7 +847,7 @@
 </div>
 <div id="maxGain-procs-all">
   <div id="maxGain,Source">
-  <dt><pre><span class="Keyword">proc</span> <a href="#maxGain%2CSource"><span class="Identifier">maxGain</span></a><span class="Other">(</span><span class="Identifier">source</span><span class="Other">:</span> <a href="slappy.html#Source"><span class="Identifier">Source</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">float32</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+  <dt><pre><span class="Keyword">proc</span> <a href="#maxGain%2CSource"><span class="Identifier">maxGain</span></a><span class="Other">(</span><span class="Identifier">source</span><span class="Other">:</span> <a href="#Source"><span class="Identifier">Source</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">float32</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
   <dd>
     
     Gets maximum source gain.
@@ -857,7 +860,7 @@
 </div>
 <div id="maxGain=-procs-all">
   <div id="maxGain=,Source,float32">
-  <dt><pre><span class="Keyword">proc</span> <a href="#maxGain%3D%2CSource%2Cfloat32"><span class="Identifier">maxGain=</span></a><span class="Other">(</span><span class="Identifier">source</span><span class="Other">:</span> <a href="slappy.html#Source"><span class="Identifier">Source</span></a><span class="Other">;</span> <span class="Identifier">v</span><span class="Other">:</span> <span class="Identifier">float32</span><span class="Other">)</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+  <dt><pre><span class="Keyword">proc</span> <a href="#maxGain%3D%2CSource%2Cfloat32"><span class="Identifier">maxGain=</span></a><span class="Other">(</span><span class="Identifier">source</span><span class="Other">:</span> <a href="#Source"><span class="Identifier">Source</span></a><span class="Other">;</span> <span class="Identifier">v</span><span class="Other">:</span> <span class="Identifier">float32</span><span class="Other">)</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
   <dd>
     
     The maximum gain for this source.
@@ -870,7 +873,7 @@
 </div>
 <div id="minGain-procs-all">
   <div id="minGain,Source">
-  <dt><pre><span class="Keyword">proc</span> <a href="#minGain%2CSource"><span class="Identifier">minGain</span></a><span class="Other">(</span><span class="Identifier">source</span><span class="Other">:</span> <a href="slappy.html#Source"><span class="Identifier">Source</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">float32</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+  <dt><pre><span class="Keyword">proc</span> <a href="#minGain%2CSource"><span class="Identifier">minGain</span></a><span class="Other">(</span><span class="Identifier">source</span><span class="Other">:</span> <a href="#Source"><span class="Identifier">Source</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">float32</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
   <dd>
     
     Gets minimum source gain.
@@ -883,7 +886,7 @@
 </div>
 <div id="minGain=-procs-all">
   <div id="minGain=,Source,float32">
-  <dt><pre><span class="Keyword">proc</span> <a href="#minGain%3D%2CSource%2Cfloat32"><span class="Identifier">minGain=</span></a><span class="Other">(</span><span class="Identifier">source</span><span class="Other">:</span> <a href="slappy.html#Source"><span class="Identifier">Source</span></a><span class="Other">;</span> <span class="Identifier">v</span><span class="Other">:</span> <span class="Identifier">float32</span><span class="Other">)</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+  <dt><pre><span class="Keyword">proc</span> <a href="#minGain%3D%2CSource%2Cfloat32"><span class="Identifier">minGain=</span></a><span class="Other">(</span><span class="Identifier">source</span><span class="Other">:</span> <a href="#Source"><span class="Identifier">Source</span></a><span class="Other">;</span> <span class="Identifier">v</span><span class="Other">:</span> <span class="Identifier">float32</span><span class="Other">)</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
   <dd>
     
     The minimum gain for this source.
@@ -898,8 +901,8 @@
   <div id="newMicrophone,string,int,int,int,int">
   <dt><pre><span class="Keyword">proc</span> <a href="#newMicrophone%2Cstring%2Cint%2Cint%2Cint%2Cint"><span class="Identifier">newMicrophone</span></a><span class="Other">(</span><span class="Identifier">deviceName</span><span class="Other">:</span> <span class="Identifier">string</span> <span class="Other">=</span> <span class="StringLit">&quot;&quot;</span><span class="Other">;</span> <span class="Identifier">frequency</span><span class="Other">:</span> <span class="Identifier">int</span> <span class="Other">=</span> <span class="DecNumber">44100</span><span class="Other">;</span>
                    <span class="Identifier">channels</span><span class="Other">:</span> <span class="Identifier">int</span> <span class="Other">=</span> <span class="DecNumber">1</span><span class="Other">;</span> <span class="Identifier">bits</span><span class="Other">:</span> <span class="Identifier">int</span> <span class="Other">=</span> <span class="DecNumber">16</span><span class="Other">;</span>
-                   <span class="Identifier">bufferSize</span><span class="Other">:</span> <span class="Identifier">int</span> <span class="Other">=</span> <span class="DecNumber">44100</span> <span class="Operator">*</span> <span class="DecNumber">10</span><span class="Other">)</span><span class="Other">:</span> <a href="slappy.html#Microphone"><span class="Identifier">Microphone</span></a> {.
-    <span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><a href="slappy.html#SlappyError"><span class="Identifier">SlappyError</span></a><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+                   <span class="Identifier">bufferSize</span><span class="Other">:</span> <span class="Identifier">int</span> <span class="Other">=</span> <span class="DecNumber">44100</span> <span class="Operator">*</span> <span class="DecNumber">10</span><span class="Other">)</span><span class="Other">:</span> <a href="#Microphone"><span class="Identifier">Microphone</span></a> {.
+    <span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><a href="#SlappyError"><span class="Identifier">SlappyError</span></a><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
   <dd>
     
     Opens an audio capture device for microphone input. Pass an empty deviceName for the default capture device.
@@ -912,7 +915,7 @@
 </div>
 <div id="newSound-procs-all">
   <div id="newSound">
-  <dt><pre><span class="Keyword">proc</span> <a href="#newSound"><span class="Identifier">newSound</span></a><span class="Other">(</span><span class="Other">)</span><span class="Other">:</span> <a href="slappy.html#Sound"><span class="Identifier">Sound</span></a> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+  <dt><pre><span class="Keyword">proc</span> <a href="#newSound"><span class="Identifier">newSound</span></a><span class="Other">(</span><span class="Other">)</span><span class="Other">:</span> <a href="#Sound"><span class="Identifier">Sound</span></a> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
   <dd>
     
     Returns an empty sound handle.
@@ -922,7 +925,7 @@
   </dd>
 </div>
 <div id="newSound,string,bool">
-  <dt><pre><span class="Keyword">proc</span> <a href="#newSound%2Cstring%2Cbool"><span class="Identifier">newSound</span></a><span class="Other">(</span><span class="Identifier">filePath</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span> <span class="Identifier">forceMono</span><span class="Other">:</span> <span class="Identifier">bool</span> <span class="Other">=</span> <span class="Identifier">true</span><span class="Other">)</span><span class="Other">:</span> <a href="slappy.html#Sound"><span class="Identifier">Sound</span></a> {.
+  <dt><pre><span class="Keyword">proc</span> <a href="#newSound%2Cstring%2Cbool"><span class="Identifier">newSound</span></a><span class="Other">(</span><span class="Identifier">filePath</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span> <span class="Identifier">forceMono</span><span class="Other">:</span> <span class="Identifier">bool</span> <span class="Other">=</span> <span class="Identifier">true</span><span class="Other">)</span><span class="Other">:</span> <a href="#Sound"><span class="Identifier">Sound</span></a> {.
     <span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">SlappyError</span><span class="Other">,</span> <span class="Identifier">IOError</span><span class="Other">,</span> <span class="Identifier">OSError</span><span class="Other">,</span> <span class="Identifier">SnappyError</span><span class="Other">,</span> <span class="Identifier">ValueError</span><span class="Other">]</span><span class="Other">,</span>
     <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">ReadIOEffect</span><span class="Other">,</span> <span class="Identifier">WriteIOEffect</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
   <dd>
@@ -938,7 +941,7 @@
 <div id="newStreamingSource-procs-all">
   <div id="newStreamingSource,int,int,int">
   <dt><pre><span class="Keyword">proc</span> <a href="#newStreamingSource%2Cint%2Cint%2Cint"><span class="Identifier">newStreamingSource</span></a><span class="Other">(</span><span class="Identifier">frequency</span><span class="Other">:</span> <span class="Identifier">int</span> <span class="Other">=</span> <span class="DecNumber">24000</span><span class="Other">;</span> <span class="Identifier">channels</span><span class="Other">:</span> <span class="Identifier">int</span> <span class="Other">=</span> <span class="DecNumber">1</span><span class="Other">;</span>
-                        <span class="Identifier">bits</span><span class="Other">:</span> <span class="Identifier">int</span> <span class="Other">=</span> <span class="DecNumber">16</span><span class="Other">)</span><span class="Other">:</span> <a href="slappy.html#StreamingSource"><span class="Identifier">StreamingSource</span></a> {.
+                        <span class="Identifier">bits</span><span class="Other">:</span> <span class="Identifier">int</span> <span class="Other">=</span> <span class="DecNumber">16</span><span class="Other">)</span><span class="Other">:</span> <a href="#StreamingSource"><span class="Identifier">StreamingSource</span></a> {.
     <span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">SlappyError</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
   <dd>
     
@@ -952,7 +955,7 @@
 </div>
 <div id="pitch-procs-all">
   <div id="pitch,Source">
-  <dt><pre><span class="Keyword">proc</span> <a href="#pitch%2CSource"><span class="Identifier">pitch</span></a><span class="Other">(</span><span class="Identifier">source</span><span class="Other">:</span> <a href="slappy.html#Source"><span class="Identifier">Source</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">float32</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+  <dt><pre><span class="Keyword">proc</span> <a href="#pitch%2CSource"><span class="Identifier">pitch</span></a><span class="Other">(</span><span class="Identifier">source</span><span class="Other">:</span> <a href="#Source"><span class="Identifier">Source</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">float32</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
   <dd>
     
     Gets source pitch.
@@ -965,7 +968,7 @@
 </div>
 <div id="pitch=-procs-all">
   <div id="pitch=,Source,float32">
-  <dt><pre><span class="Keyword">proc</span> <a href="#pitch%3D%2CSource%2Cfloat32"><span class="Identifier">pitch=</span></a><span class="Other">(</span><span class="Identifier">source</span><span class="Other">:</span> <a href="slappy.html#Source"><span class="Identifier">Source</span></a><span class="Other">;</span> <span class="Identifier">v</span><span class="Other">:</span> <span class="Identifier">float32</span><span class="Other">)</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+  <dt><pre><span class="Keyword">proc</span> <a href="#pitch%3D%2CSource%2Cfloat32"><span class="Identifier">pitch=</span></a><span class="Other">(</span><span class="Identifier">source</span><span class="Other">:</span> <a href="#Source"><span class="Identifier">Source</span></a><span class="Other">;</span> <span class="Identifier">v</span><span class="Other">:</span> <span class="Identifier">float32</span><span class="Other">)</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
   <dd>
     
     Sets source pitch.
@@ -978,7 +981,7 @@
 </div>
 <div id="play-procs-all">
   <div id="play,Sound">
-  <dt><pre><span class="Keyword">proc</span> <a href="#play%2CSound"><span class="Identifier">play</span></a><span class="Other">(</span><span class="Identifier">sound</span><span class="Other">:</span> <a href="slappy.html#Sound"><span class="Identifier">Sound</span></a><span class="Other">)</span><span class="Other">:</span> <a href="slappy.html#Source"><span class="Identifier">Source</span></a> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+  <dt><pre><span class="Keyword">proc</span> <a href="#play%2CSound"><span class="Identifier">play</span></a><span class="Other">(</span><span class="Identifier">sound</span><span class="Other">:</span> <a href="#Sound"><span class="Identifier">Sound</span></a><span class="Other">)</span><span class="Other">:</span> <a href="#Source"><span class="Identifier">Source</span></a> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
   <dd>
     
     Plays the sound.
@@ -988,7 +991,7 @@
   </dd>
 </div>
 <div id="play,Source">
-  <dt><pre><span class="Keyword">proc</span> <a href="#play%2CSource"><span class="Identifier">play</span></a><span class="Other">(</span><span class="Identifier">source</span><span class="Other">:</span> <a href="slappy.html#Source"><span class="Identifier">Source</span></a><span class="Other">)</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+  <dt><pre><span class="Keyword">proc</span> <a href="#play%2CSource"><span class="Identifier">play</span></a><span class="Other">(</span><span class="Identifier">source</span><span class="Other">:</span> <a href="#Source"><span class="Identifier">Source</span></a><span class="Other">)</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
   <dd>
     
     Starts source playback.
@@ -1001,7 +1004,7 @@
 </div>
 <div id="playback-procs-all">
   <div id="playback,Source">
-  <dt><pre><span class="Keyword">proc</span> <a href="#playback%2CSource"><span class="Identifier">playback</span></a><span class="Other">(</span><span class="Identifier">source</span><span class="Other">:</span> <a href="slappy.html#Source"><span class="Identifier">Source</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">float32</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+  <dt><pre><span class="Keyword">proc</span> <a href="#playback%2CSource"><span class="Identifier">playback</span></a><span class="Other">(</span><span class="Identifier">source</span><span class="Other">:</span> <a href="#Source"><span class="Identifier">Source</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">float32</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
   <dd>
     
     Get the playback position in seconds (offset).
@@ -1014,7 +1017,7 @@
 </div>
 <div id="playback=-procs-all">
   <div id="playback=,Source,float32">
-  <dt><pre><span class="Keyword">proc</span> <a href="#playback%3D%2CSource%2Cfloat32"><span class="Identifier">playback=</span></a><span class="Other">(</span><span class="Identifier">source</span><span class="Other">:</span> <a href="slappy.html#Source"><span class="Identifier">Source</span></a><span class="Other">;</span> <span class="Identifier">v</span><span class="Other">:</span> <span class="Identifier">float32</span><span class="Other">)</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+  <dt><pre><span class="Keyword">proc</span> <a href="#playback%3D%2CSource%2Cfloat32"><span class="Identifier">playback=</span></a><span class="Other">(</span><span class="Identifier">source</span><span class="Other">:</span> <a href="#Source"><span class="Identifier">Source</span></a><span class="Other">;</span> <span class="Identifier">v</span><span class="Other">:</span> <span class="Identifier">float32</span><span class="Other">)</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
   <dd>
     
     Set playback position in seconds (offset).
@@ -1027,7 +1030,7 @@
 </div>
 <div id="playing-procs-all">
   <div id="playing,Source">
-  <dt><pre><span class="Keyword">proc</span> <a href="#playing%2CSource"><span class="Identifier">playing</span></a><span class="Other">(</span><span class="Identifier">source</span><span class="Other">:</span> <a href="slappy.html#Source"><span class="Identifier">Source</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">bool</span> {.<span class="Identifier">inline</span><span class="Other">,</span> <span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+  <dt><pre><span class="Keyword">proc</span> <a href="#playing%2CSource"><span class="Identifier">playing</span></a><span class="Other">(</span><span class="Identifier">source</span><span class="Other">:</span> <a href="#Source"><span class="Identifier">Source</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">bool</span> {.<span class="Identifier">inline</span><span class="Other">,</span> <span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
   <dd>
     
     Returns true when the source is currently playing.
@@ -1037,7 +1040,7 @@
   </dd>
 </div>
 <div id="playing,StreamingSource">
-  <dt><pre><span class="Keyword">proc</span> <a href="#playing%2CStreamingSource"><span class="Identifier">playing</span></a><span class="Other">(</span><span class="Identifier">ss</span><span class="Other">:</span> <a href="slappy.html#StreamingSource"><span class="Identifier">StreamingSource</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">bool</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+  <dt><pre><span class="Keyword">proc</span> <a href="#playing%2CStreamingSource"><span class="Identifier">playing</span></a><span class="Other">(</span><span class="Identifier">ss</span><span class="Other">:</span> <a href="#StreamingSource"><span class="Identifier">StreamingSource</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">bool</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
   <dd>
     
     Returns true when the streaming source is currently playing.
@@ -1060,7 +1063,7 @@
   </dd>
 </div>
 <div id="pos,Listener">
-  <dt><pre><span class="Keyword">proc</span> <a href="#pos%2CListener"><span class="Identifier">pos</span></a><span class="Other">(</span><span class="Identifier">listener</span><span class="Other">:</span> <a href="slappy.html#Listener"><span class="Identifier">Listener</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Vec3</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+  <dt><pre><span class="Keyword">proc</span> <a href="#pos%2CListener"><span class="Identifier">pos</span></a><span class="Other">(</span><span class="Identifier">listener</span><span class="Other">:</span> <a href="#Listener"><span class="Identifier">Listener</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Vec3</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
   <dd>
     
     Get position of the main listener.
@@ -1070,7 +1073,7 @@
   </dd>
 </div>
 <div id="pos,Source">
-  <dt><pre><span class="Keyword">proc</span> <a href="#pos%2CSource"><span class="Identifier">pos</span></a><span class="Other">(</span><span class="Identifier">source</span><span class="Other">:</span> <a href="slappy.html#Source"><span class="Identifier">Source</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Vec3</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+  <dt><pre><span class="Keyword">proc</span> <a href="#pos%2CSource"><span class="Identifier">pos</span></a><span class="Other">(</span><span class="Identifier">source</span><span class="Other">:</span> <a href="#Source"><span class="Identifier">Source</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Vec3</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
   <dd>
     
     Gets source position.
@@ -1083,7 +1086,7 @@
 </div>
 <div id="pos=-procs-all">
   <div id="pos=,Listener,Vec3">
-  <dt><pre><span class="Keyword">proc</span> <a href="#pos%3D%2CListener%2CVec3"><span class="Identifier">pos=</span></a><span class="Other">(</span><span class="Identifier">listener</span><span class="Other">:</span> <a href="slappy.html#Listener"><span class="Identifier">Listener</span></a><span class="Other">;</span> <span class="Identifier">pos</span><span class="Other">:</span> <span class="Identifier">Vec3</span><span class="Other">)</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+  <dt><pre><span class="Keyword">proc</span> <a href="#pos%3D%2CListener%2CVec3"><span class="Identifier">pos=</span></a><span class="Other">(</span><span class="Identifier">listener</span><span class="Other">:</span> <a href="#Listener"><span class="Identifier">Listener</span></a><span class="Other">;</span> <span class="Identifier">pos</span><span class="Other">:</span> <span class="Identifier">Vec3</span><span class="Other">)</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
   <dd>
     
     Set position of the main listener.
@@ -1093,7 +1096,7 @@
   </dd>
 </div>
 <div id="pos=,Source,Vec3">
-  <dt><pre><span class="Keyword">proc</span> <a href="#pos%3D%2CSource%2CVec3"><span class="Identifier">pos=</span></a><span class="Other">(</span><span class="Identifier">source</span><span class="Other">:</span> <a href="slappy.html#Source"><span class="Identifier">Source</span></a><span class="Other">;</span> <span class="Identifier">pos</span><span class="Other">:</span> <span class="Identifier">Vec3</span><span class="Other">)</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+  <dt><pre><span class="Keyword">proc</span> <a href="#pos%3D%2CSource%2CVec3"><span class="Identifier">pos=</span></a><span class="Other">(</span><span class="Identifier">source</span><span class="Other">:</span> <a href="#Source"><span class="Identifier">Source</span></a><span class="Other">;</span> <span class="Identifier">pos</span><span class="Other">:</span> <span class="Identifier">Vec3</span><span class="Other">)</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
   <dd>
     
     Set source position.
@@ -1106,7 +1109,7 @@
 </div>
 <div id="pump-procs-all">
   <div id="pump,StreamingSource">
-  <dt><pre><span class="Keyword">proc</span> <a href="#pump%2CStreamingSource"><span class="Identifier">pump</span></a><span class="Other">(</span><span class="Identifier">ss</span><span class="Other">:</span> <a href="slappy.html#StreamingSource"><span class="Identifier">StreamingSource</span></a><span class="Other">)</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+  <dt><pre><span class="Keyword">proc</span> <a href="#pump%2CStreamingSource"><span class="Identifier">pump</span></a><span class="Other">(</span><span class="Identifier">ss</span><span class="Other">:</span> <a href="#StreamingSource"><span class="Identifier">StreamingSource</span></a><span class="Other">)</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
   <dd>
     
     Reclaims processed buffers to free resources. Call this periodically (e.g. each main loop iteration).
@@ -1119,7 +1122,7 @@
 </div>
 <div id="queueData-procs-all">
   <div id="queueData,StreamingSource,seq[uint8]">
-  <dt><pre><span class="Keyword">proc</span> <a href="#queueData%2CStreamingSource%2Cseq%5Buint8%5D"><span class="Identifier">queueData</span></a><span class="Other">(</span><span class="Identifier">ss</span><span class="Other">:</span> <a href="slappy.html#StreamingSource"><span class="Identifier">StreamingSource</span></a><span class="Other">;</span> <span class="Identifier">data</span><span class="Other">:</span> <span class="Identifier">seq</span><span class="Other">[</span><span class="Identifier">uint8</span><span class="Other">]</span><span class="Other">)</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span>
+  <dt><pre><span class="Keyword">proc</span> <a href="#queueData%2CStreamingSource%2Cseq%5Buint8%5D"><span class="Identifier">queueData</span></a><span class="Other">(</span><span class="Identifier">ss</span><span class="Other">:</span> <a href="#StreamingSource"><span class="Identifier">StreamingSource</span></a><span class="Other">;</span> <span class="Identifier">data</span><span class="Other">:</span> <span class="Identifier">seq</span><span class="Other">[</span><span class="Identifier">uint8</span><span class="Other">]</span><span class="Other">)</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span>
     <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
   <dd>
     
@@ -1133,7 +1136,7 @@
 </div>
 <div id="read-procs-all">
   <div id="read,Microphone,int">
-  <dt><pre><span class="Keyword">proc</span> <a href="#read%2CMicrophone%2Cint"><span class="Identifier">read</span></a><span class="Other">(</span><span class="Identifier">mic</span><span class="Other">:</span> <a href="slappy.html#Microphone"><span class="Identifier">Microphone</span></a><span class="Other">;</span> <span class="Identifier">sampleCount</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">seq</span><span class="Other">[</span><span class="Identifier">uint8</span><span class="Other">]</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span>
+  <dt><pre><span class="Keyword">proc</span> <a href="#read%2CMicrophone%2Cint"><span class="Identifier">read</span></a><span class="Other">(</span><span class="Identifier">mic</span><span class="Other">:</span> <a href="#Microphone"><span class="Identifier">Microphone</span></a><span class="Other">;</span> <span class="Identifier">sampleCount</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">seq</span><span class="Other">[</span><span class="Identifier">uint8</span><span class="Other">]</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span>
     <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
   <dd>
     
@@ -1147,7 +1150,7 @@
 </div>
 <div id="readAll-procs-all">
   <div id="readAll,Microphone">
-  <dt><pre><span class="Keyword">proc</span> <a href="#readAll%2CMicrophone"><span class="Identifier">readAll</span></a><span class="Other">(</span><span class="Identifier">mic</span><span class="Other">:</span> <a href="slappy.html#Microphone"><span class="Identifier">Microphone</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">seq</span><span class="Other">[</span><span class="Identifier">uint8</span><span class="Other">]</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+  <dt><pre><span class="Keyword">proc</span> <a href="#readAll%2CMicrophone"><span class="Identifier">readAll</span></a><span class="Other">(</span><span class="Identifier">mic</span><span class="Other">:</span> <a href="#Microphone"><span class="Identifier">Microphone</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">seq</span><span class="Other">[</span><span class="Identifier">uint8</span><span class="Other">]</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
   <dd>
     
     Reads all available captured samples as raw bytes.
@@ -1160,7 +1163,7 @@
 </div>
 <div id="rolloffFactor-procs-all">
   <div id="rolloffFactor,Source">
-  <dt><pre><span class="Keyword">proc</span> <a href="#rolloffFactor%2CSource"><span class="Identifier">rolloffFactor</span></a><span class="Other">(</span><span class="Identifier">source</span><span class="Other">:</span> <a href="slappy.html#Source"><span class="Identifier">Source</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">float32</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+  <dt><pre><span class="Keyword">proc</span> <a href="#rolloffFactor%2CSource"><span class="Identifier">rolloffFactor</span></a><span class="Other">(</span><span class="Identifier">source</span><span class="Other">:</span> <a href="#Source"><span class="Identifier">Source</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">float32</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
   <dd>
     
     Gets source rolloff factor.
@@ -1173,7 +1176,7 @@
 </div>
 <div id="rolloffFactor=-procs-all">
   <div id="rolloffFactor=,Source,float32">
-  <dt><pre><span class="Keyword">proc</span> <a href="#rolloffFactor%3D%2CSource%2Cfloat32"><span class="Identifier">rolloffFactor=</span></a><span class="Other">(</span><span class="Identifier">source</span><span class="Other">:</span> <a href="slappy.html#Source"><span class="Identifier">Source</span></a><span class="Other">;</span> <span class="Identifier">v</span><span class="Other">:</span> <span class="Identifier">float32</span><span class="Other">)</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span>
+  <dt><pre><span class="Keyword">proc</span> <a href="#rolloffFactor%3D%2CSource%2Cfloat32"><span class="Identifier">rolloffFactor=</span></a><span class="Other">(</span><span class="Identifier">source</span><span class="Other">:</span> <a href="#Source"><span class="Identifier">Source</span></a><span class="Other">;</span> <span class="Identifier">v</span><span class="Other">:</span> <span class="Identifier">float32</span><span class="Other">)</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span>
     <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
   <dd>
     
@@ -1187,7 +1190,7 @@
 </div>
 <div id="samples-procs-all">
   <div id="samples,Sound">
-  <dt><pre><span class="Keyword">proc</span> <a href="#samples%2CSound"><span class="Identifier">samples</span></a><span class="Other">(</span><span class="Identifier">sound</span><span class="Other">:</span> <a href="slappy.html#Sound"><span class="Identifier">Sound</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">int</span> {.<span class="Identifier">inline</span><span class="Other">,</span> <span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+  <dt><pre><span class="Keyword">proc</span> <a href="#samples%2CSound"><span class="Identifier">samples</span></a><span class="Other">(</span><span class="Identifier">sound</span><span class="Other">:</span> <a href="#Sound"><span class="Identifier">Sound</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">int</span> {.<span class="Identifier">inline</span><span class="Other">,</span> <span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
   <dd>
     
     Gets number of samples.
@@ -1200,7 +1203,7 @@
 </div>
 <div id="samplesAvailable-procs-all">
   <div id="samplesAvailable,Microphone">
-  <dt><pre><span class="Keyword">proc</span> <a href="#samplesAvailable%2CMicrophone"><span class="Identifier">samplesAvailable</span></a><span class="Other">(</span><span class="Identifier">mic</span><span class="Other">:</span> <a href="slappy.html#Microphone"><span class="Identifier">Microphone</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">int</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+  <dt><pre><span class="Keyword">proc</span> <a href="#samplesAvailable%2CMicrophone"><span class="Identifier">samplesAvailable</span></a><span class="Other">(</span><span class="Identifier">mic</span><span class="Other">:</span> <a href="#Microphone"><span class="Identifier">Microphone</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">int</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
   <dd>
     
     Returns the number of captured samples available for reading.
@@ -1213,7 +1216,7 @@
 </div>
 <div id="size-procs-all">
   <div id="size,Sound">
-  <dt><pre><span class="Keyword">proc</span> <a href="#size%2CSound"><span class="Identifier">size</span></a><span class="Other">(</span><span class="Identifier">sound</span><span class="Other">:</span> <a href="slappy.html#Sound"><span class="Identifier">Sound</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">int</span> {.<span class="Identifier">inline</span><span class="Other">,</span> <span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+  <dt><pre><span class="Keyword">proc</span> <a href="#size%2CSound"><span class="Identifier">size</span></a><span class="Other">(</span><span class="Identifier">sound</span><span class="Other">:</span> <a href="#Sound"><span class="Identifier">Sound</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">int</span> {.<span class="Identifier">inline</span><span class="Other">,</span> <span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
   <dd>
     
     Gets the size of the sound buffer in bytes.
@@ -1226,7 +1229,7 @@
 </div>
 <div id="slappyClose-procs-all">
   <div id="slappyClose">
-  <dt><pre><span class="Keyword">proc</span> <a href="#slappyClose"><span class="Identifier">slappyClose</span></a><span class="Other">(</span><span class="Other">)</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><a href="slappy.html#SlappyError"><span class="Identifier">SlappyError</span></a><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+  <dt><pre><span class="Keyword">proc</span> <a href="#slappyClose"><span class="Identifier">slappyClose</span></a><span class="Other">(</span><span class="Other">)</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><a href="#SlappyError"><span class="Identifier">SlappyError</span></a><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
   <dd>
     
     Call this on exit.
@@ -1239,7 +1242,7 @@
 </div>
 <div id="slappyInit-procs-all">
   <div id="slappyInit">
-  <dt><pre><span class="Keyword">proc</span> <a href="#slappyInit"><span class="Identifier">slappyInit</span></a><span class="Other">(</span><span class="Other">)</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><a href="slappy.html#SlappyError"><span class="Identifier">SlappyError</span></a><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+  <dt><pre><span class="Keyword">proc</span> <a href="#slappyInit"><span class="Identifier">slappyInit</span></a><span class="Other">(</span><span class="Other">)</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><a href="#SlappyError"><span class="Identifier">SlappyError</span></a><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
   <dd>
     
     Call this on start of your program.
@@ -1265,7 +1268,7 @@
 </div>
 <div id="source-procs-all">
   <div id="source,Sound">
-  <dt><pre><span class="Keyword">proc</span> <a href="#source%2CSound"><span class="Identifier">source</span></a><span class="Other">(</span><span class="Identifier">sound</span><span class="Other">:</span> <a href="slappy.html#Sound"><span class="Identifier">Sound</span></a><span class="Other">)</span><span class="Other">:</span> <a href="slappy.html#Source"><span class="Identifier">Source</span></a> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+  <dt><pre><span class="Keyword">proc</span> <a href="#source%2CSound"><span class="Identifier">source</span></a><span class="Other">(</span><span class="Identifier">sound</span><span class="Other">:</span> <a href="#Sound"><span class="Identifier">Sound</span></a><span class="Other">)</span><span class="Other">:</span> <a href="#Source"><span class="Identifier">Source</span></a> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
   <dd>
     
     Gets the source for the sound.
@@ -1278,7 +1281,7 @@
 </div>
 <div id="start-procs-all">
   <div id="start,Microphone">
-  <dt><pre><span class="Keyword">proc</span> <a href="#start%2CMicrophone"><span class="Identifier">start</span></a><span class="Other">(</span><span class="Identifier">mic</span><span class="Other">:</span> <a href="slappy.html#Microphone"><span class="Identifier">Microphone</span></a><span class="Other">)</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+  <dt><pre><span class="Keyword">proc</span> <a href="#start%2CMicrophone"><span class="Identifier">start</span></a><span class="Other">(</span><span class="Identifier">mic</span><span class="Other">:</span> <a href="#Microphone"><span class="Identifier">Microphone</span></a><span class="Other">)</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
   <dd>
     
     Starts audio capture on the microphone.
@@ -1291,7 +1294,7 @@
 </div>
 <div id="stop-procs-all">
   <div id="stop,Microphone">
-  <dt><pre><span class="Keyword">proc</span> <a href="#stop%2CMicrophone"><span class="Identifier">stop</span></a><span class="Other">(</span><span class="Identifier">mic</span><span class="Other">:</span> <a href="slappy.html#Microphone"><span class="Identifier">Microphone</span></a><span class="Other">)</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+  <dt><pre><span class="Keyword">proc</span> <a href="#stop%2CMicrophone"><span class="Identifier">stop</span></a><span class="Other">(</span><span class="Identifier">mic</span><span class="Other">:</span> <a href="#Microphone"><span class="Identifier">Microphone</span></a><span class="Other">)</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
   <dd>
     
     Stops audio capture on the microphone.
@@ -1301,7 +1304,7 @@
   </dd>
 </div>
 <div id="stop,Source">
-  <dt><pre><span class="Keyword">proc</span> <a href="#stop%2CSource"><span class="Identifier">stop</span></a><span class="Other">(</span><span class="Identifier">source</span><span class="Other">:</span> <a href="slappy.html#Source"><span class="Identifier">Source</span></a><span class="Other">)</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+  <dt><pre><span class="Keyword">proc</span> <a href="#stop%2CSource"><span class="Identifier">stop</span></a><span class="Other">(</span><span class="Identifier">source</span><span class="Other">:</span> <a href="#Source"><span class="Identifier">Source</span></a><span class="Other">)</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
   <dd>
     
     Stops source playback.
@@ -1311,7 +1314,7 @@
   </dd>
 </div>
 <div id="stop,StreamingSource">
-  <dt><pre><span class="Keyword">proc</span> <a href="#stop%2CStreamingSource"><span class="Identifier">stop</span></a><span class="Other">(</span><span class="Identifier">ss</span><span class="Other">:</span> <a href="slappy.html#StreamingSource"><span class="Identifier">StreamingSource</span></a><span class="Other">)</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+  <dt><pre><span class="Keyword">proc</span> <a href="#stop%2CStreamingSource"><span class="Identifier">stop</span></a><span class="Other">(</span><span class="Identifier">ss</span><span class="Other">:</span> <a href="#StreamingSource"><span class="Identifier">StreamingSource</span></a><span class="Other">)</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
   <dd>
     
     Stops playback immediately.
@@ -1324,7 +1327,7 @@
 </div>
 <div id="toSound-procs-all">
   <div id="toSound,Microphone,seq[uint8]">
-  <dt><pre><span class="Keyword">proc</span> <a href="#toSound%2CMicrophone%2Cseq%5Buint8%5D"><span class="Identifier">toSound</span></a><span class="Other">(</span><span class="Identifier">mic</span><span class="Other">:</span> <a href="slappy.html#Microphone"><span class="Identifier">Microphone</span></a><span class="Other">;</span> <span class="Identifier">data</span><span class="Other">:</span> <span class="Identifier">seq</span><span class="Other">[</span><span class="Identifier">uint8</span><span class="Other">]</span><span class="Other">)</span><span class="Other">:</span> <a href="slappy.html#Sound"><span class="Identifier">Sound</span></a> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">SlappyError</span><span class="Other">]</span><span class="Other">,</span>
+  <dt><pre><span class="Keyword">proc</span> <a href="#toSound%2CMicrophone%2Cseq%5Buint8%5D"><span class="Identifier">toSound</span></a><span class="Other">(</span><span class="Identifier">mic</span><span class="Other">:</span> <a href="#Microphone"><span class="Identifier">Microphone</span></a><span class="Other">;</span> <span class="Identifier">data</span><span class="Other">:</span> <span class="Identifier">seq</span><span class="Other">[</span><span class="Identifier">uint8</span><span class="Other">]</span><span class="Other">)</span><span class="Other">:</span> <a href="#Sound"><span class="Identifier">Sound</span></a> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">SlappyError</span><span class="Other">]</span><span class="Other">,</span>
     <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
   <dd>
     
@@ -1351,7 +1354,7 @@
 </div>
 <div id="vel-procs-all">
   <div id="vel,Listener">
-  <dt><pre><span class="Keyword">proc</span> <a href="#vel%2CListener"><span class="Identifier">vel</span></a><span class="Other">(</span><span class="Identifier">listener</span><span class="Other">:</span> <a href="slappy.html#Listener"><span class="Identifier">Listener</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Vec3</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+  <dt><pre><span class="Keyword">proc</span> <a href="#vel%2CListener"><span class="Identifier">vel</span></a><span class="Other">(</span><span class="Identifier">listener</span><span class="Other">:</span> <a href="#Listener"><span class="Identifier">Listener</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Vec3</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
   <dd>
     
     Get velocity of the main listener.
@@ -1361,7 +1364,7 @@
   </dd>
 </div>
 <div id="vel,Source">
-  <dt><pre><span class="Keyword">proc</span> <a href="#vel%2CSource"><span class="Identifier">vel</span></a><span class="Other">(</span><span class="Identifier">source</span><span class="Other">:</span> <a href="slappy.html#Source"><span class="Identifier">Source</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Vec3</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+  <dt><pre><span class="Keyword">proc</span> <a href="#vel%2CSource"><span class="Identifier">vel</span></a><span class="Other">(</span><span class="Identifier">source</span><span class="Other">:</span> <a href="#Source"><span class="Identifier">Source</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Vec3</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
   <dd>
     
     Gets source velocity.
@@ -1374,7 +1377,7 @@
 </div>
 <div id="vel=-procs-all">
   <div id="vel=,Listener,Vec3">
-  <dt><pre><span class="Keyword">proc</span> <a href="#vel%3D%2CListener%2CVec3"><span class="Identifier">vel=</span></a><span class="Other">(</span><span class="Identifier">listener</span><span class="Other">:</span> <a href="slappy.html#Listener"><span class="Identifier">Listener</span></a><span class="Other">;</span> <span class="Identifier">vel</span><span class="Other">:</span> <span class="Identifier">Vec3</span><span class="Other">)</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+  <dt><pre><span class="Keyword">proc</span> <a href="#vel%3D%2CListener%2CVec3"><span class="Identifier">vel=</span></a><span class="Other">(</span><span class="Identifier">listener</span><span class="Other">:</span> <a href="#Listener"><span class="Identifier">Listener</span></a><span class="Other">;</span> <span class="Identifier">vel</span><span class="Other">:</span> <span class="Identifier">Vec3</span><span class="Other">)</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
   <dd>
     
     Set velocity of the main listener.
@@ -1384,7 +1387,7 @@
   </dd>
 </div>
 <div id="vel=,Source,Vec3">
-  <dt><pre><span class="Keyword">proc</span> <a href="#vel%3D%2CSource%2CVec3"><span class="Identifier">vel=</span></a><span class="Other">(</span><span class="Identifier">source</span><span class="Other">:</span> <a href="slappy.html#Source"><span class="Identifier">Source</span></a><span class="Other">;</span> <span class="Identifier">vel</span><span class="Other">:</span> <span class="Identifier">Vec3</span><span class="Other">)</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+  <dt><pre><span class="Keyword">proc</span> <a href="#vel%3D%2CSource%2CVec3"><span class="Identifier">vel=</span></a><span class="Other">(</span><span class="Identifier">source</span><span class="Other">:</span> <a href="#Source"><span class="Identifier">Source</span></a><span class="Other">;</span> <span class="Identifier">vel</span><span class="Other">:</span> <span class="Identifier">Vec3</span><span class="Other">)</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
   <dd>
     
     Sets source velocity.
@@ -1405,7 +1408,7 @@
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br>
-        <small style="color: var(--hint);">Made with Nim. Generated: 2026-04-01 17:58:14 UTC</small>
+        <small style="color: var(--hint);">Made with Nim. Generated: 2026-05-25 04:14:08 UTC</small>
       </div>
     </div>
   </div>
