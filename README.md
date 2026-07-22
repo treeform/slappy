@@ -23,8 +23,9 @@ Slappy also provides some extra features such as:
 * `.wav` and `.ogg` loading.
 * Sound priority. (in progress)
 * Max number of the same sound played. (in progress)
-* Fade in and fade out. (in progress)
+* Deterministic fade in, fade out, and crossfade helpers.
 * Ability to queued sounds. (in progress)
+* Creating sounds directly from in-memory PCM data.
 
 ## Example:
 
