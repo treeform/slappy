@@ -77,11 +77,12 @@ nim	source	slappy.html#source,Sound	proc source(sound: Sound): Source		541
 nim	play	slappy.html#play,Sound	proc play(sound: Sound): Source		549
 nim	newStreamingSource	slappy.html#newStreamingSource,int,int,int	proc newStreamingSource(frequency: int = 24000; channels: int = 1; bits: int = 16): StreamingSource		567
 nim	queueData	slappy.html#queueData,StreamingSource,seq[uint8]	proc queueData(ss: StreamingSource; data: seq[uint8])		580
-nim	pump	slappy.html#pump,StreamingSource	proc pump(ss: StreamingSource)		596
-nim	playing	slappy.html#playing,StreamingSource	proc playing(ss: StreamingSource): bool		610
-nim	stop	slappy.html#stop,StreamingSource	proc stop(ss: StreamingSource)		616
-nim	flush	slappy.html#flush,StreamingSource	proc flush(ss: StreamingSource)		620
-nim	close	slappy.html#close,StreamingSource	proc close(ss: StreamingSource)		634
+nim	queuedLen	slappy.html#queuedLen,StreamingSource	proc queuedLen(ss: StreamingSource): int		596
+nim	pump	slappy.html#pump,StreamingSource	proc pump(ss: StreamingSource)		601
+nim	playing	slappy.html#playing,StreamingSource	proc playing(ss: StreamingSource): bool		615
+nim	stop	slappy.html#stop,StreamingSource	proc stop(ss: StreamingSource)		621
+nim	flush	slappy.html#flush,StreamingSource	proc flush(ss: StreamingSource)		625
+nim	close	slappy.html#close,StreamingSource	proc close(ss: StreamingSource)		639
 nimgrp	bits	slappy.html#bits-procs-all	proc		427
 nimgrp	play	slappy.html#play-procs-all	proc		127
 nimgrp	close	slappy.html#close-procs-all	proc		396

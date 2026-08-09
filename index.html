@@ -267,6 +267,10 @@
   <li><a class="reference" href="#queueData%2CStreamingSource%2Cseq%5Buint8%5D" title="queueData(ss: StreamingSource; data: seq[uint8])">queueData(ss: StreamingSource; data: seq[uint8])</a></li>
 
 </ul>
+<ul class="simple nested-toc-section">queuedLen
+  <li><a class="reference" href="#queuedLen%2CStreamingSource" title="queuedLen(ss: StreamingSource): int">queuedLen(ss: StreamingSource): int</a></li>
+
+</ul>
 <ul class="simple nested-toc-section">read
   <li><a class="reference" href="#read%2CMicrophone%2Cint" title="read(mic: Microphone; sampleCount: int): seq[uint8]">read(mic: Microphone; sampleCount: int): seq[uint8]</a></li>
 
@@ -507,8 +511,8 @@
   <dd>
     
     Stops playback and releases the OpenAL source.
-    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L634" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
-<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L634" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L639" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L639" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
@@ -614,8 +618,8 @@
   <dd>
     
     Stops playback and discards all queued audio.
-    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L620" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
-<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L620" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L625" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L625" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
@@ -1044,8 +1048,8 @@
   <dd>
     
     Returns true when the streaming source is currently playing.
-    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L610" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
-<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L610" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L615" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L615" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
@@ -1113,8 +1117,8 @@
   <dd>
     
     Reclaims processed buffers to free resources. Call this periodically (e.g. each main loop iteration).
-    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L596" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
-<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L596" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L601" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L601" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
@@ -1129,6 +1133,19 @@
     Queues a chunk of raw PCM data for sequential playback.
     <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L580" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
 <a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L580" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+
+  </dd>
+</div>
+
+</div>
+<div id="queuedLen-procs-all">
+  <div id="queuedLen,StreamingSource">
+  <dt><pre><span class="Keyword">proc</span> <a href="#queuedLen%2CStreamingSource"><span class="Identifier">queuedLen</span></a><span class="Other">(</span><span class="Identifier">ss</span><span class="Other">:</span> <a href="#StreamingSource"><span class="Identifier">StreamingSource</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">int</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+  <dd>
+    
+    Returns the number of PCM chunks still queued on the source. Call pump first so reclaimed buffers are not counted.
+    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L596" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L596" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
@@ -1318,8 +1335,8 @@
   <dd>
     
     Stops playback immediately.
-    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L616" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
-<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L616" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+    <a href="https://github.com/treeform/slappy/tree/master/src/slappy.nim#L621" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/treeform/slappy/edit/devel/src/slappy.nim#L621" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
@@ -1408,7 +1425,7 @@
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br>
-        <small style="color: var(--hint);">Made with Nim. Generated: 2026-05-25 04:20:33 UTC</small>
+        <small style="color: var(--hint);">Made with Nim. Generated: 2026-08-09 23:54:29 UTC</small>
       </div>
     </div>
   </div>
