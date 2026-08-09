@@ -593,6 +593,11 @@ proc queueData*(ss: StreamingSource, data: seq[uint8]) =
   if state != AL_PLAYING:
     alSourcePlay(ss.sourceId)
 
+proc queuedLen*(ss: StreamingSource): int =
+  ## Returns the number of PCM chunks still queued on the source.
+  ## Call pump first so reclaimed buffers are not counted.
+  ss.queuedBuffers.len
+
 proc pump*(ss: StreamingSource) =
   ## Reclaims processed buffers to free resources.
   ## Call this periodically (e.g. each main loop iteration).
