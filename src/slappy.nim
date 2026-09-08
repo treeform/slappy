@@ -1,7 +1,7 @@
 import
-  std/[strformat, strutils],
+  std/[monotimes, strformat, strutils, times],
   openal, vmath,
-  slappy/[wav, vorbis, slappyformat]
+  slappy/[fades, wav, vorbis, slappyformat]
 
 type
   Listener* = object
@@ -9,6 +9,9 @@ type
     id: ALuint
   Source* = ref object
     id: ALuint
+    fade: GainFade
+    fading: bool
+    stopAfterFade: bool
   Microphone* = ref object
     device: ALCdevice
     captureFreq: int
@@ -39,6 +42,7 @@ var
   activeSources: seq[Source]
   device: ALCdevice
   ctx: ALCcontext
+  lastTick: MonoTime
 
 proc up*(a: Mat4): Vec3 {.inline.} =
   ## Returns the up direction extracted from a matrix.
@@ -310,6 +314,7 @@ proc slappyInit*() {.raises: [SlappyError].} =
     fail "Failed to create context."
   if not alcMakeContextCurrent(ctx):
     fail "Failed to make context current."
+  lastTick = getMonoTime()
 
 proc slappyClose*() {.raises: [SlappyError].} =
   ## Call this on exit.
@@ -317,16 +322,30 @@ proc slappyClose*() {.raises: [SlappyError].} =
   if not alcCloseDevice(device):
     fail "Failed to close device."
 
-proc slappyTick*() =
-  ## Updates all sources and sounds.
+proc slappyTick*(deltaSeconds: float32) =
+  ## Updates fades and releases sources that have stopped playing.
   var i = 0
   while i < activeSources.len:
     let source = activeSources[i]
+    if source.fading:
+      source.gain = source.fade.advance(deltaSeconds)
+      if source.fade.finished:
+        source.fading = false
+        if source.stopAfterFade:
+          source.stop()
     if not source.playing:
       activeSources.del(i)
       dec i
       alDeleteSources(1, addr source.id)
     inc i
+
+proc slappyTick*() =
+  ## Updates sources using elapsed monotonic time.
+  let now = getMonoTime()
+  let deltaSeconds =
+    float32((now - lastTick).inNanoseconds) / 1_000_000_000.0'f32
+  lastTick = now
+  slappyTick(deltaSeconds)
 
 proc cleanupOnError(sound: var Sound; msg: string) =
   let hasError = alGetError() != AL_NO_ERROR
@@ -449,6 +468,40 @@ proc newSound*(): Sound =
   ## Returns an empty sound handle.
   new Sound
 
+proc alFormat(channels, bits: int): ALenum =
+  ## Resolves the OpenAL format enum for PCM data.
+  if channels == 1:
+    if bits == 16: return AL_FORMAT_MONO16
+    elif bits == 8: return AL_FORMAT_MONO8
+  elif channels == 2:
+    if bits == 16: return AL_FORMAT_STEREO16
+    elif bits == 8: return AL_FORMAT_STEREO8
+  fail &"Unsupported format: {channels} channels, {bits} bits."
+
+proc newSound*(
+  pcm: openArray[uint8],
+  frequency: int,
+  channels = 1,
+  bits = 16
+): Sound =
+  ## Creates a sound from raw interleaved PCM bytes.
+  if pcm.len == 0:
+    fail "PCM data cannot be empty."
+  if frequency <= 0:
+    fail "PCM frequency must be positive."
+  result = newSound()
+  discard alGetError()
+  alGenBuffers(1, addr result.id)
+  result.cleanupOnError("Couldn't create a sound's buffer ID.")
+  alBufferData(
+    result.id,
+    alFormat(channels, bits),
+    unsafeAddr pcm[0],
+    ALsizei(pcm.len),
+    ALsizei(frequency)
+  )
+  result.cleanupOnError("Couldn't load PCM sound buffer data.")
+
 proc newSound*(filePath: string; forceMono: bool = true): Sound =
   ## Loads a sound buffer from wav, slappy, or ogg files.
   ## Files must be loaded as mono to use spatial sound features (default: true).
@@ -457,24 +510,6 @@ proc newSound*(filePath: string; forceMono: bool = true): Sound =
   discard alGetError() # Clear error code
   alGenBuffers(1, addr sound.id)
   sound.cleanupOnError("Couldn't create a sound's buffer ID.")
-
-  proc format(bits, channels: SomeInteger): ALenum =
-    if channels == 1:
-      if bits == 16:
-        result = AL_FORMAT_MONO16
-      elif bits == 8:
-        result = AL_FORMAT_MONO8
-      else:
-        fail &"Got {bits} bits, only 8 or 16 bits per sample are supported"
-    elif channels == 2:
-      if bits == 16:
-        result = AL_FORMAT_STEREO16
-      elif bits == 8:
-        result = AL_FORMAT_STEREO8
-      else:
-        fail &"Got {bits} bits, only 8 or 16 bits per sample are supported"
-    else:
-      fail &"Got {channels} channels, only 1 or 2 channel sounds supported"
 
   var wav: WavFile
   if filePath.endswith(".wav"):
@@ -490,7 +525,7 @@ proc newSound*(filePath: string; forceMono: bool = true): Sound =
 
   alBufferData(
     sound.id,
-    format(wav.bits, wav.channels),
+    alFormat(wav.channels, wav.bits),
     addr wav.data[0],
     ALsizei wav.size,
     ALsizei wav.freq
@@ -552,17 +587,46 @@ proc play*(sound: Sound): Source =
   source.play()
   return source
 
-# --- Streaming audio ---
+proc fadeTo*(
+  source: Source,
+  targetGain,
+  durationSeconds: float32,
+  stopAfterFade = false
+) =
+  ## Fades a source from its current gain to `targetGain`.
+  source.stopAfterFade = stopAfterFade
+  source.fade = initGainFade(source.gain, targetGain, durationSeconds)
+  source.fading = not source.fade.finished
+  if source.fading:
+    return
+  source.gain = targetGain
+  if stopAfterFade:
+    source.stop()
 
-proc alFormat(channels, bits: int): ALenum =
-  ## Resolves the OpenAL format enum for a given channel and bit configuration.
-  if channels == 1:
-    if bits == 16: return AL_FORMAT_MONO16
-    elif bits == 8: return AL_FORMAT_MONO8
-  elif channels == 2:
-    if bits == 16: return AL_FORMAT_STEREO16
-    elif bits == 8: return AL_FORMAT_STEREO8
-  fail &"Unsupported format: {channels} channels, {bits} bits."
+proc fadeIn*(
+  sound: Sound,
+  durationSeconds: float32,
+  targetGain = 1.0'f32
+): Source =
+  ## Starts a sound at zero gain and fades it to `targetGain`.
+  result = sound.source()
+  result.gain = 0.0'f32
+  result.play()
+  result.fadeTo(targetGain, durationSeconds)
+
+proc crossfade*(
+  current,
+  replacement: Source,
+  durationSeconds: float32,
+  replacementGain = 1.0'f32
+) =
+  ## Fades out `current` while fading in and starting `replacement`.
+  current.fadeTo(0.0'f32, durationSeconds, stopAfterFade = true)
+  replacement.gain = 0.0'f32
+  replacement.play()
+  replacement.fadeTo(replacementGain, durationSeconds)
+
+# --- Streaming audio ---
 
 proc newStreamingSource*(
   frequency: int = 24000,

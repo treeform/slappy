@@ -1,3 +1,3 @@
-import test_midi
+import test_fades, test_midi
 
 echo "all tests pass"
