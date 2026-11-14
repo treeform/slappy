@@ -54,6 +54,10 @@ proc alGenSources(count: ALsizei, sources: ptr ALuint) =
   sources[] = 3
   sourcePlaying = false
 
+proc alGetError(): ALenum =
+  ## Keeps source creation independent of an OpenAL runtime.
+  AL_NO_ERROR
+
 proc alSourcei(id: ALuint, parameter: ALenum, value: ALint) =
   ## Accepts attaching the test's empty sound buffer.
   discard
@@ -106,15 +110,15 @@ slappyInit()
 doAssert openedDevices == closedDevices + 1
 doAssert createdContexts == destroyedContexts + 1
 
-let sound = newSound()
-let oldSource = sound.play()
+let testSound = newSound()
+let oldSource = testSound.play()
 doAssert oldSource.playing
 oldSource.stop()
 slappyTick()
 doAssert deletedSources == 1
 doAssert not oldSource.playing
 
-let nextSource = sound.play()
+let nextSource = testSound.play()
 oldSource.stop()
 doAssert nextSource.playing
 nextSource.stop()
