@@ -28,12 +28,20 @@
     <label for="nav-toggle" id="nav-overlay"></label>
     <div class="container">
       <h1 class="title">Index</h1>
-      Modules: <a href="slappy.html">slappy</a>, <a href="slappy/slappyformat.html">slappy/slappyformat</a>, <a href="slappy/vorbis.html">slappy/vorbis</a>, <a href="slappy/wav.html">slappy/wav</a>.<br/><p /><h2>API symbols</h2>
-<dl><dt><a name="bits" href="#bits"><span>bits:</span></a></dt><dd><ul class="simple">
+      Modules: <a href="slappy.html">slappy</a>, <a href="slappy/fades.html">slappy/fades</a>, <a href="slappy/slappyformat.html">slappy/slappyformat</a>, <a href="slappy/vorbis.html">slappy/vorbis</a>, <a href="slappy/wav.html">slappy/wav</a>.<br/><p /><h2>API symbols</h2>
+<dl><dt><a name="advance" href="#advance"><span>advance:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="fades: proc advance(fade: var GainFade; seconds: float32): float32" href="slappy/fades.html#advance%2CGainFade%2Cfloat32">fades: proc advance(fade: var GainFade; seconds: float32): float32</a></li>
+          </ul></dd>
+<dt><a name="bits" href="#bits"><span>bits:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
           data-doc-search-tag="slappy: proc bits(mic: Microphone): int" href="slappy.html#bits%2CMicrophone">slappy: proc bits(mic: Microphone): int</a></li>
           <li><a class="reference external"
           data-doc-search-tag="slappy: proc bits(sound: Sound): int" href="slappy.html#bits%2CSound">slappy: proc bits(sound: Sound): int</a></li>
+          </ul></dd>
+<dt><a name="cancelFade" href="#cancelFade"><span>cancelFade:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="slappy: proc cancelFade(source: Source)" href="slappy.html#cancelFade%2CSource">slappy: proc cancelFade(source: Source)</a></li>
           </ul></dd>
 <dt><a name="channels" href="#channels"><span>channels:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
@@ -44,6 +52,8 @@
 <dt><a name="close" href="#close"><span>close:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
           data-doc-search-tag="slappy: proc close(mic: Microphone)" href="slappy.html#close%2CMicrophone">slappy: proc close(mic: Microphone)</a></li>
+          <li><a class="reference external"
+          data-doc-search-tag="slappy: proc close(source: Source)" href="slappy.html#close%2CSource">slappy: proc close(source: Source)</a></li>
           <li><a class="reference external"
           data-doc-search-tag="slappy: proc close(ss: StreamingSource)" href="slappy.html#close%2CStreamingSource">slappy: proc close(ss: StreamingSource)</a></li>
           </ul></dd>
@@ -71,9 +81,31 @@
 <li><a class="reference external"
           data-doc-search-tag="slappy: proc coneOuterGain=(source: Source; v: float32)" href="slappy.html#coneOuterGain%3D%2CSource%2Cfloat32">slappy: proc coneOuterGain=(source: Source; v: float32)</a></li>
           </ul></dd>
+<dt><a name="crossfade" href="#crossfade"><span>crossfade:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="slappy: proc crossfade(current, replacement: Source; durationSeconds: float32;
+          replacementGain: float32 = 1.0'f32)" href="slappy.html#crossfade%2CSource%2CSource%2Cfloat32%2Cfloat32">slappy: proc crossfade(current, replacement: Source; durationSeconds: float32;
+          replacementGain: float32 = 1.0'f32)</a></li>
+          </ul></dd>
 <dt><a name="duration" href="#duration"><span>duration:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
           data-doc-search-tag="slappy: proc duration(sound: Sound): float32" href="slappy.html#duration%2CSound">slappy: proc duration(sound: Sound): float32</a></li>
+          </ul></dd>
+<dt><a name="fadeIn" href="#fadeIn"><span>fadeIn:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="slappy: proc fadeIn(sound: Sound; durationSeconds: float32; targetGain: float32 = 1.0'f32): Source" href="slappy.html#fadeIn%2CSound%2Cfloat32%2Cfloat32">slappy: proc fadeIn(sound: Sound; durationSeconds: float32; targetGain: float32 = 1.0'f32): Source</a></li>
+          <li><a class="reference external"
+          data-doc-search-tag="slappy: proc fadeIn(source: Source; durationSeconds: float32; targetGain: float32 = 1.0'f32)" href="slappy.html#fadeIn%2CSource%2Cfloat32%2Cfloat32">slappy: proc fadeIn(source: Source; durationSeconds: float32; targetGain: float32 = 1.0'f32)</a></li>
+          </ul></dd>
+<dt><a name="fadeTo" href="#fadeTo"><span>fadeTo:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="slappy: proc fadeTo(source: Source; targetGain, durationSeconds: float32;
+       stopAfterFade: bool = false)" href="slappy.html#fadeTo%2CSource%2Cfloat32%2Cfloat32%2Cbool">slappy: proc fadeTo(source: Source; targetGain, durationSeconds: float32;
+       stopAfterFade: bool = false)</a></li>
+          </ul></dd>
+<dt><a name="finished" href="#finished"><span>finished:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="fades: proc finished(fade: GainFade): bool" href="slappy/fades.html#finished%2CGainFade">fades: proc finished(fade: GainFade): bool</a></li>
           </ul></dd>
 <dt><a name="flush" href="#flush"><span>flush:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
@@ -96,12 +128,18 @@
           data-doc-search-tag="slappy: proc gain(listener: Listener): float32" href="slappy.html#gain%2CListener">slappy: proc gain(listener: Listener): float32</a></li>
           <li><a class="reference external"
           data-doc-search-tag="slappy: proc gain(source: Source): float32" href="slappy.html#gain%2CSource">slappy: proc gain(source: Source): float32</a></li>
+          <li><a class="reference external"
+          data-doc-search-tag="fades: proc gain(fade: GainFade): float32" href="slappy/fades.html#gain%2CGainFade">fades: proc gain(fade: GainFade): float32</a></li>
           </ul></dd>
 <dt><a name="gain%3D" href="#gain%3D"><span>gain=:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
           data-doc-search-tag="slappy: proc gain=(listener: Listener; v: float32)" href="slappy.html#gain%3D%2CListener%2Cfloat32">slappy: proc gain=(listener: Listener; v: float32)</a></li>
           <li><a class="reference external"
           data-doc-search-tag="slappy: proc gain=(source: Source; v: float32)" href="slappy.html#gain%3D%2CSource%2Cfloat32">slappy: proc gain=(source: Source; v: float32)</a></li>
+          </ul></dd>
+<dt><a name="GainFade" href="#GainFade"><span>GainFade:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="fades: object GainFade" href="slappy/fades.html#GainFade">fades: object GainFade</a></li>
           </ul></dd>
 <dt><a name="halfDistance" href="#halfDistance"><span>halfDistance:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
@@ -110,6 +148,10 @@
 <dt><a name="halfDistance%3D" href="#halfDistance%3D"><span>halfDistance=:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
           data-doc-search-tag="slappy: proc halfDistance=(source: Source; v: float32)" href="slappy.html#halfDistance%3D%2CSource%2Cfloat32">slappy: proc halfDistance=(source: Source; v: float32)</a></li>
+          </ul></dd>
+<dt><a name="initGainFade" href="#initGainFade"><span>initGainFade:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="fades: proc initGainFade(startGain, targetGain, duration: float32): GainFade" href="slappy/fades.html#initGainFade%2Cfloat32%2Cfloat32%2Cfloat32">fades: proc initGainFade(startGain, targetGain, duration: float32): GainFade</a></li>
           </ul></dd>
 <dt><a name="listCaptureDevices" href="#listCaptureDevices"><span>listCaptureDevices:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
@@ -193,7 +235,15 @@
 <li><a class="reference external"
           data-doc-search-tag="slappy: proc newSound(): Sound" href="slappy.html#newSound">slappy: proc newSound(): Sound</a></li>
           <li><a class="reference external"
+          data-doc-search-tag="slappy: proc newSound(pcm: openArray[uint8]; frequency: int; channels: int = 1;
+         bits: int = 16): Sound" href="slappy.html#newSound%2CopenArray%5Buint8%5D%2Cint%2Cint%2Cint">slappy: proc newSound(pcm: openArray[uint8]; frequency: int; channels: int = 1;
+         bits: int = 16): Sound</a></li>
+          <li><a class="reference external"
           data-doc-search-tag="slappy: proc newSound(filePath: string; forceMono: bool = true): Sound" href="slappy.html#newSound%2Cstring%2Cbool">slappy: proc newSound(filePath: string; forceMono: bool = true): Sound</a></li>
+          </ul></dd>
+<dt><a name="newSource" href="#newSource"><span>newSource:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="slappy: proc newSource(): Source" href="slappy.html#newSource">slappy: proc newSource(): Source</a></li>
           </ul></dd>
 <dt><a name="newStreamingSource" href="#newStreamingSource"><span>newStreamingSource:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
@@ -300,10 +350,20 @@
 <dt><a name="slappyTick" href="#slappyTick"><span>slappyTick:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
           data-doc-search-tag="slappy: proc slappyTick()" href="slappy.html#slappyTick">slappy: proc slappyTick()</a></li>
+          <li><a class="reference external"
+          data-doc-search-tag="slappy: proc slappyTick(deltaSeconds: float32)" href="slappy.html#slappyTick%2Cfloat32">slappy: proc slappyTick(deltaSeconds: float32)</a></li>
           </ul></dd>
 <dt><a name="Sound" href="#Sound"><span>Sound:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
           data-doc-search-tag="slappy: type Sound" href="slappy.html#Sound">slappy: type Sound</a></li>
+          </ul></dd>
+<dt><a name="sound" href="#sound"><span>sound:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="slappy: proc sound(source: Source): Sound" href="slappy.html#sound%2CSource">slappy: proc sound(source: Source): Sound</a></li>
+          </ul></dd>
+<dt><a name="sound%3D" href="#sound%3D"><span>sound=:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="slappy: proc sound=(source: Source; sound: Sound)" href="slappy.html#sound%3D%2CSource%2CSound">slappy: proc sound=(source: Source; sound: Sound)</a></li>
           </ul></dd>
 <dt><a name="Source" href="#Source"><span>Source:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
@@ -361,7 +421,7 @@
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br>
-        <small style="color: var(--hint);">Made with Nim. Generated: 2026-11-14 20:16:49 UTC</small>
+        <small style="color: var(--hint);">Made with Nim. Generated: 2026-11-14 20:45:54 UTC</small>
       </div>
     </div>
   </div>

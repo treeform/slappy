@@ -1,0 +1,6 @@
+nimTitle	fades	slappy/fades.html	module slappy/fades		0
+nim	GainFade	slappy/fades.html#GainFade	object GainFade		1
+nim	initGainFade	slappy/fades.html#initGainFade,float32,float32,float32	proc initGainFade(startGain, targetGain, duration: float32): GainFade		7
+nim	finished	slappy/fades.html#finished,GainFade	proc finished(fade: GainFade): bool		19
+nim	gain	slappy/fades.html#gain,GainFade	proc gain(fade: GainFade): float32		23
+nim	advance	slappy/fades.html#advance,GainFade,float32	proc advance(fade: var GainFade; seconds: float32): float32		30
