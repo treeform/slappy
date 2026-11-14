@@ -28,6 +28,11 @@ the buffer cannot be destroyed while the source uses it. Keep preloaded
 sounds alive for the complete playback session to avoid releasing buffers
 when changing a voice's sound.
 
+Stopping a reusable voice resets its playback offset. This also avoids a
+macOS OpenAL issue where rapid stop/replay can retain a stale offset and
+silently leave the source stopped. Set `playback` after stopping if the
+next playback should begin at a particular offset.
+
 `close()` releases a source explicitly and can be called repeatedly.
 `slappyClose()` also releases all remaining voices before their context.
 Release voices and sound buffers before closing that context.

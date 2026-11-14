@@ -11,7 +11,7 @@ type
   MockVoice = object
     live, playing: bool
     buffer: ALuint
-    gain, x, y, z: ALfloat
+    gain, x, y, z, offset: ALfloat
 
 var
   currentContext: ALCcontext
@@ -100,14 +100,22 @@ proc alSourcePlay(id: ALuint) =
   mockVoices[id].playing = mockVoices[id].buffer != 0
 
 proc alSourceStop(id: ALuint) =
-  ## Deactivates a live voice without changing its allocation or buffer.
+  ## Models a stopped voice retaining a stale driver playback offset.
   doAssert mockVoices[id].live
   mockVoices[id].playing = false
+  if mockVoices[id].buffer != 0:
+    mockVoices[id].offset = 0.01'f
 
 proc alSourcef(id: ALuint, parameter: ALenum, value: ALfloat) =
-  ## Records live gain updates without allocating mock storage.
-  doAssert mockVoices[id].live and parameter == AL_GAIN
-  mockVoices[id].gain = value
+  ## Records gain and offset updates without allocating mock storage.
+  doAssert mockVoices[id].live
+  case parameter
+  of AL_GAIN:
+    mockVoices[id].gain = value
+  of AL_SEC_OFFSET:
+    mockVoices[id].offset = value
+  else:
+    doAssert false
 
 proc alSource3f(id: ALuint, parameter: ALenum, x, y, z: ALfloat) =
   ## Records position updates in fixed mock storage.
@@ -173,6 +181,7 @@ doAssert pool[0].playing
 pool[0].stop()
 slappyTick()
 doAssert pool[0].id == completedId and deletedSources == 0
+doAssert mockVoices[completedId].offset == 0
 
 echo "Legacy one-shots retire without affecting reusable voices."
 let
@@ -224,6 +233,7 @@ let
 for round in 0 ..< 1000:
   for i, voice in pool:
     voice.stop()
+    doAssert mockVoices[voice.id].offset == 0
     voice.sound = if (round + i) mod 2 == 0: first else: second
     voice.gain = 0.5'f
     voice.pos = vec3(i.float32, 0, -1)
