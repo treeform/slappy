@@ -128,9 +128,10 @@ proc stop*(source: Source) =
   ## Stops source playback.
   if source.id != 0:
     alSourceStop(source.id)
-    if source.reusable and source.boundSound != nil:
-      # macOS OpenAL can retain a stale offset after a rapid stop and replay.
-      alSourcef(source.id, AL_SEC_OFFSET, 0)
+    when defined(macosx) and not defined(emscripten):
+      if source.reusable and source.boundSound != nil:
+        # macOS OpenAL can retain a stale offset after rapid stop and replay.
+        alSourcef(source.id, AL_SEC_OFFSET, 0)
 
 proc `sound=`*(source: Source, sound: Sound) =
   ## Stops a voice and attaches a preloaded sound; nil detaches its buffer.

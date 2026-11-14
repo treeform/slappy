@@ -103,8 +103,9 @@ proc alSourceStop(id: ALuint) =
   ## Models a stopped voice retaining a stale driver playback offset.
   doAssert mockVoices[id].live
   mockVoices[id].playing = false
-  if mockVoices[id].buffer != 0:
-    mockVoices[id].offset = 0.01'f
+  when defined(macosx) and not defined(emscripten):
+    if mockVoices[id].buffer != 0:
+      mockVoices[id].offset = 0.01'f
 
 proc alSourcef(id: ALuint, parameter: ALenum, value: ALfloat) =
   ## Records gain and offset updates without allocating mock storage.
@@ -113,6 +114,8 @@ proc alSourcef(id: ALuint, parameter: ALenum, value: ALfloat) =
   of AL_GAIN:
     mockVoices[id].gain = value
   of AL_SEC_OFFSET:
+    # Emscripten cannot seek a stopped source whose queue is fully consumed.
+    doAssert defined(macosx) and not defined(emscripten)
     mockVoices[id].offset = value
   else:
     doAssert false
