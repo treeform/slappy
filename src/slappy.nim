@@ -1,7 +1,7 @@
 import
-  std/[strformat, strutils],
+  std/[math, monotimes, strformat, strutils, times],
   openal, vmath,
-  slappy/[wav, vorbis, slappyformat]
+  slappy/[fades, wav, vorbis, slappyformat]
 
 type
   Listener* = object
@@ -11,6 +11,9 @@ type
     id: ALuint
     boundSound: Sound
     reusable: bool
+    fade: GainFade
+    fadeUpdated: MonoTime
+    fading, stopAfterFade: bool
   Microphone* = ref object
     device: ALCdevice
     captureFreq: int
@@ -124,8 +127,14 @@ proc playing*(source: Source): bool {.inline.} =
   alGetSourcei(source.id, AL_SOURCE_STATE, addr state)
   result = state == AL_PLAYING
 
+proc cancelFade*(source: Source) =
+  ## Cancels a pending fade without changing gain or playback.
+  source.fading = false
+  source.stopAfterFade = false
+
 proc stop*(source: Source) =
   ## Stops source playback.
+  source.cancelFade()
   if source.id != 0:
     alSourceStop(source.id)
     when defined(macosx) and not defined(emscripten):
@@ -168,7 +177,8 @@ proc close*(source: Source) =
       break
 
 proc play*(source: Source) =
-  ## Starts source playback.
+  ## Starts or restarts playback and cancels any pending fade.
+  source.cancelFade()
   if source.id != 0:
     alSourcePlay(source.id)
 
@@ -181,7 +191,8 @@ proc `pitch`*(source: Source): float32 =
   alGetSourcef(source.id, AL_PITCH, addr result)
 
 proc `gain=`*(source: Source, v: float32) =
-  ## Sets source gain.
+  ## Sets source gain and cancels any pending fade.
+  source.cancelFade()
   alSourcef(source.id, AL_GAIN, v)
 
 proc `gain`*(source: Source): float32 =
@@ -329,6 +340,57 @@ template fail(msg: string) =
   ## Raises a slappy-specific exception with context.
   raise newException(SlappyError, msg)
 
+proc validateFade(targetGain, durationSeconds: float32) =
+  ## Rejects invalid fade parameters before changing playback.
+  if targetGain < 0 or
+    classify(targetGain) in {fcNan, fcInf, fcNegInf}:
+      fail "Fade gain must be finite and nonnegative."
+  if classify(durationSeconds) in {fcNan, fcInf, fcNegInf}:
+    fail "Fade duration must be finite."
+
+proc fadeTo*(
+  source: Source,
+  targetGain, durationSeconds: float32,
+  stopAfterFade: bool = false
+) =
+  ## Fades a playing source's absolute gain; nonpositive duration is immediate.
+  if source.id == 0:
+    return
+  validateFade(targetGain, durationSeconds)
+  source.fade = initGainFade(source.gain, targetGain, durationSeconds)
+  source.fadeUpdated = getMonoTime()
+  source.stopAfterFade = stopAfterFade
+  source.fading = not source.fade.finished
+  if not source.fading:
+    alSourcef(source.id, AL_GAIN, targetGain)
+    if stopAfterFade:
+      source.stop()
+
+proc fadeIn*(
+  source: Source,
+  durationSeconds: float32,
+  targetGain: float32 = 1.0'f
+) =
+  ## Starts or restarts an existing source and fades its gain up from zero.
+  if source.id == 0:
+    return
+  validateFade(targetGain, durationSeconds)
+  source.gain = 0
+  source.play()
+  source.fadeTo(targetGain, durationSeconds)
+
+proc crossfade*(
+  current, replacement: Source,
+  durationSeconds: float32,
+  replacementGain: float32 = 1.0'f
+) =
+  ## Fades out one live voice while starting a distinct replacement voice.
+  validateFade(replacementGain, durationSeconds)
+  if current == replacement or current.id == 0 or replacement.id == 0:
+    fail "Crossfade requires two distinct live sources."
+  replacement.fadeIn(durationSeconds, replacementGain)
+  current.fadeTo(0, durationSeconds, stopAfterFade = true)
+
 proc slappyInit*() {.raises: [SlappyError].} =
   ## Call this on start of your program.
   if ctx != nil:
@@ -380,16 +442,41 @@ proc slappyClose*() {.raises: [SlappyError].} =
       fail "Failed to close device."
     device = nil
 
-proc slappyTick*() =
-  ## Releases finished one-shot voices while preserving reusable sources.
+proc tickSources(now: MonoTime, deltaSeconds: float32, automatic: bool) =
+  ## Advances active fades and releases finished one-shot voices.
   var i = 0
   while i < activeSources.len:
     let source = activeSources[i]
+    if source.fading:
+      if source.playing:
+        let elapsed =
+          if automatic:
+            float32((now - source.fadeUpdated).inNanoseconds) / 1e9'f
+          else:
+            deltaSeconds
+        source.fadeUpdated = now
+        alSourcef(source.id, AL_GAIN, source.fade.advance(elapsed))
+        if source.fade.finished:
+          source.fading = false
+          if source.stopAfterFade:
+            source.stop()
+      else:
+        source.cancelFade()
     if not source.reusable and not source.playing:
       activeSources.del(i)
       dec i
       source.release()
     inc i
+
+proc slappyTick*(deltaSeconds: float32) =
+  ## Advances fades by an explicit delta and resets their wall-clock anchors.
+  if classify(deltaSeconds) in {fcNan, fcInf, fcNegInf}:
+    fail "Tick duration must be finite."
+  tickSources(getMonoTime(), max(deltaSeconds, 0.0'f), false)
+
+proc slappyTick*() =
+  ## Advances fades by wall time and releases finished one-shot voices.
+  tickSources(getMonoTime(), 0, true)
 
 proc cleanupOnError(sound: var Sound; msg: string) =
   let hasError = alGetError() != AL_NO_ERROR
@@ -512,6 +599,54 @@ proc newSound*(): Sound =
   ## Returns an empty sound handle.
   new Sound
 
+proc alFormat(channels, bits: SomeInteger): ALenum =
+  ## Resolves the OpenAL format without narrowing file metadata on 32-bit hosts.
+  if channels == 1:
+    if bits == 16:
+      return AL_FORMAT_MONO16
+    elif bits == 8:
+      return AL_FORMAT_MONO8
+  elif channels == 2:
+    if bits == 16:
+      return AL_FORMAT_STEREO16
+    elif bits == 8:
+      return AL_FORMAT_STEREO8
+  fail &"Unsupported format: {channels} channels, {bits} bits."
+
+proc pcmFormat(size, frequency, channels, bits: int): ALenum =
+  ## Validates a complete PCM buffer before allocating any OpenAL resources.
+  result = alFormat(channels, bits)
+  if size <= 0 or size > int(high(ALsizei)):
+    fail "PCM data must contain between 1 and 2147483647 bytes."
+  if frequency <= 0 or frequency > int(high(ALsizei)):
+    fail "PCM frequency must be between 1 and 2147483647 Hz."
+  let bytesPerFrame = channels * (bits div 8)
+  if size mod bytesPerFrame != 0:
+    fail "PCM data must contain complete sample frames."
+
+proc newSound*(
+  pcm: openArray[uint8],
+  frequency: int,
+  channels: int = 1,
+  bits: int = 16
+): Sound =
+  ## Copies interleaved PCM into a sound buffer; stereo is not spatialized.
+  ## Samples are unsigned 8-bit or signed 16-bit in native byte order.
+  let format = pcmFormat(pcm.len, frequency, channels, bits)
+  var sound = newSound()
+  discard alGetError()
+  alGenBuffers(1, addr sound.id)
+  sound.cleanupOnError("Couldn't create a sound's buffer ID.")
+  alBufferData(
+    sound.id,
+    format,
+    unsafeAddr pcm[0],
+    ALsizei(pcm.len),
+    ALsizei(frequency)
+  )
+  sound.cleanupOnError("Couldn't load PCM into a sound's buffer data.")
+  sound
+
 proc newSound*(filePath: string; forceMono: bool = true): Sound =
   ## Loads a sound buffer from wav, slappy, or ogg files.
   ## Files must be loaded as mono to use spatial sound features (default: true).
@@ -520,24 +655,6 @@ proc newSound*(filePath: string; forceMono: bool = true): Sound =
   discard alGetError() # Clear error code
   alGenBuffers(1, addr sound.id)
   sound.cleanupOnError("Couldn't create a sound's buffer ID.")
-
-  proc format(bits, channels: SomeInteger): ALenum =
-    if channels == 1:
-      if bits == 16:
-        result = AL_FORMAT_MONO16
-      elif bits == 8:
-        result = AL_FORMAT_MONO8
-      else:
-        fail &"Got {bits} bits, only 8 or 16 bits per sample are supported"
-    elif channels == 2:
-      if bits == 16:
-        result = AL_FORMAT_STEREO16
-      elif bits == 8:
-        result = AL_FORMAT_STEREO8
-      else:
-        fail &"Got {bits} bits, only 8 or 16 bits per sample are supported"
-    else:
-      fail &"Got {channels} channels, only 1 or 2 channel sounds supported"
 
   var wav: WavFile
   if filePath.endswith(".wav"):
@@ -553,7 +670,7 @@ proc newSound*(filePath: string; forceMono: bool = true): Sound =
 
   alBufferData(
     sound.id,
-    format(wav.bits, wav.channels),
+    alFormat(wav.channels, wav.bits),
     addr wav.data[0],
     ALsizei wav.size,
     ALsizei wav.freq
@@ -630,17 +747,17 @@ proc play*(sound: Sound): Source =
   source.play()
   return source
 
-# --- Streaming audio ---
+proc fadeIn*(
+  sound: Sound,
+  durationSeconds: float32,
+  targetGain: float32 = 1.0'f
+): Source =
+  ## Creates a one-shot voice and fades its gain up from zero.
+  validateFade(targetGain, durationSeconds)
+  result = sound.source()
+  result.fadeIn(durationSeconds, targetGain)
 
-proc alFormat(channels, bits: int): ALenum =
-  ## Resolves the OpenAL format enum for a given channel and bit configuration.
-  if channels == 1:
-    if bits == 16: return AL_FORMAT_MONO16
-    elif bits == 8: return AL_FORMAT_MONO8
-  elif channels == 2:
-    if bits == 16: return AL_FORMAT_STEREO16
-    elif bits == 8: return AL_FORMAT_STEREO8
-  fail &"Unsupported format: {channels} channels, {bits} bits."
+# --- Streaming audio ---
 
 proc newStreamingSource*(
   frequency: int = 24000,

@@ -46,3 +46,19 @@ Reusable sources avoid Nim allocations and OpenAL source creation or
 deletion during playback. They do not guarantee allocation behavior inside
 an OpenAL implementation. In particular, Emscripten's OpenAL playback uses
 one-shot Web Audio nodes internally.
+
+## Sounds from memory
+
+`newSound(pcm, frequency, channels = 1, bits = 16)` copies raw PCM bytes
+from an `openArray[uint8]` into a sound buffer. The caller may reuse or
+release those bytes after the call. Use unsigned 8-bit or signed 16-bit
+samples in native byte order, with one or two interleaved channels.
+Stereo buffers do not support spatial positioning.
+
+The input must be nonempty, contain complete sample frames, and fit
+OpenAL's signed 32-bit byte count. The sample rate must be positive and
+fit OpenAL's signed 32-bit frequency field. Invalid inputs raise
+`SlappyError` before allocating a buffer.
+
+Create PCM buffers during preload, just like file-backed sounds. Playback
+and [fades](fades.md) can then reuse the same voices and buffers.
