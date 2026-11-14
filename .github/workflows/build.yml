@@ -22,4 +22,20 @@ jobs:
         run: |
           cd ..
           nimby install -g "${{ github.event.repository.name }}/${{ github.event.repository.name }}.nimble"
+      - name: Install OpenAL development library
+        if: runner.os == 'Linux'
+        run: sudo apt-get update && sudo apt-get install -y libopenal-dev
       - run: nim r tests/tests.nim
+      - name: Test audio lifecycle and reusable voices
+        shell: bash
+        run: |
+          nim r tests/test_lifecycle.nim
+          nim r -d:nimAllocStats tests/test_sources.nim
+      - name: Test PCM buffers and playback fades
+        shell: bash
+        run: |
+          nim r tests/test_pcm.nim
+          nim r -d:nimAllocStats tests/test_source_fades.nim
+      - name: Check WebAssembly API compatibility
+        if: runner.os == 'Linux'
+        run: nim check --os:linux --cpu:wasm32 -d:emscripten src/slappy.nim
