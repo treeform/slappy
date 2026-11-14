@@ -9,6 +9,8 @@ type
     id: ALuint
   Source* = ref object
     id: ALuint
+    boundSound: Sound
+    reusable: bool
   Microphone* = ref object
     device: ALCdevice
     captureFreq: int
@@ -126,6 +128,40 @@ proc stop*(source: Source) =
   ## Stops source playback.
   if source.id != 0:
     alSourceStop(source.id)
+
+proc `sound=`*(source: Source, sound: Sound) =
+  ## Stops a voice and attaches a preloaded sound; nil detaches its buffer.
+  if source.id == 0:
+    return
+  source.stop()
+  discard alGetError()
+  alSourcei(source.id, AL_BUFFER,
+    if sound == nil: 0 else: cast[ALint](sound.id))
+  if alGetError() != AL_NO_ERROR:
+    raise newException(SlappyError, "Couldn't attach the sound buffer.")
+  source.boundSound = sound
+
+proc sound*(source: Source): Sound =
+  ## Returns the sound retained by this voice while it is attached.
+  source.boundSound
+
+proc release(source: Source) =
+  ## Releases one OpenAL voice before dropping its retained sound buffer.
+  if source.id != 0:
+    source.stop()
+    alDeleteSources(1, addr source.id)
+    source.id = 0
+  source.boundSound = nil
+
+proc close*(source: Source) =
+  ## Releases a voice explicitly; repeated calls are harmless.
+  if source.id == 0:
+    return
+  source.release()
+  for i in 0 ..< activeSources.len:
+    if activeSources[i] == source:
+      activeSources.del(i)
+      break
 
 proc play*(source: Source) =
   ## Starts source playback.
@@ -329,9 +365,7 @@ proc slappyClose*() {.raises: [SlappyError].} =
     if not alcMakeContextCurrent(ctx):
       fail "Failed to make context current for shutdown."
     for source in activeSources:
-      source.stop()
-      alDeleteSources(1, addr source.id)
-      source.id = 0
+      source.release()
     activeSources.setLen(0)
     if not alcMakeContextCurrent(nil):
       fail "Failed to release current context."
@@ -343,15 +377,14 @@ proc slappyClose*() {.raises: [SlappyError].} =
     device = nil
 
 proc slappyTick*() =
-  ## Updates all sources and sounds.
+  ## Releases finished one-shot voices while preserving reusable sources.
   var i = 0
   while i < activeSources.len:
     let source = activeSources[i]
-    if not source.playing:
+    if not source.reusable and not source.playing:
       activeSources.del(i)
       dec i
-      alDeleteSources(1, addr source.id)
-      source.id = 0
+      source.release()
     inc i
 
 proc cleanupOnError(sound: var Sound; msg: string) =
@@ -564,13 +597,28 @@ proc duration*(sound: Sound): float32 {.inline.} =
   ## Gets duration of the sound in seconds.
   return sound.samples / sound.freq
 
+proc createSource(reusable: bool): Source =
+  ## Creates one tracked OpenAL voice for automatic or explicit retirement.
+  result = Source(reusable: reusable)
+  discard alGetError()
+  alGenSources(1, addr result.id)
+  if alGetError() != AL_NO_ERROR:
+    result.release()
+    fail "Couldn't create a source ID."
+  activeSources.add(result)
+
+proc newSource*(): Source =
+  ## Allocates an empty reusable voice that survives stops and slappyTick.
+  createSource(true)
+
 proc source*(sound: Sound): Source =
-  ## Gets the source for the sound.
-  var source = Source()
-  alGenSources(1, addr source.id)
-  activeSources.add(source)
-  alSourcei(source.id, AL_BUFFER, cast[ALint](sound.id))
-  return source
+  ## Creates a one-shot voice retained until playback ends or close is called.
+  result = createSource(false)
+  try:
+    result.sound = sound
+  except SlappyError:
+    result.close()
+    raise
 
 proc play*(sound: Sound): Source =
   ## Plays the sound.
