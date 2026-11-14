@@ -116,17 +116,21 @@ proc `mat`*(listener: Listener): Mat4 =
 
 proc playing*(source: Source): bool {.inline.} =
   ## Returns true when the source is currently playing.
+  if source.id == 0:
+    return false
   var state: ALenum
   alGetSourcei(source.id, AL_SOURCE_STATE, addr state)
   result = state == AL_PLAYING
 
 proc stop*(source: Source) =
   ## Stops source playback.
-  alSourceStop(source.id)
+  if source.id != 0:
+    alSourceStop(source.id)
 
 proc play*(source: Source) =
   ## Starts source playback.
-  alSourcePlay(source.id)
+  if source.id != 0:
+    alSourcePlay(source.id)
 
 proc `pitch=`*(source: Source, v: float32) =
   ## Sets source pitch.
@@ -287,35 +291,56 @@ template fail(msg: string) =
 
 proc slappyInit*() {.raises: [SlappyError].} =
   ## Call this on start of your program.
+  if ctx != nil:
+    return
+  var newDevice: ALCdevice
   when defined(emscripten):
     # Always open the first device for emscripten.
     # Emscripten exposes only one device, so alcGetString is invalid.
-    device = alcOpenDevice(nil)
+    newDevice = alcOpenDevice(nil)
   else:
     # Find the first available device on the devices list.
     let deviceNames = $alcGetString(nil, ALC_ALL_DEVICES_SPECIFIER)
     for deviceName in deviceNames.split(char(0)):
-      device = alcOpenDevice(deviceName.cstring)
-      if device != nil:
+      newDevice = alcOpenDevice(deviceName.cstring)
+      if newDevice != nil:
         break
 
-  if device == nil:
+  if newDevice == nil:
     fail "Failed to get default device."
   else:
-    let deviceName = alcGetString(device, ALC_DEVICE_SPECIFIER)
+    let deviceName = alcGetString(newDevice, ALC_DEVICE_SPECIFIER)
     echo "Using : ", deviceName, " for sound!"
 
-  ctx = device.alcCreateContext(nil)
-  if ctx == nil:
+  let newContext = newDevice.alcCreateContext(nil)
+  if newContext == nil:
+    discard alcCloseDevice(newDevice)
     fail "Failed to create context."
-  if not alcMakeContextCurrent(ctx):
+  if not alcMakeContextCurrent(newContext):
+    alcDestroyContext(newContext)
+    discard alcCloseDevice(newDevice)
     fail "Failed to make context current."
+  device = newDevice
+  ctx = newContext
 
 proc slappyClose*() {.raises: [SlappyError].} =
-  ## Call this on exit.
-  alcDestroyContext(ctx)
-  if not alcCloseDevice(device):
-    fail "Failed to close device."
+  ## Releases playback sources and the context; repeated calls are harmless.
+  if ctx != nil:
+    if not alcMakeContextCurrent(ctx):
+      fail "Failed to make context current for shutdown."
+    for source in activeSources:
+      source.stop()
+      alDeleteSources(1, addr source.id)
+      source.id = 0
+    activeSources.setLen(0)
+    if not alcMakeContextCurrent(nil):
+      fail "Failed to release current context."
+    alcDestroyContext(ctx)
+    ctx = nil
+  if device != nil:
+    if not alcCloseDevice(device):
+      fail "Failed to close device."
+    device = nil
 
 proc slappyTick*() =
   ## Updates all sources and sounds.
@@ -326,6 +351,7 @@ proc slappyTick*() =
       activeSources.del(i)
       dec i
       alDeleteSources(1, addr source.id)
+      source.id = 0
     inc i
 
 proc cleanupOnError(sound: var Sound; msg: string) =
