@@ -51,11 +51,7 @@ let window = newWindow(
 makeContextCurrent(window)
 loadExtensions()
 
-let sk = newSilky("dist/atlas.png")
-
-window.runeInputEnabled = true
-window.onRune = proc(rune: Rune) =
-  sk.inputRunes.add(rune)
+let sk = newSilky(window, "dist/atlas.png")
 
 let
   dopplerSound= newSound(SoundFiles[3])
