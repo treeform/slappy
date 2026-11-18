@@ -3,6 +3,9 @@ import
   openal, vmath,
   slappy/[fades, wav, vorbis, slappyformat]
 
+when defined(emscripten):
+  import slappy/browsermicrophones
+
 type
   Listener* = object
   Sound* = ref object
@@ -15,7 +18,10 @@ type
     fadeUpdated: MonoTime
     fading, stopAfterFade: bool
   Microphone* = ref object
-    device: ALCdevice
+    when defined(emscripten):
+      browserHandle: cint
+    else:
+      device: ALCdevice
     captureFreq: int
     captureFormat: ALenum
     captureChannels: int
@@ -485,14 +491,26 @@ proc cleanupOnError(sound: var Sound; msg: string) =
   fail(msg)
 
 proc listCaptureDevices*(): seq[string] =
-  ## Returns a list of available audio capture device names.
-  when defined(emscripten):
-    return @[]
-  else:
+  ## Returns native capture device names; browsers use their default input.
+  when not defined(emscripten):
     let deviceNames = $alcGetString(nil, ALC_CAPTURE_DEVICE_SPECIFIER)
     for name in deviceNames.split(char(0)):
       if name.len > 0:
         result.add(name)
+
+proc checkMicrophone(mic: Microphone) {.raises: [SlappyError].} =
+  ## Rejects closed devices and reports asynchronous browser failures.
+  if mic == nil:
+    fail "The microphone is closed."
+  when defined(emscripten):
+    if mic.browserHandle == 0:
+      fail "The microphone is closed."
+    let message = browserMicrophoneError(mic.browserHandle)
+    if message.len > 0:
+      fail message
+  else:
+    if mic.device == nil:
+      fail "The microphone is closed."
 
 proc newMicrophone*(
   deviceName: string = "",
@@ -501,28 +519,45 @@ proc newMicrophone*(
   bits: int = 16,
   bufferSize: int = 44100 * 10
 ): Microphone {.raises: [SlappyError].} =
-  ## Opens an audio capture device for microphone input.
-  ## Pass an empty deviceName for the default capture device.
-  when defined(emscripten):
-    fail "Microphone capture is not supported on emscripten."
+  ## Opens capture; browser permission is asynchronous, so poll ready.
+  ## Use an empty deviceName for the default input and a user gesture on web.
+  ## bufferSize is the maximum number of interleaved sample frames retained.
+  if frequency <= 0 or frequency > int(high(ALsizei)):
+    fail "Capture frequency must be between 1 and 2147483647 Hz."
+  if channels notin [1, 2]:
+    fail &"Got {channels} channels, only 1 or 2 channel capture is supported."
+  if bits notin [8, 16]:
+    fail &"Got {bits} bits, only 8 or 16 bits per sample are supported."
+  let bytesPerFrame = channels * (bits div 8)
+  if bufferSize <= 0 or
+    bufferSize > int(high(ALsizei)) div bytesPerFrame:
+      fail "Capture buffer must contain a positive, addressable frame count."
+  let mic = Microphone(
+    captureFreq: frequency,
+    captureChannels: channels,
+    captureBits: bits,
+    captureBufferSize: bufferSize
+  )
+  if channels == 1:
+    mic.captureFormat =
+      if bits == 16: AL_FORMAT_MONO16 else: AL_FORMAT_MONO8
   else:
-    let mic = Microphone()
-    mic.captureFreq = frequency
-    mic.captureChannels = channels
-    mic.captureBits = bits
-    mic.captureBufferSize = bufferSize
-
-    if channels == 1:
-      if bits == 16: mic.captureFormat = AL_FORMAT_MONO16
-      elif bits == 8: mic.captureFormat = AL_FORMAT_MONO8
-      else: fail &"Got {bits} bits, only 8 or 16 bits per sample are supported."
-    elif channels == 2:
-      if bits == 16: mic.captureFormat = AL_FORMAT_STEREO16
-      elif bits == 8: mic.captureFormat = AL_FORMAT_STEREO8
-      else: fail &"Got {bits} bits, only 8 or 16 bits per sample are supported."
-    else:
-      fail &"Got {channels} channels, only 1 or 2 channel capture is supported."
-
+    mic.captureFormat =
+      if bits == 16: AL_FORMAT_STEREO16 else: AL_FORMAT_STEREO8
+  when defined(emscripten):
+    mic.browserHandle = browserMicrophoneOpen(
+      cint(frequency),
+      cint(channels),
+      cint(bits),
+      cint(bufferSize),
+      deviceName.cstring
+    )
+    try:
+      mic.checkMicrophone()
+    except SlappyError:
+      browserMicrophoneClose(mic.browserHandle)
+      raise
+  else:
     let name = if deviceName.len == 0: nil else: deviceName.cstring
     mic.device = alcCaptureOpenDevice(
       name,
@@ -532,33 +567,99 @@ proc newMicrophone*(
     )
     if mic.device == nil:
       fail "Failed to open capture device."
+  mic
 
-    return mic
+proc ready*(mic: Microphone): bool {.raises: [SlappyError].} =
+  ## Returns false while browser permission is pending or after close.
+  ## Raises SlappyError when browser permission or audio setup fails.
+  if mic == nil:
+    return false
+  when defined(emscripten):
+    if mic.browserHandle == 0:
+      return false
+    mic.checkMicrophone()
+    browserMicrophoneReady(mic.browserHandle)
+  else:
+    mic.device != nil
 
-proc start*(mic: Microphone) =
-  ## Starts audio capture on the microphone.
-  alcCaptureStart(mic.device)
+proc start*(mic: Microphone) {.raises: [SlappyError].} =
+  ## Starts capture, including after a pending browser permission grant.
+  mic.checkMicrophone()
+  when defined(emscripten):
+    browserMicrophoneStart(mic.browserHandle)
+    mic.checkMicrophone()
+  else:
+    discard alcGetError(mic.device)
+    alcCaptureStart(mic.device)
+    if alcGetError(mic.device) != ALC_NO_ERROR:
+      fail "Failed to start microphone capture."
 
-proc stop*(mic: Microphone) =
-  ## Stops audio capture on the microphone.
-  alcCaptureStop(mic.device)
+proc stop*(mic: Microphone) {.raises: [SlappyError].} =
+  ## Stops capture while preserving queued frames; close releases the input.
+  mic.checkMicrophone()
+  when defined(emscripten):
+    browserMicrophoneStop(mic.browserHandle)
+  else:
+    discard alcGetError(mic.device)
+    alcCaptureStop(mic.device)
+    if alcGetError(mic.device) != ALC_NO_ERROR:
+      fail "Failed to stop microphone capture."
+
+proc stopping*(mic: Microphone): bool {.raises: [SlappyError].} =
+  ## Returns true while a browser stop is still transferring captured frames.
+  ## Yield until false before the final read and close; native stops are synchronous.
+  when defined(emscripten):
+    if mic != nil and mic.browserHandle != 0:
+      mic.checkMicrophone()
+      return browserMicrophoneStopping(mic.browserHandle)
+  false
 
 proc close*(mic: Microphone) {.raises: [SlappyError].} =
-  ## Closes the capture device and releases resources.
-  if not alcCaptureCloseDevice(mic.device):
-    fail "Failed to close capture device."
+  ## Releases capture resources, even with permission pending; idempotent.
+  if mic == nil:
+    return
+  when defined(emscripten):
+    if mic.browserHandle != 0:
+      browserMicrophoneClose(mic.browserHandle)
+      mic.browserHandle = 0
+  else:
+    if mic.device != nil:
+      if not alcCaptureCloseDevice(mic.device):
+        fail "Failed to close capture device."
+      mic.device = nil
 
-proc samplesAvailable*(mic: Microphone): int =
-  ## Returns the number of captured samples available for reading.
-  var samples: ALCint
-  alcGetIntegerv(mic.device, ALC_CAPTURE_SAMPLES, 1, addr samples)
-  return int(samples)
+proc samplesAvailable*(mic: Microphone): int {.raises: [SlappyError].} =
+  ## Returns queued sample frames, or zero while browser setup is pending.
+  mic.checkMicrophone()
+  when defined(emscripten):
+    int(browserMicrophoneAvailable(mic.browserHandle))
+  else:
+    var samples: ALCint
+    discard alcGetError(mic.device)
+    alcGetIntegerv(mic.device, ALC_CAPTURE_SAMPLES, 1, addr samples)
+    if alcGetError(mic.device) != ALC_NO_ERROR:
+      fail "Failed to query microphone samples."
+    int(samples)
 
 proc read*(mic: Microphone, sampleCount: int): seq[uint8] =
-  ## Reads captured PCM samples as raw bytes.
-  let bytesPerSample = (mic.captureBits div 8) * mic.captureChannels
-  result = newSeq[uint8](sampleCount * bytesPerSample)
-  alcCaptureSamples(mic.device, addr result[0], ALCsizei(sampleCount))
+  ## Reads complete PCM frames without discarding the unread remainder.
+  mic.checkMicrophone()
+  if sampleCount < 0 or sampleCount > mic.samplesAvailable:
+    fail "Capture read must be between zero and the available frame count."
+  if sampleCount == 0:
+    return
+  let bytesPerFrame = (mic.captureBits div 8) * mic.captureChannels
+  if sampleCount > int(high(ALsizei)) div bytesPerFrame:
+    fail "Capture read is too large."
+  result = newSeq[uint8](sampleCount * bytesPerFrame)
+  when defined(emscripten):
+    browserMicrophoneRead(mic.browserHandle, addr result[0], cint(sampleCount))
+    mic.checkMicrophone()
+  else:
+    discard alcGetError(mic.device)
+    alcCaptureSamples(mic.device, addr result[0], ALCsizei(sampleCount))
+    if alcGetError(mic.device) != ALC_NO_ERROR:
+      fail "Failed to read microphone samples."
 
 proc readAll*(mic: Microphone): seq[uint8] =
   ## Reads all available captured samples as raw bytes.

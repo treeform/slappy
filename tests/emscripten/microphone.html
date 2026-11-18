@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Slappy browser microphone</title>
+    <style>
+      body {
+        max-width: 42rem;
+        margin: 4rem auto;
+        padding: 0 1rem;
+        font: 1.1rem/1.5 system-ui, sans-serif;
+        color: #202530;
+        background: #f5f7fb;
+      }
+      button {
+        margin: .4rem .4rem .4rem 0;
+        padding: .7rem 1rem;
+        font: inherit;
+      }
+      #status { padding: 1rem; background: white; border-radius: .4rem; }
+      small { color: #505868; }
+    </style>
+  </head>
+  <body>
+    <h1>Slappy browser microphone</h1>
+    <p>Record two seconds of mono, 16-bit audio at 24,000 Hz, then play it
+      through Slappy. Audio stays in this page.</p>
+    <button id="record" disabled>Record two seconds</button>
+    <button id="stop" disabled>Stop and close microphone</button>
+    <button id="play" disabled>Play recording</button>
+    <p id="status" role="status">Loading WebAssembly...</p>
+    <p><small>Allow microphone access when your browser asks. The microphone
+      closes after recording or when you press Stop. Reloading clears the
+      recording. Use localhost or HTTPS.</small></p>
+    <script>
+      var Module = {
+        onRuntimeInitialized() {
+          document.getElementById('record').disabled = false;
+          document.getElementById('stop').disabled = false;
+          document.getElementById('status').textContent = 'Ready to record.';
+          document.getElementById('record').onclick = () =>
+            Module._recordMicrophone();
+          document.getElementById('stop').onclick = () =>
+            Module._stopMicrophone();
+          document.getElementById('play').onclick = () =>
+            Module._playMicrophone();
+          window.addEventListener('pagehide', () => Module._shutdownMicrophone());
+        },
+        onAbort(message) {
+          document.getElementById('status').textContent = 'Runtime error: ' + message;
+        }
+      };
+    </script>
+    {{{ SCRIPT }}}
+  </body>
+</html>

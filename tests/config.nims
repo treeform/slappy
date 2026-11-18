@@ -3,6 +3,7 @@ import std/[os, strutils, strformat]
 --path:"../src"
 
 if defined(emscripten):
+  mkDir(thisDir() / "dist")
   --nimcache:tmp
   --os:linux
   --cpu:wasm32
@@ -24,12 +25,18 @@ if defined(emscripten):
   --define:noSignalHandler
   --debugger:native
 
+  let shellFile =
+    if projectName() == "manual_browser_microphone":
+      "emscripten/microphone.html"
+    else:
+      "emscripten/emscripten.html"
+
   switch(
     "passL",
     """
     -o dist/{projectName()}.html
     --preload-file data/
-    --shell-file emscripten/emscripten.html
+    --shell-file {shellFile}
     -s ASYNCIFY
     -s FETCH
     -s USE_WEBGL2=1
