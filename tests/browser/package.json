@@ -1,0 +1,12 @@
+{
+  "name": "slappy-browser-microphone-tests",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "nim c capture.nim",
+    "test": "node ../test_browser_microphones.mjs && npm run build && node test.mjs"
+  },
+  "devDependencies": {
+    "playwright": "1.63.0"
+  }
+}

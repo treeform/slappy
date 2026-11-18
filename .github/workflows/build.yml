@@ -39,3 +39,32 @@ jobs:
       - name: Check WebAssembly API compatibility
         if: runner.os == 'Linux'
         run: nim check --os:linux --cpu:wasm32 -d:emscripten src/slappy.nim
+
+  browser:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: treeform/setup-nim-action@v6
+      - name: Install Nim dependencies
+        run: |
+          cd ..
+          nimby install -g "${{ github.event.repository.name }}/${{ github.event.repository.name }}.nimble"
+      - uses: emscripten-core/setup-emsdk@v16
+        with:
+          version: '6.0.1'
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '24'
+          cache: npm
+          cache-dependency-path: tests/browser/package-lock.json
+      - name: Install browser test dependencies
+        working-directory: tests/browser
+        run: |
+          npm ci
+          npx playwright install --with-deps chromium
+      - name: Test microphone capture with synthetic audio
+        working-directory: tests/browser
+        run: npm test
+      - name: Build the interactive microphone example
+        working-directory: tests
+        run: nim c --threads:off -d:emscripten manual_browser_microphone.nim
